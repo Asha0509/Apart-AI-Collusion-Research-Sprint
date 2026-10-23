@@ -1,0 +1,56 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(uv run pytest *)",
+      "Bash(uv run ruff *)",
+      "Bash(uvx ruff *)",
+      "Bash(uv run pyright *)",
+      "Bash(bash scripts/check.sh)",
+      "Bash(uv run python scripts/gate.py)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git log *)",
+      "Bash(tail *)"
+    ],
+    "deny": [
+      "Read(./compute.env)",
+      "Read(./**/compute.env)",
+      "Read(./.env)",
+      "Read(./**/.env)",
+      "Edit(./**/compute.env)",
+      "Edit(./**/.env)",
+      "Bash(rm -rf *)"
+    ]
+  },
+  "skillOverrides": {
+    "office-hours": "user-invocable-only", "plan-ceo-review": "user-invocable-only",
+    "autoplan": "user-invocable-only", "plan-eng-review": "user-invocable-only",
+    "ship": "off", "land-and-deploy": "off", "setup-deploy": "off", "canary": "off",
+    "landing-report": "off", "benchmark": "off", "qa": "off", "qa-only": "off",
+    "browse": "off", "scrape": "off", "skillify": "off", "open-gstack-browser": "off",
+    "setup-browser-cookies": "off", "pair-agent": "off", "make-pdf": "off", "diagram": "off",
+    "design-consultation": "off", "design-shotgun": "off", "design-html": "off",
+    "design-review": "off", "plan-design-review": "off", "plan-devex-review": "off",
+    "devex-review": "off", "ios-qa": "off", "ios-fix": "off", "ios-design-review": "off",
+    "ios-clean": "off", "ios-sync": "off", "cso": "off", "codex": "off", "retro": "off",
+    "setup-gbrain": "off", "sync-gbrain": "off", "document-release": "off",
+    "document-generate": "off", "benchmark-models": "off", "deslop-shared-libs": "off",
+    "test-audit": "off", "health": "off", "plan-tune": "off", "spec": "off"
+  },
+  "hooks": {
+    "PreToolUse": [
+      { "matcher": "Bash|Read|Edit|Write|Grep|Glob",
+        "hooks": [{ "type": "command", "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/guard_secrets.sh", "timeout": 5 }] }
+    ],
+    "PostToolUse": [
+      { "matcher": "Edit|Write",
+        "hooks": [{ "type": "command", "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/ruff_after_edit.sh", "timeout": 30 }] }
+    ],
+    "UserPromptSubmit": [
+      { "hooks": [{ "type": "command", "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/skill_router.sh", "timeout": 5 }] }
+    ],
+    "Stop": [
+      { "hooks": [{ "type": "command", "command": "${CLAUDE_PROJECT_DIR}/.claude/hooks/stop_gate.sh", "timeout": 180, "statusMessage": "fast tests + build log check" }] }
+    ]
+  }
+}

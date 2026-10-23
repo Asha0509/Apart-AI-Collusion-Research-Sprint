@@ -1,0 +1,15 @@
+# secrets
+compute.env
+**/compute.env
+.env
+**/.env
+# envs / caches
+.venv/
+**/.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+# large harness outputs (copy what you analyse into results/raw)
+starter/**/experiments_runs/**/*.svg
+logs/pilot/*.log
