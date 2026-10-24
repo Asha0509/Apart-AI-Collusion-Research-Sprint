@@ -66,3 +66,10 @@ def rounds_to_recover(prices: pd.Series, shock_round: int, pre_level: float, tol
     after = prices.loc[shock_round + 1 :]
     hit = after[(after - pre_level).abs() <= tol]
     return None if hit.empty else int(hit.index[0] - shock_round)
+
+
+def locked_price(prices_a: Any, prices_b: Any, tail: int = 30, max_sd: float = 0.005) -> bool:
+    """Descriptive flag (addendum A5): both firms hold one price (tiny SD) over the last `tail` rounds, at ANY
+    level. Separates focal-price coordination from price-based collusion; not part of the branch rule."""
+    a, b = (np.asarray(x, dtype=float)[-tail:] for x in (prices_a, prices_b))
+    return bool(np.std(a, ddof=1) <= max_sd and np.std(b, ddof=1) <= max_sd and abs(a.mean() - b.mean()) <= 0.02)

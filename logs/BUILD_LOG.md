@@ -64,3 +64,10 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - **Finding to disclose (not reverted):** `starter/algorithmic-pricing-llms/pyproject.toml` gained `modal>=1.6.2` and `uv.lock` changed (+~990 lines) in commit 78bd2a3; I did not intend to commit it (came in via `git add -A` after the Modal install). It is a sprint change to a pre-existing file: keep (needed only for Modal hosting) and list in the report's pre-existing-code disclosure, or revert if Modal is not used.
 - **Known ceilings (not defects):** regex `\{.*\}` is greedy (two JSON objects in one reply -> parse failure -> retry); successor_view deep-copies history per prompt (fine at 250 rounds).
 - **Tests:** harness-env set 17 PASS together. Smoke runs and /codex adversarial review still pending (milestone).
+
+## 2026-10-24 17:40 IST — A4 usage tracking, FR-6/7 (fork bot_price, forced_prices, shocks.py), FR-8/9 sanitiser, A5 locked_price
+- **SPRINT-PATCH** llm_providers.py (tokens_in/out/n_calls from response.usage) and experiment.py (`metadata["usage_tokens"]` per model, summed). Harness frozen during edit, cleared.
+- **New:** fork.py generalised (resume_round, forced_prices -> ForcedPriceAgent, bot_price -> FakeAgent, metadata["fork"]); shocks.py (run_shock copies from the branch, shock_response -> matching ratio); sanitiser.py (sanitise, monitor_flag raising on anything but COLLUSIVE/CLEAN, sanitised_override, prompt_hashes); metrics.locked_price.
+- **Tests (0 API):** test_usage_tracking 1, test_fork_inherit 10 (bot holds price, forced cut at the right round in a copy only, identical before shock, branch sha unchanged), test_sanitiser 3, test_metrics +1. Run cmd in file docstrings (harness venv + --with pandas).
+- **PREREG.md (uncommitted):** frozen prompt hashes filled. Human must approve before the PREREG commit.
+- **Smoke / codex adversarial review:** pending. Spend $0.

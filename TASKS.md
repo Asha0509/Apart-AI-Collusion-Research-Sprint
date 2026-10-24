@@ -10,11 +10,12 @@
 - [ ] A3 smoke-check successor candidate (5 rounds, <=$0.05)
 - [x] FR-5 wording in BOTH PP_P0 and GENERAL_PROMPT (tested)
 - [x] FR-2 per-firm models in common.py (--firm-models); successor on another endpoint = build OpenAICompatibleProvider(base_url, api_key) in src/cartel/fork.py, no harness patch needed
-- [ ] A4 token/cost tracking in metadata
+- [x] A4 token/cost tracking: provider counts tokens, metadata["usage_tokens"] (tested)
 - [x] FR-4 inherit.py + FR-3 fork.py built, 8 mocked tests PASS; prompts dumped to logs/prompts/ (smoke + /review pending)
 - [x] NFR-4 retry cap 4x3, regex JSON, parse-failure log (SPRINT-PATCH, tested)
-- [ ] FR-6 bot control, FR-7 shocks, FR-8/9 sanitiser+monitor (hash prompts into PREREG)
-- [ ] A5 locked-price flag in metrics (descriptive)
+- [x] FR-6 bot (fork bot_price), FR-7 shocks (cartel.shocks), FR-8/9 sanitiser+monitor built + tested; hashes in PREREG (uncommitted)
+- [x] A5 locked_price flag in metrics (tested)
+
 - [ ] A1 message-format merge, only if candidates fail the gate
 
 ## Then

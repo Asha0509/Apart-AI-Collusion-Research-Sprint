@@ -1,4 +1,7 @@
-"""Fork + inheritance switches with a scripted fake provider: zero API cost (harness venv)."""
+"""Fork + inheritance + bot control + shocks with a scripted fake provider: zero API cost.
+
+Run: cd starter/algorithmic-pricing-llms && uv run --with pytest --with pandas python -m pytest ../../tests/test_fork_inherit.py
+"""
 
 import asyncio
 import hashlib
@@ -119,3 +122,31 @@ def test_registry_rows(base, tmp_path, reg):
     fork(base, tmp_path, condition="x")
     rows = reg.read_text().strip().splitlines()[1:]
     assert [r.split(",")[-3] for r in rows] == ["running", "done"] or "done" in rows[-1]
+
+
+def test_bot_control_holds_price(base, tmp_path):
+    out, succ = fork(base, tmp_path, bot_price=1.9, condition="bot")
+    import json
+    h = json.loads((out / "results.json").read_text())
+    assert [h["Firm B"][str(r)]["chosen_price"] for r in (5, 6)] == [1.9, 1.9]
+    assert "fake_agent" in json.loads((out / "metadata.json").read_text())["agents_models"].values()
+
+
+def test_forced_cut_in_copy_only(base, tmp_path):
+    from cartel import shocks
+    br, _ = fork(base, tmp_path, post_rounds=6, condition="c3", history="wipe", notes="keep")
+    import json
+    before = sha(br)
+    PROMPTS.clear()
+    out = shocks.run_shock(str(br), at_round=3, factor=0.9, follow_rounds=2, seed=2000, runs_dir=tmp_path,
+                           plot_every=0, provider_factory=lambda m, ep: Fake(m))
+    out = Path(out)
+    h, b = (json.loads((x / "results.json").read_text()) for x in (out, br))
+    k = 4  # swap round: shock round = k + 3 = 7, resume = 6
+    pre = b["Firm B"]["6"]["chosen_price"]
+    assert h["Firm B"]["7"]["chosen_price"] == pytest.approx(0.9 * pre)  # forced at the right round
+    assert all(h["Firm B"][str(r)] == b["Firm B"][str(r)] for r in range(1, 7))  # identical before the shock
+    assert sha(br) == before  # branch untouched
+    assert sorted(map(int, h["Firm A"])) == list(range(1, 10))  # shock round + 2 follow rounds after round 6
+    r = shocks.shock_response(str(out))
+    assert r["forced_change"] == pytest.approx(0.9 * pre - pre)

@@ -150,6 +150,7 @@ class OpenAICompatibleProvider(Provider):
 
             self._client = AsyncOpenAI(base_url=self.base_url, api_key=self.api_key or "EMPTY")
         self._json_mode = True  # drop response_format if the model rejects it
+        self.tokens_in = self.tokens_out = self.n_calls = 0  # SPRINT-PATCH (A4): usage tracking
 
     async def complete(self, messages, temperature, seed):
         kwargs = {}
@@ -179,6 +180,11 @@ class OpenAICompatibleProvider(Provider):
                 )
             else:
                 raise FatalProviderError(f"{self.model_name}: {e}") from e
+        u = getattr(response, "usage", None)  # SPRINT-PATCH (A4): the harness used to drop token usage
+        self.n_calls += 1
+        if u:
+            self.tokens_in += u.prompt_tokens or 0
+            self.tokens_out += u.completion_tokens or 0
         if not response.choices:
             raise RuntimeError(f"{self.model_name}: empty response")
         return strip_code_fence(response.choices[0].message.content or "")

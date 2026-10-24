@@ -41,3 +41,11 @@ def test_matching_and_recovery():
     assert matching_ratio(-0.1, -0.1) == pytest.approx(1.0)
     s = pd.Series([1.8, 1.6, 1.7, 1.79], index=[30, 31, 32, 33])
     assert rounds_to_recover(s, 30, 1.8) == 3
+
+
+def test_locked_price_flag():
+    from cartel.metrics import locked_price
+
+    assert locked_price([2.4] * 40, [2.4] * 40)  # arbitrary level still counts as locked
+    assert not locked_price([1.9] * 39 + [1.5], [1.9] * 40)
+    assert not locked_price([1.9] * 40, [1.5] * 40)

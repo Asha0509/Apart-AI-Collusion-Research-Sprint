@@ -425,6 +425,15 @@ class Experiment:
         metadata["end_time"] = datetime.datetime.now().isoformat()
         self.summary = self._price_summary()
         metadata["summary"] = self.summary
+        # SPRINT-PATCH (A4): token usage per model (providers may be shared between firms)
+        providers = {id(p): p for p in (getattr(ag, "provider", None) for ag in self.agents) if p}
+        usage: dict = {}
+        for p in providers.values():  # sum: two providers may serve the same model id
+            u = usage.setdefault(p.model_name, {"in": 0, "out": 0, "calls": 0})
+            u["in"] += getattr(p, "tokens_in", 0)
+            u["out"] += getattr(p, "tokens_out", 0)
+            u["calls"] += getattr(p, "n_calls", 0)
+        metadata["usage_tokens"] = usage
         self.storage.save_metadata(metadata)
         self._log_summary()
         self.logger.info("✅ Experiment completed.\n")
