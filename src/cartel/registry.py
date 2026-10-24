@@ -25,7 +25,6 @@ FIELDS = [
     "exclusion_reason",
     "output_path",
 ]
-BUDGET_USD = 65.0  # OpenRouter hard cap for the whole project
 ASK_ABOVE_USD = 5.0  # batches above this need a human OK (CLAUDE.md rule 5)
 IST = timezone(timedelta(hours=5, minutes=30))
 
@@ -42,25 +41,39 @@ def register_run(**row: object) -> None:
         csv.DictWriter(f, fieldnames=FIELDS).writerow({k: row.get(k, "") for k in FIELDS})
 
 
-def spent_so_far() -> float:
+# Per-provider caps = REMAINING credit when caps were reset (human-reported dashboard balances, 24 Oct 21:00 IST).
+# Only rows tagged `provider=<name>` in notes count, so older untagged rows (mixed estimates + dashboard actuals,
+# which double-counted) do not. A batch's estimate counts until its actual is logged under the same batch name.
+CAPS = {"modal": 73.0, "nebius": 7.0}
+
+
+def spent_so_far(provider: str | None = None) -> float:
     if not COSTLOG.exists():
         return 0.0
     with COSTLOG.open() as f:
-        rows = list(csv.DictReader(f))
-    return sum(float(r["actual_usd"] or r["est_usd"] or 0) for r in rows)
+        rows = [r for r in csv.DictReader(f) if provider is None or f"provider={provider}" in (r.get("notes") or "")]
+    by_batch: dict[str, float] = {}
+    for r in rows:  # actual replaces estimate for the same batch
+        if r["actual_usd"]:
+            by_batch[r["batch"]] = float(r["actual_usd"])
+        elif r["batch"] not in by_batch:
+            by_batch[r["batch"]] = float(r["est_usd"] or 0)
+    return sum(by_batch.values())
 
 
-def guard_batch(batch: str, est_usd: float, approved: bool = False) -> None:
-    """Call BEFORE launching a paid batch. Raises if over budget or needs approval."""
-    total = spent_so_far()
-    if total + est_usd > BUDGET_USD:
-        raise RuntimeError(f"budget cap: spent ${total:.2f} + est ${est_usd:.2f} > ${BUDGET_USD}")
+def guard_batch(batch: str, est_usd: float, approved: bool = False, provider: str = "modal") -> None:
+    """Call BEFORE launching a paid batch. Raises if over the provider's cap or needs approval."""
+    if provider not in CAPS:
+        raise ValueError(f"unknown provider {provider!r}; caps: {CAPS}")
+    total = spent_so_far(provider)
+    if total + est_usd > CAPS[provider]:
+        raise RuntimeError(f"{provider} cap: spent ${total:.2f} + est ${est_usd:.2f} > ${CAPS[provider]}")
     if est_usd > ASK_ABOVE_USD and not approved:
         raise RuntimeError(
             f"batch '{batch}' est ${est_usd:.2f} > ${ASK_ABOVE_USD}: ask a human, "
             "then call guard_batch(..., approved=True)"
         )
-    log_cost(batch, est_usd, actual_usd=None, notes="pre-launch estimate")
+    log_cost(batch, est_usd, actual_usd=None, notes=f"pre-launch estimate; provider={provider}")
 
 
 def log_cost(batch: str, est_usd: float, actual_usd: float | None, notes: str = "") -> None:

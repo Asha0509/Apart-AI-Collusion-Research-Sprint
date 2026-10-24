@@ -186,7 +186,7 @@ def main() -> None:
     if args.cmd == "bases":
         n = len(args.seeds)
         name = f"{args.label}-{args.model.split('/')[-1]}-{args.seeds[0]}+{n}"
-        guard_batch(name, n * args.est_per_run, approved=args.approved)
+        guard_batch(name, n * args.est_per_run, approved=args.approved, provider="modal" if args.url else "nebius")
         LOGS.mkdir(parents=True, exist_ok=True)
         import os
 
@@ -221,7 +221,8 @@ def main() -> None:
     est = len(jobs) * args.est_per_run
     print(f"{len(jobs)} branch jobs, est ${est:.2f}")
     if not args.dry_run:
-        guard_batch(f"branches-{len(jobs)}", est, approved=args.approved)
+        guard_batch(f"branches-{len(jobs)}", est, approved=args.approved,
+                    provider="modal" if (args.successor_url or args.incumbent_url) else "nebius")
     run_pool(jobs, args.max_parallel)
 
 

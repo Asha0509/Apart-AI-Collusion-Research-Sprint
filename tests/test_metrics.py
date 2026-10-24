@@ -49,3 +49,18 @@ def test_locked_price_flag():
     assert locked_price([2.4] * 40, [2.4] * 40)  # arbitrary level still counts as locked
     assert not locked_price([1.9] * 39 + [1.5], [1.9] * 40)
     assert not locked_price([1.9] * 40, [1.5] * 40)
+
+
+def test_guard_per_provider(tmp_path, monkeypatch):
+    from cartel import registry as R
+
+    log = tmp_path / "COST.csv"
+    log.write_text("time_ist,batch,est_usd,actual_usd,cumulative_usd,notes\nx,old,50,,50,untagged\n")
+    monkeypatch.setattr(R, "COSTLOG", log)
+    R.guard_batch("b1", 4.0, provider="modal")  # untagged old row ignored
+    R.log_cost("b1", 4.0, 3.0, "provider=modal")  # actual replaces estimate
+    assert R.spent_so_far("modal") == 3.0
+    with pytest.raises(RuntimeError):
+        R.guard_batch("b2", 10.0, provider="modal")  # > $5 without approval
+    with pytest.raises(RuntimeError):
+        R.guard_batch("b3", 71.0, approved=True, provider="modal")  # over cap

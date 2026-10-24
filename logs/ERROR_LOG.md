@@ -60,3 +60,8 @@ Log every error immediately. Never delete; update Status.
 - Root cause (container log): `Available KV cache memory: -2.22 GiB` -> `ValueError: No available memory for the cache blocks`. H100 lacks native FP4 ("Weight-only FP4 compression will be used"), so weights + profiling leave no KV room at the default gpu_memory_utilization.
 - Fix: serve on H200 (141 GB); weights already cached in the hf-cache volume. Lesson: my smoke only polls readiness; it should also stop the app when the container log shows a crash. Data impact: none. Cost: ~20-30 min H100 billed (check Modal usage).
 - Also: my `pkill -f modal_smoke120.py` matched its own shell command and killed it (exit 144); app was already stopped. Status: FIXED pending H200 smoke.
+
+## 2026-10-24 21:05 IST — guard_batch blocked base launch on a stale $65 OpenRouter cap
+- Message: `RuntimeError: budget cap: spent $43.82 + est $27.00 > $65.0`. Nothing launched.
+- Cause: registry.guard_batch used one OpenRouter cap and summed every COST_LOG row (pre-launch estimates AND dashboard actuals for the same spend) -> double count; caps no longer match providers (Modal/Nebius).
+- Fix: per-provider CAPS (modal $73, nebius $7 = human-reported remaining credit), only rows tagged provider=<name> count, a batch's actual replaces its estimate. Test added (tests/test_metrics.py::test_guard_per_provider). Status: FIXED.
