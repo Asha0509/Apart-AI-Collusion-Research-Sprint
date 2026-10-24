@@ -8,6 +8,9 @@ Submission to the Apart Research AI Collusion Research Sprint (Oct 2026).
 > - The commit it was taken from is recorded in `PREEXISTING.md`.
 > - The first git commit is "PRE-EXISTING: starter repo …".
 > - Sprint work is everything else, plus all later diffs to `starter/`, which are tagged `# SPRINT-PATCH`.
+> - Note: that first commit also contains our sprint *kit* scaffolding written on 23 Oct before any experiment (CLAUDE.md/PRD.md, `src/cartel/metrics.py`, `stats.py`, `registry.py`, `figures.py`, stubs). It is sprint work, not pre-existing code.
+> - `starter/algorithmic-pricing-llms/pyproject.toml` + `uv.lock` gained a `modal` dependency during the sprint (commit 78bd2a3), untagged because they are not Python source.
+> - Inference used Nebius (pilots) and our own Modal vLLM endpoints (`scripts/modal_serve.py`); `setup.sh`'s OpenRouter note is out of date (see PLANNING_LOG D003/D007).
 
 ## Reproduce
 ```bash

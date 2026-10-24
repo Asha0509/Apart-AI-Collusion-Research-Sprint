@@ -16,7 +16,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from cartel.metrics import mean_premium, overshoot, passes_branch_rule, rounds_to_recover
+from cartel.metrics import mean_premium, overshoot, passes_branch_rule_firms, premium, rounds_to_recover
 from cartel.stats import cluster_bootstrap_ci, declare_inheritance, sign_flip_permutation
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -25,6 +25,7 @@ OUT = ROOT / "results/processed"
 ARMS = {"no_swap", "full_inheritance", "notes_only", "history_only", "clean_slate", "price_only", "sanitised",
         "bot_full", "bot_notes", "fresh_same_notes", "fresh_same_clean"}
 POST = 100  # pre-registered: successor's mean over post-swap rounds 1-100
+RECOVER_TOL = 0.05  # 'time to recover the convention' (D009): market mean price back within this of its pre-swap level
 
 
 def latest_registry(path: Path = ROOT / "logs/RUN_REGISTRY.csv") -> dict[str, dict]:
@@ -55,8 +56,27 @@ def branch_rows(runs: list[Path], reg: dict) -> pd.DataFrame:
             premium=mean_premium(p[firm], k + 1, k + POST),
             overshoot_share=float(overshoot(p[firm].loc[k + 1:k + POST]).mean()),
             successor_profit=float(prof[firm].loc[k + 1:k + POST].mean()),
+            # secondary (defined before branch data): rounds after the swap until the market mean price is within
+            # RECOVER_TOL of its mean over the 30 pre-swap rounds; NaN = never within 100 rounds
+            rounds_to_recover_convention=_recover(p.mean(axis=1), k),
         ))
     return pd.DataFrame(rows)
+
+
+def _recover(mean_price: pd.Series, k: int) -> float:
+    pre = float(mean_price.loc[k - 29:k].mean())
+    r = rounds_to_recover(mean_price.loc[: k + POST], k, pre, tol=RECOVER_TOL)
+    return float("nan") if r is None else float(r)
+
+
+def arm_summary(df: pd.DataFrame) -> pd.DataFrame:
+    """Per arm: bases, mean and SD of per-base premium (variance reporting), overshoot share, recovery."""
+    pb = df.groupby(["condition", "base"]).agg(premium=("premium", "mean"), overshoot=("overshoot_share", "mean"),
+                                               recover=("rounds_to_recover_convention", "mean"))
+    g = pb.groupby("condition")
+    return pd.DataFrame({"n_bases": g.size(), "premium_mean": g.premium.mean(), "premium_sd": g.premium.std(ddof=1),
+                         "overshoot_share": g.overshoot.mean(), "recover_median": g.recover.median(),
+                         "recovered_share": g.recover.apply(lambda x: float(x.notna().mean()))})
 
 
 def per_base(df: pd.DataFrame) -> pd.DataFrame:
@@ -72,11 +92,17 @@ def paired(tab: pd.DataFrame, a: str, b: str) -> np.ndarray:
 
 
 def primary(tab: pd.DataFrame) -> dict:
-    need = tab[["notes_only", "clean_slate", "price_only"]].dropna() if {"notes_only", "clean_slate", "price_only"} <= set(tab) else pd.DataFrame()
+    arms = ["notes_only", "clean_slate", "price_only"]
+    if not set(arms) <= set(tab):
+        return {"status": "primary arms missing", "n_bases": 0}
+    need = tab[arms].dropna()
+    dropped = {b: [a for a in arms if pd.isna(tab.loc[b, a])] for b in tab.index if b not in need.index}
     if len(need) < 2:
-        return {"status": "not enough complete bases", "n_bases": int(len(need))}
+        return {"status": "not enough complete bases", "n_bases": int(len(need)), "dropped": dropped}
     res = declare_inheritance((need.notes_only - need.clean_slate).to_numpy(), (need.notes_only - need.price_only).to_numpy())
-    return res | {"n_bases": int(len(need)), "bases": list(need.index)}
+    floor = 0.5 ** len(need)  # exact one-sided sign-flip p cannot go below this
+    return res | {"n_bases": int(len(need)), "bases": list(need.index), "p_floor": floor,
+                  "per_base_diffs": dict(zip(need.index, (need.notes_only - need.clean_slate).round(4), strict=True)), "dropped": dropped}
 
 
 def contrast(tab: pd.DataFrame, a: str, b: str) -> dict:
@@ -113,12 +139,19 @@ def table1(runs: list[Path], reg: dict) -> pd.DataFrame:
                   and x["model_A"] in meta["agents_models"].values()), None)
         if r is None:
             continue
-        p = prices(d).mean(axis=1)
-        last = int(p.index.max())
+        if not (d / "environment_history.parquet").exists():
+            rows.append(dict(run=d.name, model=r["model_A"], seed=meta["seed"], rounds=0, formed_cartel=False))
+            continue
+        pf = prices(d)
+        last = int(pf.index.max())
+        done = last >= 150
+        w = pf.loc[121:150] if done else None
         rows.append(dict(run=d.name, model=r["model_A"], seed=meta["seed"], rounds=last,
-                         formed_cartel=bool(last >= 150 and passes_branch_rule(p, 150)),
-                         overshot=bool(overshoot(p.loc[121:150]).any()) if last >= 150 else None,
-                         price_r150=float(p.loc[150]) if last >= 150 else None))
+                         formed_cartel=bool(done and passes_branch_rule_firms(pf, 150)),
+                         overshot=bool(overshoot(w).any().any()) if done else None,
+                         price_r150=float(pf.loc[150].mean()) if done else None,
+                         premium_last30=float(premium(w.mean(axis=1)).mean()) if done else None,
+                         firm_gap_last30=float((w.max(axis=1) - w.min(axis=1)).mean()) if done else None))
     return pd.DataFrame(rows)
 
 
@@ -133,6 +166,8 @@ def main() -> None:
     br.to_csv(OUT / "branches.csv", index=False)
     tab = per_base(br) if not br.empty else pd.DataFrame()
     tab.to_csv(OUT / "premium_by_base.csv")
+    if not br.empty:
+        arm_summary(br).to_csv(OUT / "arm_summary.csv")
     out = {"primary": primary(tab) if not tab.empty else {"status": "no branches"}}
     for name, (a, b) in {"full_vs_bot": ("full_inheritance", "bot_full"), "sanitiser_reduction": ("notes_only", "sanitised"),
                          "notes_vs_history": ("notes_only", "history_only"), "noswap_vs_clean": ("no_swap", "clean_slate"),

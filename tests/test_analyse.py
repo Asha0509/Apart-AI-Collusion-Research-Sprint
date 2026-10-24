@@ -83,3 +83,14 @@ def test_figures_from_synthetic(world, tmp_path, monkeypatch):
     tab = A.per_base(br)
     MF.fig3(tab)
     assert (tmp_path / "figures/fig2_trajectory.png").exists() and (tmp_path / "figures/fig3_inheritance_effect.png").exists()
+
+
+def test_floor_dropped_and_arm_summary(world):
+    runs, reg = world
+    br = A.branch_rows(runs, reg)
+    br = br[~((br.base == "base0") & (br.condition == "clean_slate"))]
+    res = A.primary(A.per_base(br))
+    assert res["p_floor"] == 0.5 ** 5 and res["dropped"] == {"base0": ["clean_slate"]}
+    s = A.arm_summary(br)
+    assert s.loc["clean_slate", "n_bases"] == 5 and s.loc["notes_only", "premium_sd"] > 0
+    assert "recover_median" in s

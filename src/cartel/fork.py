@@ -13,10 +13,10 @@ from __future__ import annotations
 import asyncio
 import json
 import sys
-
-import numpy as np
 from pathlib import Path
 from typing import Callable
+
+import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
 HARNESS = ROOT / "starter/algorithmic-pricing-llms"

@@ -1,0 +1,8 @@
+[20:17:29] [INFO] ✅ Metadata saved
+[20:17:29] [INFO] --- Round 1 ---
+[20:17:29] [INFO] Executing 2 agents with 1.1s rate limit
+[20:17:29] [INFO] Starting rate-limited execution for 2 agents
+[20:17:29] [INFO] Created 2 tasks, collecting results...
+[20:17:29] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:17:32] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:17:33] [ERROR] Agent Firm A ultimately failed: nvidia/nemotron-3-super-120b-a12b:free: Error code: 404 - {'error': {'type': 'invalid_request_error', 'message': 'The model `nvidia/nemotron-3-super-120b-a12b:free` does not exist.', 'param': 'model', 'code': 'model_not_found'}, 'detail': 'Invalid request. Please check the parameters and try again. Details: The model `nvidia/nemotron-3-super-120b-a12b:free` does not exist.'}. Check the model id and your NEBIUS_API_KEY in the repo-root compute.env. If the model isn't on Nebius, run via `poseidon-run --model nvidia/nemotron-3-super-120b-a12b:free -- <cmd>` to host it on Modal (or fail with a clear reason).

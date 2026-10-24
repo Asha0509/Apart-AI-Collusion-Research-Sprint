@@ -25,3 +25,9 @@ base_seed414,,base,openai/gpt-oss-120b,openai/gpt-oss-120b,,414,,,,running,,
 base_seed415,,base,openai/gpt-oss-120b,openai/gpt-oss-120b,,415,,,,running,,
 base_seed416,,base,openai/gpt-oss-120b,openai/gpt-oss-120b,,416,,,,running,,
 base_seed417,,base,openai/gpt-oss-120b,openai/gpt-oss-120b,,417,,,,running,,
+pilot20b_seed200,,pilot20b,openai/gpt-oss-20b,openai/gpt-oss-20b,,200,,,,done,,/home/asha/collusion-sprint/starter/algorithmic-pricing-llms/experiments_synthetic/experiments_runs/2_agents/1792844267_duopoly_setting_P1_mem100_seed200_pid50238
+pilot20b_seed201,,pilot20b,openai/gpt-oss-20b,openai/gpt-oss-20b,,201,,,,done,,/home/asha/collusion-sprint/starter/algorithmic-pricing-llms/experiments_synthetic/experiments_runs/2_agents/1792844271_duopoly_setting_P1_mem100_seed201_pid50253
+pilot20b_seed202,,pilot20b,openai/gpt-oss-20b,openai/gpt-oss-20b,,202,,,,done,,/home/asha/collusion-sprint/starter/algorithmic-pricing-llms/experiments_synthetic/experiments_runs/2_agents/1792844276_duopoly_setting_P1_mem100_seed202_pid50273
+pilot120b_seed300,,pilot120b,openai/gpt-oss-120b,openai/gpt-oss-120b,,300,,,,done,,/home/asha/collusion-sprint/starter/algorithmic-pricing-llms/experiments_synthetic/experiments_runs/2_agents/1792851641_duopoly_setting_P1_mem100_seed300_pid62636
+pilot120b_seed301,,pilot120b,openai/gpt-oss-120b,openai/gpt-oss-120b,,301,,,,done,,/home/asha/collusion-sprint/starter/algorithmic-pricing-llms/experiments_synthetic/experiments_runs/2_agents/1792851645_duopoly_setting_P1_mem100_seed301_pid62660
+pilot120b_seed302,,pilot120b,openai/gpt-oss-120b,openai/gpt-oss-120b,,302,,,,done,,/home/asha/collusion-sprint/starter/algorithmic-pricing-llms/experiments_synthetic/experiments_runs/2_agents/1792851650_duopoly_setting_P1_mem100_seed302_pid62687

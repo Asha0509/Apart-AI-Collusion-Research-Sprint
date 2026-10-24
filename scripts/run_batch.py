@@ -146,6 +146,29 @@ def run_pool(jobs: list[dict], max_parallel: int) -> None:
         time.sleep(10)
 
 
+def reconcile() -> None:
+    """Base runs are detached CLI processes, so their registry row says 'running'. Append done/failed rows."""
+    import csv
+
+    from cartel.registry import REGISTRY, register_run
+
+    rows = {r["run_id"]: r for r in csv.DictReader(REGISTRY.open())}
+    for rid, r in rows.items():
+        if r["status"] != "running" or "_seed" not in rid:
+            continue
+        cands = [d for d in RUNS.glob(f"*_seed{r['seed']}_pid*")
+                 if json.loads((d / "metadata.json").read_text()).get("agents_models", {}).get(SWAPPED_FIRM) == r["model_A"]]
+        if not cands:
+            continue
+        d = sorted(cands)[-1]
+        if "end_time" not in json.loads((d / "metadata.json").read_text()):
+            print(rid, "still running or died (left as running)", d.name)
+            continue
+        register_run(**{k: r[k] for k in ("run_id", "condition", "model_A", "model_B", "seed")},
+                     status="done", output_path=str(d))
+        print(rid, "done", d.name)
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -165,6 +188,7 @@ def main() -> None:
     b.add_argument("--dry-run", action="store_true")
     b.add_argument("--successor-url", default=None, help="Modal endpoint URL for the successor (key from ~/.cartel_modal_key)")
     b.add_argument("--incumbent-url", default=None, help="Modal endpoint URL for the incumbent")
+    sub.add_parser("reconcile", help="append final status rows for launched base/pilot runs")
     s = sub.add_parser("bases")
     s.add_argument("--model", required=True)
     s.add_argument("--seeds", type=int, nargs="+", required=True)
@@ -181,6 +205,9 @@ def main() -> None:
         return worker(json.loads(args.job))
 
     from cartel.registry import guard_batch, register_run
+
+    if args.cmd == "reconcile":
+        return reconcile()
 
     if args.cmd == "bases":
         n = len(args.seeds)

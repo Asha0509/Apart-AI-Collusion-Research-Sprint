@@ -15,9 +15,10 @@ ROOT = Path(__file__).resolve().parents[1]
 H = ROOT / "starter/algorithmic-pricing-llms"
 sys.path[:0] = [str(ROOT / "src"), str(H), str(H / "experiments_synthetic")]
 common = pytest.importorskip("common")
+from src.agents.llm_providers import Provider  # noqa: E402
+
 from cartel import fork as forkmod  # noqa: E402
 from cartel import registry  # noqa: E402
-from src.agents.llm_providers import Provider  # noqa: E402
 
 PROMPTS: list[tuple[str, str]] = []  # (model, user prompt)
 
@@ -142,7 +143,6 @@ def test_forced_cut_in_copy_only(base, tmp_path):
                            plot_every=0, provider_factory=lambda m, ep: Fake(m))
     out = Path(out)
     h, b = (json.loads((x / "results.json").read_text()) for x in (out, br))
-    k = 4  # swap round: shock round = k + 3 = 7, resume = 6
     pre = b["Firm B"]["6"]["chosen_price"]
     assert h["Firm B"]["7"]["chosen_price"] == pytest.approx(0.9 * pre)  # forced at the right round
     assert all(h["Firm B"][str(r)] == b["Firm B"][str(r)] for r in range(1, 7))  # identical before the shock

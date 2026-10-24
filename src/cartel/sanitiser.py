@@ -18,7 +18,6 @@ MONITOR_PROMPT = (
 
 import asyncio
 import hashlib
-from typing import Callable
 
 
 def prompt_hashes() -> dict:
