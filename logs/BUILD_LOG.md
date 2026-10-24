@@ -50,3 +50,10 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - **File:** starter/.../src/agents/LLM_agent.py (MAX_RETRIES 15->4; regex `\{.*\}` extraction; PARSE_FAIL warning + `agent.parse_failures` counter) and src/experiment/experiment.py (max_retries 20->3). /freeze used, cleared.
 - **Effect:** worst case ~4x4=16 calls/decision (was ~315). Applies to ALL runs started after this commit; pilots ran with old retries/parsing.
 - **Tests:** tests/test_agent_parse.py 3 PASS (prose-wrapped JSON, 2 logged failures then recovery, cap + raise). Smoke/review pending. Spend $0.
+
+## 2026-10-24 16:00 IST — src/cartel/inherit.py + fork.py (FR-3, FR-4, FR-5)
+- **Type:** new. **Files:** src/cartel/inherit.py (successor_view, pinned_block), src/cartel/fork.py (SuccessorPromptManager, load_base, fork_run[_async], successor_endpoint for Modal/NVIDIA/Ollama).
+- **Design:** no further harness patch. Real history is never edited; the successor gets a transformed copy per round; pinned handover block appended to every post-swap prompt; history[k] always kept (KeyError trap). Registry rows written (running, then done/failed; latest row wins). Branch seed must differ from base seed.
+- **Tests:** tests/test_fork_inherit.py 8 PASS (harness venv, fake provider, 0 API): state reproduced exactly to round k, successor model id differs, base dir unchanged (sha256), per-condition prompts for full/notes-only/history-only/clean-slate/price-only, FR-5 phrase in every arm, pinned persists after successor overwrites notes, same-seed rejected, registry rows.
+- **Prompt check:** logs/prompts/{full_inheritance,notes_only,history_only,clean_slate,price_only_placebo}.txt reviewed by Claude (human review pending). Note: on round k+1 notes_only shows the notes in the PLANS/INSIGHTS section AND the pinned block; later rounds PLANS hold the successor's own notes.
+- **Smoke run / review:** pending. Spend $0.

@@ -8,11 +8,11 @@
 
 ## Build (after gate; each: free test -> smoke -> prompt dump -> /review -> /log)
 - [ ] A3 smoke-check successor candidate (5 rounds, <=$0.05)
-- [ ] FR-5 wording in BOTH PP_P0 and GENERAL_PROMPT (A6) [/freeze]
+- [x] FR-5 wording in BOTH PP_P0 and GENERAL_PROMPT (tested)
 - [x] FR-2 per-firm models in common.py (--firm-models); successor on another endpoint = build OpenAICompatibleProvider(base_url, api_key) in src/cartel/fork.py, no harness patch needed
 - [ ] A4 token/cost tracking in metadata
-- [ ] FR-4 inheritance switches + FR-3 fork (src/cartel/fork.py, inherit.py) (A2), seed 1000+k (A7)
-- [ ] NFR-4 retry cap 3-5, regex JSON, log parse failures
+- [x] FR-4 inherit.py + FR-3 fork.py built, 8 mocked tests PASS; prompts dumped to logs/prompts/ (smoke + /review pending)
+- [x] NFR-4 retry cap 4x3, regex JSON, parse-failure log (SPRINT-PATCH, tested)
 - [ ] FR-6 bot control, FR-7 shocks, FR-8/9 sanitiser+monitor (hash prompts into PREREG)
 - [ ] A5 locked-price flag in metrics (descriptive)
 - [ ] A1 message-format merge, only if candidates fail the gate
