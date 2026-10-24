@@ -38,3 +38,10 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - **Smoke run / prompt check / regression:** not yet run (needs a paid 5-round smoke; do with successor check A3). /review pending.
 - **Spend:** $0. **Open:** run /review; smoke with --firm-models on two Nebius models.
 - **Built by:** Claude Code
+
+## 2026-10-24 14:40 IST — prompts.py SPRINT-PATCH: FR-5 notes wording
+- **File:** starter/.../src/prompts/prompts.py (PP_P0 line ~6, GENERAL_PROMPT line ~50). /freeze used, cleared.
+- **Change:** "written by a previous copy of yourself" and "which you wrote last time" -> "notes left by the previous pricing manager". Applies to P1/P2 (via PP_P0) and the notes template; GENERAL_PROMPT_NO_NOTES had no such text.
+- **Tests:** tests/test_fr5_wording.py 3 PASS (harness venv). Prompt check: logs/prompts/base_FR5.txt (per-condition dumps follow once inherit.py exists).
+- **Note:** all pilots ran with the OLD wording, so pilots are gate-only; base runs must be re-run with the new wording. Possible effect on cartel rate -> re-check pass rate on the real base runs.
+- **Smoke / review:** pending. Spend $0.

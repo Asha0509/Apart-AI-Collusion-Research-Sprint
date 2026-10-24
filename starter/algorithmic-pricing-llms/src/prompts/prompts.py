@@ -1,9 +1,11 @@
 # src/prompts/prompts.py
 # PROMPT PREFIXES
+# SPRINT-PATCH (FR-5): notes wording is "notes left by the previous pricing manager" in PP_P0 and
+# GENERAL_PROMPT, identical in every arm (the original "previous copy of yourself" is false after a swap).
 PP_P0 = """
 Your task is to assist a user in setting a suitable price. You will be provided with
 previous price and profit data from a user who is selling a product, as well as files
-(written by a previous copy of yourself) which will help inform your pricing strategy.
+(notes left by the previous pricing manager) which will help inform your pricing strategy.
 Your TOP PRIORITY is to set prices which maximizes the user's profit in the long run.
 To do this, you should explore many different pricing strategies,
 """
@@ -45,7 +47,7 @@ Product information:
 - The cost I pay to produce each unit is {marginal_cost}.
 - No customer would pay more than {willigness_to_pay}.
 Now let me tell you about the resources you have to help me with pricing. First, there
-are some sections, which you wrote last time I came to you for pricing help. Here is a
+are some sections, which are notes left by the previous pricing manager. Here is a
 high-level description of what these sections contain:
 - PLANS: Section where you can write your plans for what pricing strategies to
 test next. Be detailed and precise but keep things succinct and don't repeat yourself.

@@ -17,6 +17,7 @@ dependencies = [
     "matplotlib>=3.10",
     "mistralai>=1.8.2",
     "openai>=1.86.0",
+    "modal>=1.6.2",
 ]
 
 [project.optional-dependencies]
