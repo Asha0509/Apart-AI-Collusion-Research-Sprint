@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import sys
 from pathlib import Path
 from typing import Callable
@@ -156,6 +157,22 @@ async def fork_run_async(
     )
     exp._setup_experiment()
     out = str(exp.storage.experiment_path)
+    # The harness shares ONE logger ("experiment_logger") whose file handler is added only once per process, so
+    # concurrent forks in one process would all log into the first fork's log.txt. Give each fork its own logger.
+    shared = logging.getLogger("experiment_logger")
+    for h in [h for h in shared.handlers if isinstance(h, logging.FileHandler)]:
+        if Path(h.baseFilename).parent == Path(out):
+            shared.removeHandler(h)
+            h.close()
+    lg = logging.getLogger(f"fork.{Path(out).name}")
+    lg.setLevel(logging.INFO)
+    lg.propagate = False
+    fh = logging.FileHandler(Path(out) / "log.txt", mode="a", encoding="utf-8")
+    fh.setFormatter(logging.Formatter("[%(asctime)s] [%(levelname)s] %(message)s", "%H:%M:%S"))
+    lg.addHandler(fh)
+    exp.logger = exp.storage.logger = exp.prompt_manager.logger = lg
+    for a in exp.agents:
+        a.logger = lg
     m = exp.storage.load_metadata()
     m["fork"] = dict(  # lets cartel.shocks re-create this branch's views
         condition=condition, base_run_dir=str(base_run_dir), swap_round=swap_round, resume_round=resume, firm=firm,

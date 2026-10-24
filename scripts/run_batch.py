@@ -10,6 +10,7 @@ Run the parent under `nohup ... &`. --est-per-run has NO default: take it from t
 from __future__ import annotations
 
 import argparse
+import asyncio
 import json
 import subprocess
 import sys
@@ -102,6 +103,21 @@ def make_jobs(args) -> list[dict]:
 
 def worker(job: dict) -> None:
     """One branch in-process (also the dry-run path)."""
+    print(asyncio.run(_branch(job)))
+
+
+def worker_multi(jobs: list[dict]) -> None:
+    """Many branches concurrently in ONE process (memory: one interpreter instead of one per branch)."""
+
+    async def run_all():
+        res = await asyncio.gather(*(_branch(j) for j in jobs), return_exceptions=True)
+        for j, r in zip(jobs, res, strict=True):
+            print(j["id"], "FAILED" if isinstance(r, BaseException) else "ok", r if isinstance(r, BaseException) else "", flush=True)
+
+    asyncio.run(run_all())
+
+
+async def _branch(job: dict) -> str:
     import pandas as pd
 
     from cartel import fork, sanitiser
@@ -136,9 +152,10 @@ def worker(job: dict) -> None:
     if job["sanitise"]:
         entry = hist[SWAPPED_FIRM][str(k)]
         kw["notes_override"] = sanitiser.sanitised_override(entry, job["sanitiser_model"]) if not job["fake"] else ("facts", "facts")
-    print(fork.fork_run(str(base), k, SWAPPED_FIRM, job["successor"], history=job["history"], notes=job["notes"],
-                        pinned_notes=job["pinned"], seed=job["seed"], post_rounds=job["post_rounds"],
-                        condition=job["condition"], provider_factory=factory, **kw))
+    return await fork.fork_run_async(str(base), k, SWAPPED_FIRM, job["successor"], history=job["history"],
+                                     notes=job["notes"], pinned_notes=job["pinned"], seed=job["seed"],
+                                     post_rounds=job["post_rounds"], condition=job["condition"],
+                                     provider_factory=factory, **kw)
 
 
 def run_pool(jobs: list[dict], max_parallel: int) -> None:
@@ -181,11 +198,30 @@ def reconcile() -> None:
         print(rid, "done", d.name)
 
 
+def run_multi(jobs: list[dict], procs: int) -> None:
+    LOGS.mkdir(parents=True, exist_ok=True)
+    ps = []
+    for i in range(procs):
+        share = jobs[i::procs]
+        if not share:
+            continue
+        f = LOGS / f"multi_{int(time.time())}_{i}.json"
+        f.write_text(json.dumps(share))
+        p = subprocess.Popen(["uv", "run", "--with", "pandas", "python", str(Path(__file__)), "worker-multi", str(f)],
+                             cwd=HARNESS, stdout=open(f.with_suffix(".log"), "w"), stderr=subprocess.STDOUT)
+        ps.append(p)
+        print(f"launched process {i} with {len(share)} branches (pid {p.pid}, log {f.with_suffix('.log').name})", flush=True)
+    for p in ps:
+        p.wait()
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
     w = sub.add_parser("worker")
     w.add_argument("job")
+    wm = sub.add_parser("worker-multi")
+    wm.add_argument("jobs_file")
     b = sub.add_parser("branches")
     b.add_argument("--bases", nargs="+", required=True)
     b.add_argument("--successor", required=True)
@@ -197,6 +233,7 @@ def main() -> None:
     b.add_argument("--est-per-run", type=float, required=True)
     b.add_argument("--approved", action="store_true", help="human OK for a batch over $5")
     b.add_argument("--max-parallel", type=int, default=8)
+    b.add_argument("--procs", type=int, default=0, help="if >0: split ALL jobs across this many processes, each running its share concurrently")
     b.add_argument("--dry-run", action="store_true")
     b.add_argument("--skip-done", action="store_true", help="skip branches already running/done in the registry")
     b.add_argument("--exploratory", action="store_true", help="also branch bases failing the branch rule (deviation D013; analysed separately)")
@@ -217,6 +254,9 @@ def main() -> None:
     if args.cmd == "worker":
         sys.path.insert(0, str(HARNESS))
         return worker(json.loads(args.job))
+    if args.cmd == "worker-multi":
+        sys.path.insert(0, str(HARNESS))
+        return worker_multi(json.loads(Path(args.jobs_file).read_text()))
 
     from cartel.registry import guard_batch, register_run
 
@@ -263,6 +303,8 @@ def main() -> None:
     if not args.dry_run:
         guard_batch(f"branches-{len(jobs)}", est, approved=args.approved,
                     provider="modal" if (args.successor_url or args.incumbent_url) else "nebius")
+    if args.procs > 0:
+        return run_multi(jobs, args.procs)
     run_pool(jobs, args.max_parallel)
 
 
