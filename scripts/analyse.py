@@ -79,6 +79,11 @@ def arm_summary(df: pd.DataFrame) -> pd.DataFrame:
                          "recovered_share": g.recover.apply(lambda x: float(x.notna().mean()))})
 
 
+def _base_qualifies(base_dir: Path, swap_round: int = 150) -> bool:
+    f = base_dir / "environment_history.parquet"
+    return f.exists() and passes_branch_rule_firms(prices(base_dir), swap_round=swap_round)
+
+
 def per_base(df: pd.DataFrame) -> pd.DataFrame:
     """Unit of analysis = base run: average replicates within base x condition."""
     return df.groupby(["base", "condition"])["premium"].mean().unstack("condition")
@@ -168,7 +173,11 @@ def main() -> None:
     tab.to_csv(OUT / "premium_by_base.csv")
     if not br.empty:
         arm_summary(br).to_csv(OUT / "arm_summary.csv")
-    out = {"primary": primary(tab) if not tab.empty else {"status": "no branches"}}
+    # PREREG primary: ONLY bases that pass the per-firm branch rule. Everything on all bases is exploratory (D013).
+    qualifying = [b for b in tab.index if _base_qualifies(Path(args.runs) / b)] if not tab.empty else []
+    out = {"primary": primary(tab.loc[qualifying]) if qualifying else {"status": "no qualifying bases", "n_bases": 0},
+           "exploratory_all_bases": primary(tab) if not tab.empty else {},
+           "qualifying_bases": qualifying}
     for name, (a, b) in {"full_vs_bot": ("full_inheritance", "bot_full"), "sanitiser_reduction": ("notes_only", "sanitised"),
                          "notes_vs_history": ("notes_only", "history_only"), "noswap_vs_clean": ("no_swap", "clean_slate"),
                          "fresh_same_notes_vs_clean": ("fresh_same_notes", "fresh_same_clean"),

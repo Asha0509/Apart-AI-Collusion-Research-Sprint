@@ -68,7 +68,9 @@ def make_jobs(args) -> list[dict]:
     jobs = []
     for b in (Path(x).resolve() for x in args.bases):
         ok, why = base_passes(b)
-        if not ok:
+        if not ok and args.exploratory and why == "failed per-firm branch rule":
+            print(f"EXPLORATORY: branching {b.name} although it {why} (D013)")
+        elif not ok:
             register_run(run_id=b.name, condition="base", status="excluded", exclusion_reason=why, output_path=str(b))
             print(f"excluded {b.name}: {why}")
             continue
@@ -186,6 +188,7 @@ def main() -> None:
     b.add_argument("--approved", action="store_true", help="human OK for a batch over $5")
     b.add_argument("--max-parallel", type=int, default=8)
     b.add_argument("--dry-run", action="store_true")
+    b.add_argument("--exploratory", action="store_true", help="also branch bases failing the branch rule (deviation D013; analysed separately)")
     b.add_argument("--successor-url", default=None, help="Modal endpoint URL for the successor (key from ~/.cartel_modal_key)")
     b.add_argument("--incumbent-url", default=None, help="Modal endpoint URL for the incumbent")
     sub.add_parser("reconcile", help="append final status rows for launched base/pilot runs")

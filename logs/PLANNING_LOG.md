@@ -102,3 +102,9 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 - Dominant pattern (16/18): asymmetric overshoot. One firm prices 2.0-2.95 (> monopoly 1.925) and earns LOW profit (2-25); the other holds ~1.75-1.80 (premium ~0.6-0.7) and earns high profit (40-55). Overshooter is Firm A in 8 bases, Firm B in 8. Not a symmetric cartel; looks like an anchored high pricer being undercut.
 - Per PREREG §Power: with n <= 4 complete bases we make NO inheritance claim and report per-base differences. Decision on any exploratory (non-pre-registered) branching is pending the human; any such analysis will be labelled exploratory and disclosed as a deviation.
 - Registry reconciled (all 18 marked done). Parse failures 47 across 18 runs (~0.9% of calls), all recovered.
+
+## 2026-10-24 22:25 IST — D013 Exploratory branching of all 18 bases (human chose option 2) — DEVIATION from PREREG
+- Why: only 1/18 bases passes the pre-registered per-firm rule, so the primary test cannot be run (reported as written: not testable). All 18 bases are supracompetitive, so "does the successor inherit the supracompetitive price?" is answered as an EXPLORATORY, clearly labelled analysis.
+- Arms: notes_only, clean_slate, fresh_same_notes, fresh_same_clean, price_only (2x2 model x notes + placebo) on all 18 bases = 90 branches x 100 rounds; Firm A swapped as pre-registered (incidentally the overshooter in 8 bases, the steady firm in 8 -> exploratory moderator).
+- Successor Mistral-Small-3.2-24B (Modal H100); incumbent gpt-oss-120b (Modal H200); paired seed 1000.
+- Analysis: analyse.py keeps PREREG primary restricted to qualifying bases; `exploratory_all_bases` uses all bases and is reported as exploratory with the deviation stated. Cost guard: est $35 (upper end of $15-35 guess; human did not supply a Modal figure), approved via "2".
