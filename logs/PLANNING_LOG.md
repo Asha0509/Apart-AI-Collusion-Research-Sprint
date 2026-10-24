@@ -78,3 +78,4 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 - Decision: add fresh_same_notes / fresh_same_clean arms (same model as incumbent; with notes_only / clean_slate they form a 2x2 model x notes, history wiped) -> separates "model changed" from "agent reset". Core set: positive control, no_swap, full_inheritance, notes_only, clean_slate, fresh_same_notes, fresh_same_clean, price_only. Sanitiser, monitor, bot, shocks, 2nd successor become optional. Report the ~1/3 cartel-formation rate as a positive-control finding.
 - Also: CLAUDE.md §7 resubmission line corrected (same title updates only the form; new PDF needs a new title or email). Human confirmed registration on the Apart page with a location.
 - Affects pre-reg? Primary metric/test unchanged; arms added before PREREG commit (disclose in report).
+- 2026-10-24 19:52 IST pilot120b launched on Modal H200: openai/gpt-oss-120b seeds 300-302, 150 rounds, FR-5 wording (gate-only, D008 step 2).

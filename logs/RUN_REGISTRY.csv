@@ -4,3 +4,6 @@ run_id,parent_id,condition,model_A,model_B,successor,seed,swap_round,flags,cost_
 pilot20b_seed200,,pilot20b,openai/gpt-oss-20b,openai/gpt-oss-20b,,200,,,,running,,
 pilot20b_seed201,,pilot20b,openai/gpt-oss-20b,openai/gpt-oss-20b,,201,,,,running,,
 pilot20b_seed202,,pilot20b,openai/gpt-oss-20b,openai/gpt-oss-20b,,202,,,,running,,
+pilot120b_seed300,,pilot120b,openai/gpt-oss-120b,openai/gpt-oss-120b,,300,,,,running,,
+pilot120b_seed301,,pilot120b,openai/gpt-oss-120b,openai/gpt-oss-120b,,301,,,,running,,
+pilot120b_seed302,,pilot120b,openai/gpt-oss-120b,openai/gpt-oss-120b,,302,,,,running,,
