@@ -2,7 +2,10 @@
 
 No harness patch beyond per-firm models: we rebuild the Experiment, load the base history up to round k,
 swap a prompt manager that shows the successor a transformed view (cartel.inherit), and play rounds k+1..N.
-The base run directory is only read. The branch gets seed 1000+k (caller passes it; never the base seed).
+The base run directory is only read.
+Condition 1 "No swap": successor_model = the incumbent model, history=keep, notes=keep, pinned_notes=False,
+so its prompt matches the base run exactly. Registry rows are appended (running, then done/failed): use the
+LATEST row per run_id. The branch gets seed 1000+k (caller passes it; never the base seed).
 """
 
 from __future__ import annotations

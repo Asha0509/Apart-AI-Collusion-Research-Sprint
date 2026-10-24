@@ -38,9 +38,10 @@ class Fake(Provider):
 @pytest.fixture(scope="module")
 def base(tmp_path_factory):
     d = tmp_path_factory.mktemp("runs")
-    common.make_provider = lambda kind=None, model=None, api_key=None: Fake(model)
-    exp = asyncio.run(common.run_setting(n_firms=2, rounds=6, seed=7, firm_models=["base/a", "base/b"],
-                                         runs_dir=d, plot_every=0))
+    with pytest.MonkeyPatch.context() as mp:  # restored afterwards; no leak into other test modules
+        mp.setattr(common, "make_provider", lambda kind=None, model=None, api_key=None: Fake(model))
+        exp = asyncio.run(common.run_setting(n_firms=2, rounds=6, seed=7, firm_models=["base/a", "base/b"],
+                                             runs_dir=d, plot_every=0))
     return exp.storage.experiment_path
 
 

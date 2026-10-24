@@ -57,3 +57,10 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - **Tests:** tests/test_fork_inherit.py 8 PASS (harness venv, fake provider, 0 API): state reproduced exactly to round k, successor model id differs, base dir unchanged (sha256), per-condition prompts for full/notes-only/history-only/clean-slate/price-only, FR-5 phrase in every arm, pinned persists after successor overwrites notes, same-seed rejected, registry rows.
 - **Prompt check:** logs/prompts/{full_inheritance,notes_only,history_only,clean_slate,price_only_placebo}.txt reviewed by Claude (human review pending). Note: on round k+1 notes_only shows the notes in the PLANS/INSIGHTS section AND the pinned block; later rounds PLANS hold the successor's own notes.
 - **Smoke run / review:** pending. Spend $0.
+
+## 2026-10-24 16:30 IST — /review of patches since 276b8c4 (self-review in the gstack checklist's terms; no remote/PR, base = first commit)
+- **Scope:** common.py, prompts.py, LLM_agent.py, experiment.py, storage.py, fork.py, inherit.py, 4 test files. Gate scan: no tests removed/relaxed; only added tests.
+- **Findings fixed:** (1) test module monkeypatched `common.make_provider` without restoring -> now `MonkeyPatch.context()`; (2) no-swap arm must use pinned_notes=False or its prompt differs from the base run -> documented in fork.py; (3) registry is append-only -> analysis must take the latest row per run_id (documented).
+- **Finding to disclose (not reverted):** `starter/algorithmic-pricing-llms/pyproject.toml` gained `modal>=1.6.2` and `uv.lock` changed (+~990 lines) in commit 78bd2a3; I did not intend to commit it (came in via `git add -A` after the Modal install). It is a sprint change to a pre-existing file: keep (needed only for Modal hosting) and list in the report's pre-existing-code disclosure, or revert if Modal is not used.
+- **Known ceilings (not defects):** regex `\{.*\}` is greedy (two JSON objects in one reply -> parse failure -> retry); successor_view deep-copies history per prompt (fine at 250 rounds).
+- **Tests:** harness-env set 17 PASS together. Smoke runs and /codex adversarial review still pending (milestone).
