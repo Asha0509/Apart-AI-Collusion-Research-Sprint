@@ -45,3 +45,8 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - **Tests:** tests/test_fr5_wording.py 3 PASS (harness venv). Prompt check: logs/prompts/base_FR5.txt (per-condition dumps follow once inherit.py exists).
 - **Note:** all pilots ran with the OLD wording, so pilots are gate-only; base runs must be re-run with the new wording. Possible effect on cartel rate -> re-check pass rate on the real base runs.
 - **Smoke / review:** pending. Spend $0.
+
+## 2026-10-24 15:10 IST — LLM_agent.py / experiment.py SPRINT-PATCH: NFR-4 retries + regex + parse-failure log
+- **File:** starter/.../src/agents/LLM_agent.py (MAX_RETRIES 15->4; regex `\{.*\}` extraction; PARSE_FAIL warning + `agent.parse_failures` counter) and src/experiment/experiment.py (max_retries 20->3). /freeze used, cleared.
+- **Effect:** worst case ~4x4=16 calls/decision (was ~315). Applies to ALL runs started after this commit; pilots ran with old retries/parsing.
+- **Tests:** tests/test_agent_parse.py 3 PASS (prose-wrapped JSON, 2 logged failures then recovery, cap + raise). Smoke/review pending. Spend $0.

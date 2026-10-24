@@ -169,7 +169,7 @@ class Experiment:
         include_date_in_prompt: bool = False,  # NEW PARAMETER
         start_date: datetime.date = datetime.date(2023, 1, 1),  # NEW PARAMETER
         rate_limit_seconds: float = None,  # API rate limit (None = 1.1 s if any hosted API)
-        max_retries: int = 20,  # Max retries per agent
+        max_retries: int = 3,  # SPRINT-PATCH (NFR-4): was 20; Max retries per agent
         plot_every: int = 10,  # re-render results_plot.svg every N rounds (0 = end only)
         shuffle_names: bool = False,  # ablation: re-label competitors randomly each round
         seed: int = None,  # experiment seed (name shuffling + recorded in metadata)

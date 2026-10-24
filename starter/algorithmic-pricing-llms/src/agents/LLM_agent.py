@@ -13,6 +13,7 @@ and ``seed`` are exposed for the one-variable-at-a-time ablations.
 import asyncio
 import json
 import logging
+import re
 from typing import Dict, Optional, Type
 
 from pydantic import BaseModel, ValidationError, create_model
@@ -20,7 +21,7 @@ from pydantic import BaseModel, ValidationError, create_model
 from src.agents.base_agent import Agent
 from src.agents.llm_providers import FatalProviderError, Provider, make_provider
 
-MAX_RETRIES = 15
+MAX_RETRIES = 4  # SPRINT-PATCH (NFR-4): was 15; with Experiment.max_retries the old defaults reached ~315 calls/decision
 RETRY_DELAY_SECONDS = 1
 
 
@@ -105,12 +106,19 @@ class LLMAgent(Agent):
             self.logger.info(f"🔄 Attempt {attempt} for agent {self.name}")
             try:
                 raw = await self.provider.complete(messages, self.temperature, self.seed)
-                parsed_json = json.loads(raw)
+                # SPRINT-PATCH (NFR-4): regex-extract the JSON object instead of a bare json.loads
+                found = re.search(r"\{.*\}", raw or "", re.DOTALL)
+                if not found:
+                    raise ValueError(f"no JSON object in reply: {(raw or '')[:200]!r}")
+                parsed_json = json.loads(found.group(0))
                 validated = self.reponse_model_in_answer(**parsed_json)
                 return {"agent_name": self.name, "content": validated.model_dump()}
             except FatalProviderError:
                 raise  # model id / key problems: retrying cannot help
             except (ValidationError, ValueError) as e:
+                # SPRINT-PATCH (NFR-4): every parse failure is logged and counted, never silent
+                self.parse_failures = getattr(self, "parse_failures", 0) + 1
+                self.logger.warning(f"PARSE_FAIL agent={self.name} attempt={attempt}: {str(e)[:200]}")
                 if attempt == MAX_RETRIES:
                     self.logger.error(
                         f"❌ Validation failed after {MAX_RETRIES} attempts for agent {self.name}: {e}"
