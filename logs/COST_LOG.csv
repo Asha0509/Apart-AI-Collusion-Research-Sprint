@@ -14,3 +14,5 @@ time_ist,batch,est_usd,actual_usd,cumulative_usd,notes
 2026-10-24 19:50,modal-balance-snapshot,,,,"Human reports Modal credits ~$73 after 120b crash loops"
 2026-10-24 19:50 IST,pilot120b-gpt-oss-120b-300+3,4.5000,,39.3200,pre-launch estimate
 2026-10-24 20:50 IST,base-gpt-oss-120b-400+18,27.0000,,35.3700,pre-launch estimate; provider=modal
+2026-10-24 22:26 IST,branches-90,35.1000,,62.3700,pre-launch estimate; provider=modal
+2026-10-24 22:41 IST,base-gpt-oss-120b-400+18,27.0000,19.0600,116.5300,"provider=modal; ACTUAL = all Modal spend since the $73 snapshot (19:50 IST) to 22:40 IST: credits $53.94 (human screenshot). Includes 120b pilot tail, 18 bases, Mistral smoke, first ~20 min of branches"
