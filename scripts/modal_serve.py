@@ -40,7 +40,7 @@ image = (
     volumes={"/cache": cache},
 )
 @modal.concurrent(max_inputs=MAX_PARALLEL)
-@modal.web_server(port=PORT, startup_timeout=1200)
+@modal.web_server(port=PORT, startup_timeout=2400)  # 120B first start downloads ~65 GB
 def serve():
     key = os.environ["MODAL_SERVE_API_KEY"]
     subprocess.Popen(

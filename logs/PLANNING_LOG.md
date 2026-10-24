@@ -69,3 +69,6 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 - Usage per 150-round run: ~1.3M in / ~0.47M out tokens, ~326 calls; parse failures 21-32 per run (all recovered).
 - Pass rates so far (branch rule): gpt-oss-120b 3/8 (old wording), gpt-oss-20b 1/3, Hermes-4-405B 1/3, MiniMax-M3 1/3, others 0.
 - Decision pending human (memo in chat). Modal app scales to zero when idle.
+
+## 2026-10-24 19:20 IST — D008 Option A: gpt-oss-120b hosted on Modal H100 (human chose "A")
+- Staged: (1) deploy + smoke, (2) 3-seed cartel check under FR-5 wording, (3) overnight bases ONLY after a separate human OK with a measured per-run cost. Human's "A" covers steps 1-2 (est ~$6 Modal; H100 hourly rate unverified). Fallback: option C (focal-price reframe with gpt-oss-20b), decided before the PREREG commit.
