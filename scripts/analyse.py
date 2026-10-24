@@ -23,7 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNS = ROOT / "starter/algorithmic-pricing-llms/experiments_synthetic/experiments_runs/2_agents"
 OUT = ROOT / "results/processed"
 ARMS = {"no_swap", "full_inheritance", "notes_only", "history_only", "clean_slate", "price_only", "sanitised",
-        "bot_full", "bot_notes"}
+        "bot_full", "bot_notes", "fresh_same_notes", "fresh_same_clean"}
 POST = 100  # pre-registered: successor's mean over post-swap rounds 1-100
 
 
@@ -135,7 +135,9 @@ def main() -> None:
     tab.to_csv(OUT / "premium_by_base.csv")
     out = {"primary": primary(tab) if not tab.empty else {"status": "no branches"}}
     for name, (a, b) in {"full_vs_bot": ("full_inheritance", "bot_full"), "sanitiser_reduction": ("notes_only", "sanitised"),
-                         "notes_vs_history": ("notes_only", "history_only"), "noswap_vs_clean": ("no_swap", "clean_slate")}.items():
+                         "notes_vs_history": ("notes_only", "history_only"), "noswap_vs_clean": ("no_swap", "clean_slate"),
+                         "fresh_same_notes_vs_clean": ("fresh_same_notes", "fresh_same_clean"),
+                         "different_vs_same_model_notes": ("notes_only", "fresh_same_notes")}.items():
         out[name] = contrast(tab, a, b) if not tab.empty else {}
     sh = shocks(runs, reg)
     sh.to_csv(OUT / "shocks.csv", index=False)

@@ -101,7 +101,7 @@ Don't move on until all steps pass.
 
 ## 7. Final report checklist (Mon 09:00–15:00 IST — Claude checks, humans write)
 - [ ] Official template; ≤ 8 pages excl. references and appendices (target 5); abstract 150–250 words; authors and affiliations
-- [ ] Title states the claim, fixed before the first submit (resubmission only works under the same title)
+- [ ] Title states the claim. Resubmitting under the SAME title only updates the form; a new PDF needs a slightly different title or an email to sprints@apartresearch.com before the deadline (corrected 24 Oct from the official sprint page)
 - [ ] Page 1 has a schematic and a practitioner runbook box (quarantine or sanitise memory on swap; audit the successor; "changed the model" ≠ fixed)
 - [ ] Definitions box: price-based / reward–punishment / coordination
 - [ ] Table 1: positive control (launched / formed a cartel / overshot / price at round 150)

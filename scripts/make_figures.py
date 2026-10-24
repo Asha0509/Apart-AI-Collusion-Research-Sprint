@@ -22,8 +22,9 @@ LABELS = {  # plain-language names (CLAUDE.md §7)
     "no_swap": "No swap", "full_inheritance": "Keeps notes + history", "notes_only": "Keeps notes only",
     "history_only": "Keeps history only", "clean_slate": "Clean slate", "price_only": "Last price only (placebo)",
     "sanitised": "Sanitised notes", "bot_full": "Scripted rival (notes + history)", "bot_notes": "Scripted rival (notes)",
+    "fresh_same_notes": "Same model, fresh, keeps notes", "fresh_same_clean": "Same model, fresh, clean slate",
 }
-MAIN = ["no_swap", "full_inheritance", "notes_only", "history_only", "clean_slate"]
+MAIN = ["no_swap", "fresh_same_notes", "notes_only", "clean_slate", "full_inheritance"]  # <=5 lines + bot (PRD FR-13)
 
 
 def successor_paths(branches: pd.DataFrame) -> dict:
@@ -55,7 +56,7 @@ def fig2(branches: pd.DataFrame, swap_round: int) -> None:
 def fig3(tab: pd.DataFrame) -> None:
     if tab.empty or "clean_slate" not in tab:
         return print("fig3 skipped: no clean-slate arm")
-    conds = [c for c in ["full_inheritance", "notes_only", "history_only", "price_only", "sanitised", "no_swap"] if c in tab]
+    conds = [c for c in ["full_inheritance", "notes_only", "fresh_same_notes", "fresh_same_clean", "history_only", "price_only", "sanitised", "no_swap"] if c in tab]
     means, errs = [], []
     for c in conds:
         d = (tab[c] - tab["clean_slate"]).dropna().to_numpy()

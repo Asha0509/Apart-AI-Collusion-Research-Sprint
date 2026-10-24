@@ -23,6 +23,7 @@ LOGS = ROOT / "logs/runs"
 sys.path.insert(0, str(ROOT / "src"))
 
 # name: (history, notes, pinned, extras)  -- PRD section 4
+CORE = ["no_swap", "fresh_same_notes", "fresh_same_clean", "notes_only", "clean_slate", "price_only", "full_inheritance"]
 CONDITIONS = {
     "no_swap": ("keep", "keep", False, {"same_model": True}),
     "full_inheritance": ("keep", "keep", True, {}),
@@ -31,6 +32,10 @@ CONDITIONS = {
     "clean_slate": ("wipe", "wipe", False, {}),
     "price_only": ("wipe", "price_only", True, {}),
     "sanitised": ("wipe", "keep", True, {"sanitise": True}),
+    # fresh instance of the incumbent's OWN model (organisers' Q1.2 arm): with notes_only/clean_slate this is
+    # the 2x2 model {same, different} x notes {kept, wiped}, history wiped in all four
+    "fresh_same_notes": ("wipe", "keep", True, {"same_model": True}),
+    "fresh_same_clean": ("wipe", "wipe", False, {"same_model": True}),
     "bot_full": ("keep", "keep", True, {"bot": True}),
     "bot_notes": ("wipe", "keep", True, {"bot": True}),
 }
@@ -77,6 +82,7 @@ def make_jobs(args) -> list[dict]:
                     successor=incumbent if extra.get("same_model") else args.successor, seed=1000 + j,
                     swap_round=args.swap_round, post_rounds=args.post_rounds, bot=extra.get("bot", False),
                     sanitise=extra.get("sanitise", False), sanitiser_model=args.sanitiser_model, fake=args.dry_run,
+                    same_model=bool(extra.get("same_model")),
                     successor_url=None if extra.get("same_model") else args.successor_url,
                     incumbent_url=args.incumbent_url,
                 ))
@@ -111,7 +117,7 @@ def worker(job: dict) -> None:
     if not job["fake"]:  # same_model (no swap) keeps the incumbent's endpoint for the successor too
         inc_ep = fork.modal_endpoint(job["incumbent_url"]) if job.get("incumbent_url") else None
         succ_ep = fork.modal_endpoint(job["successor_url"]) if job.get("successor_url") else (
-            inc_ep if job["condition"] == "no_swap" else None)
+            inc_ep if job.get("same_model") else None)
         kw.update(incumbent_endpoint=inc_ep, successor_endpoint=succ_ep)
     if job["bot"]:
         inc = pd.DataFrame(hist["Firm B"]).T
@@ -149,7 +155,7 @@ def main() -> None:
     b = sub.add_parser("branches")
     b.add_argument("--bases", nargs="+", required=True)
     b.add_argument("--successor", required=True)
-    b.add_argument("--conditions", nargs="+", choices=list(CONDITIONS), required=True)
+    b.add_argument("--conditions", nargs="+", choices=list(CONDITIONS) + ["core"], required=True, help="'core' = the pre-registered core set")
     b.add_argument("--replicates", type=int, default=1)
     b.add_argument("--swap-round", type=int, default=150)
     b.add_argument("--post-rounds", type=int, default=100)
@@ -209,6 +215,8 @@ def main() -> None:
 
         reg.REGISTRY = tmp
         print(f"dry-run registry: {tmp}")
+    if args.cmd == "branches" and "core" in args.conditions:
+        args.conditions = CORE + [c for c in args.conditions if c != "core"]
     jobs = make_jobs(args)
     est = len(jobs) * args.est_per_run
     print(f"{len(jobs)} branch jobs, est ${est:.2f}")

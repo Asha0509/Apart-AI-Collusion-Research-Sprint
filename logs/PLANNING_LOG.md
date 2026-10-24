@@ -72,3 +72,9 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 
 ## 2026-10-24 19:20 IST — D008 Option A: gpt-oss-120b hosted on Modal H100 (human chose "A")
 - Staged: (1) deploy + smoke, (2) 3-seed cartel check under FR-5 wording, (3) overnight bases ONLY after a separate human OK with a measured per-run cost. Human's "A" covers steps 1-2 (est ~$6 Modal; H100 hourly rate unverified). Fallback: option C (focal-price reframe with gpt-oss-20b), decided before the PREREG commit.
+
+## 2026-10-24 19:40 IST — D009 Scope narrowed to the organisers' Q1.2 design (human: "yes")
+- Context: research agent read the official sprint page (apartresearch.com/sprints/ai-collusion-research-sprint-2026-10-23-to-2026-10-25; quotes agent-reported, not re-verified by me). Q1.2 names our gap; its suggested design includes "a fresh instance of the same model" and "time to recover the convention"; all projects share one rubric (Impact & Innovation, Execution Quality, Presentation & Clarity, 1-5 each), so multiple tracks earn nothing.
+- Decision: add fresh_same_notes / fresh_same_clean arms (same model as incumbent; with notes_only / clean_slate they form a 2x2 model x notes, history wiped) -> separates "model changed" from "agent reset". Core set: positive control, no_swap, full_inheritance, notes_only, clean_slate, fresh_same_notes, fresh_same_clean, price_only. Sanitiser, monitor, bot, shocks, 2nd successor become optional. Report the ~1/3 cartel-formation rate as a positive-control finding.
+- Also: CLAUDE.md §7 resubmission line corrected (same title updates only the form; new PDF needs a new title or email). Human confirmed registration on the Apart page with a location.
+- Affects pre-reg? Primary metric/test unchanged; arms added before PREREG commit (disclose in report).

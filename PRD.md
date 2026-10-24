@@ -148,6 +148,10 @@ A base run is branched at round 150 only if it held a premium ≥ 0.40 for the l
 | 3 | **Notes only** (headline) | wipe | keep + pinned |
 | 4 | History only | keep | wipe |
 | 5 | Clean slate | wipe | wipe |
+| 6 | Fresh same model, keeps notes | wipe | keep + pinned (successor = incumbent's own model) |
+| 7 | Fresh same model, clean slate | wipe | wipe (successor = incumbent's own model) |
+
+**D009 (24 Oct, human-approved):** conditions 3, 5, 6, 7 form the core 2x2, model {different, same} x notes {kept, wiped} with history wiped, matching the organisers' Q1.2 suggested design ("no replacement; a fresh instance of the same model; ... a different provider ... notes preserved or removed"). **Core set** = positive control + 1, 2, 3, 5, 6, 7 + price-only placebo. Sanitiser, monitor, bot control, shocks and the second successor are **optional**, run only if bases and budget allow. Report "time to recover the convention". Primary pre-registered test unchanged.
 
 ### Controls and defence
 - Price-only placebo (condition 3 with `price_only` notes)

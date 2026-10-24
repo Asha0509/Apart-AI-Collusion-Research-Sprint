@@ -18,6 +18,11 @@
 
 - [ ] A1 message-format merge, only if candidates fail the gate
 
+## Scope (D009)
+- Core: positive control, no_swap, full_inheritance, notes_only, clean_slate, fresh_same_notes, fresh_same_clean, price_only (`--conditions core`).
+- Optional if budget: sanitised, bot_full/bot_notes, shocks, monitor flag rate, 2nd successor.
+- Report: ~1/3 cartel rate as a finding; Q1.2 quote in intro; time to recover the convention.
+
 ## Then
 - [ ] /eval-plan, fill PREREG (MDE, models, hashes), commit alone
 - [x] run_batch.py built (bases + branches, branch-rule filter, registry, guard, max-parallel, --dry-run verified offline); NEXT: /eval-plan, then launch bases
