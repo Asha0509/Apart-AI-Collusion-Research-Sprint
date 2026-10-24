@@ -85,3 +85,8 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - **Test:** dry-run on a real passing pilot base (gpt-oss seed 8), 3 conditions, fake provider: 3 forks written under logs/runs/dryrun, real registry unchanged. Not a pytest; no API cost.
 - **Bug found by the dry-run:** relative base paths broke when workers ran from the harness dir -> resolved to absolute.
 - **Open:** dry-run only covers `branches`; `bases` unrun (paid). Sanitised arm needs `--sanitiser-model`. A `rm -rf logs/runs` was denied by the permission hook; I did not retry (run /careful first if deleting).
+
+## 2026-10-24 19:00 IST — scripts/analyse.py + Modal fixes
+- **New:** scripts/analyse.py: branch premiums (successor, post-swap rounds 1-100), per-base averaging, primary via cartel.stats.declare_inheritance only, secondary contrasts (full vs bot, sanitiser reduction, notes vs history, no-swap vs clean), shocks (matching ratio, rounds to recover), Table 1 positive control, copies used run dirs to results/raw. Counts only registry-latest status "done" and PRD arms (smoke/dry-run/failed never counted). fork metadata now records `condition`.
+- **Tests:** tests/test_analyse.py 2 PASS (root env): effect 0.525 and p=1/64 reproduced on synthetic runs; smoke/failed excluded; incomplete bases dropped.
+- **Also:** src/cartel/endpoints.py (modal_endpoint without harness imports); scripts/modal_serve.py pins transformers<5. Spend: Modal smoke + crash loop (see ERROR_LOG), actual $ from the Modal dashboard.

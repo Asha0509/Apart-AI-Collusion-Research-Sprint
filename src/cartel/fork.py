@@ -158,7 +158,7 @@ async def fork_run_async(
     out = str(exp.storage.experiment_path)
     m = exp.storage.load_metadata()
     m["fork"] = dict(  # lets cartel.shocks re-create this branch's views
-        base_run_dir=str(base_run_dir), swap_round=swap_round, resume_round=resume, firm=firm,
+        condition=condition, base_run_dir=str(base_run_dir), swap_round=swap_round, resume_round=resume, firm=firm,
         successor_model=successor_model, history=history, notes=notes, pinned_notes=pinned_notes,
         seed=seed, bot_price=bot_price, forced_prices=forced_prices,
     )

@@ -23,3 +23,10 @@ Feeds: Limitations, Discussion, the video, and reviewer-proofing.
 - **Why it matters for the claim:** this is coordination without profit-seeking (a focal point), not price-based collusion toward the monopoly price. Premium-based metrics would call it collusion or competition by accident of level; the overshoot rule excludes the high case. Inheritance of such a price would not show a cartel.
 - **What we did:** excluded by the branch rule (overshoot / premium). Candidate for a reframed claim "focal-price coordination survives a swap".
 - **Use in report:** Discussion, Definitions box (coordination only), Limitations
+
+## 2026-10-24 19:00 IST — C002 Exact sign-flip test has a p-value floor of 1/2^n
+- **Category:** threat-to-validity / power
+- **What happened:** with n complete bases (notes-only, clean-slate and price-only all present), the smallest attainable exact p is 1/2^n: n=4 -> 0.0625 (can never pass p<0.05), n=5 -> 0.031, n=6 -> 0.016, n=12 -> 0.00024.
+- **Why it matters:** with a ~1/3 cartel rate, too few qualifying bases makes the primary test impossible regardless of effect size.
+- **What we did:** plan for >=6 complete bases; report n and the p floor next to the result.
+- **Use in report:** Methods, Limitations
