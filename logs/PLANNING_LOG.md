@@ -62,3 +62,4 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 - Decision: serve open models on Modal with our own scripts/modal_serve.py (the starter scaffold pins vllm 0.6.6, which predates gpt-oss, and has no cache, no concurrency and an open endpoint). Candidate base: openai/gpt-oss-20b (ungated: HF config returns a redirect, not 401/403). Needs a fresh 3-seed cartel gate: 20B behaviour is untested (120B qualified in 3/8 pilot seeds). Nebius stays for models Modal does not host.
 - Affects pre-reg? Base model not yet frozen.
 - Pending: human creates the modal-serve secret (key never enters chat or logs), then deploy + smoke.
+- 2026-10-24 18:25 IST pilot20b launched on Modal: openai/gpt-oss-20b seeds 200-202, 150 rounds, A100-40GB, FR-5 wording + NFR-4 caps (gate-only). ~30 s/round.

@@ -30,6 +30,7 @@ from src.experiment.experiment import Experiment  # noqa: E402
 from src.prompts.prompt_manager import PromptManager  # noqa: E402
 from src.prompts.prompts_models import create_pricing_response_model  # noqa: E402
 
+from cartel.endpoints import modal_endpoint  # noqa: E402,F401  (re-exported)
 from cartel.inherit import pinned_block, successor_view  # noqa: E402
 from cartel.registry import register_run  # noqa: E402
 
@@ -75,12 +76,6 @@ def load_base(base_run_dir: str | Path, swap_round: int, resume_round: int | Non
             if need not in h:
                 raise ValueError(f"base run has no round {need} for {n}")
     return meta, hist
-
-
-def modal_endpoint(url: str, key_file: str = "~/.cartel_modal_key") -> dict:
-    """Endpoint dict for a scripts/modal_serve.py deployment; the key is read from a file, never printed."""
-    return {"base_url": url.rstrip("/") + ("" if url.rstrip("/").endswith("/v1") else "/v1"),
-            "api_key": Path(key_file).expanduser().read_text().strip()}
 
 
 def default_provider(model: str, endpoint: dict | None = None) -> Provider:

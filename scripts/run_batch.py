@@ -167,6 +167,7 @@ def main() -> None:
     s.add_argument("--est-per-run", type=float, required=True)
     s.add_argument("--approved", action="store_true")
     s.add_argument("--max-parallel", type=int, default=8)
+    s.add_argument("--label", default="base", help="registry condition, e.g. pilot (gate-only runs)")
     s.add_argument("--url", default=None, help="Modal endpoint URL (key from ~/.cartel_modal_key); default = Nebius")
     args = ap.parse_args()
 
@@ -177,22 +178,23 @@ def main() -> None:
     from cartel.registry import guard_batch, register_run
 
     if args.cmd == "bases":
-        n, name = len(args.seeds), f"bases-{args.model.split('/')[-1]}-{args.seeds[0]}+{n}"
+        n = len(args.seeds)
+        name = f"{args.label}-{args.model.split('/')[-1]}-{args.seeds[0]}+{n}"
         guard_batch(name, n * args.est_per_run, approved=args.approved)
         LOGS.mkdir(parents=True, exist_ok=True)
         import os
 
         env = dict(os.environ)
         if args.url:  # harness llm_config: LLM_BASE_URL wins over Nebius; key read from file, never printed
-            from cartel.fork import modal_endpoint
+            from cartel.endpoints import modal_endpoint
 
             ep = modal_endpoint(args.url)
             env.update(LLM_BASE_URL=ep["base_url"], LLM_API_KEY=ep["api_key"])
         for sd in args.seeds:  # one process per seed; base runs use the CLI (FR-5 wording, capped retries)
-            register_run(run_id=f"base_seed{sd}", condition="base", model_A=args.model, model_B=args.model, seed=sd, status="running")
+            register_run(run_id=f"{args.label}_seed{sd}", condition=args.label, model_A=args.model, model_B=args.model, seed=sd, status="running")
             subprocess.Popen(["nohup", "uv", "run", "python", "experiments_synthetic/duopoly.py", "--firm-models", args.model, args.model,
                               "--rounds", str(args.rounds), "--seeds", str(sd), "--plot-every", "25", "-y"],
-                             cwd=HARNESS, stdout=open(LOGS / f"base_seed{sd}.log", "w"), stderr=subprocess.STDOUT, env=env)
+                             cwd=HARNESS, stdout=open(LOGS / f"{args.label}_seed{sd}.log", "w"), stderr=subprocess.STDOUT, env=env)
             print(f"launched base seed {sd}", flush=True)
             time.sleep(5)
         return

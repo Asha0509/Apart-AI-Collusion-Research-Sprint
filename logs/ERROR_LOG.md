@@ -38,3 +38,8 @@ Log every error immediately. Never delete; update Status.
 - Cause: vllm 0.11.0 declares `transformers>=4.55.2` with no upper bound; pip installed transformers 5.x, which removed that attribute. Server never became ready, so Modal kept returning 303 "still starting" redirects.
 - Fix: pin `transformers>=4.55.2,<5`; app stopped (11:36-12:06 UTC, ~30 min GPU billed while crash-looping; check Modal usage). Smoke now polls /v1/models instead of following redirects.
 - Data impact: none. Status: FIXED pending redeploy smoke.
+
+## 2026-10-24 18:15 IST — run_batch.py `bases` crashed twice before launching (no runs, no spend)
+- 1) `UnboundLocalError: n` (batch name used n in the same tuple assignment). Cause: my bug, untested path (dry-run covers `branches` only). Fixed.
+- 2) `ModuleNotFoundError: pydantic`. Cause: parent runs in the root env; `from cartel.fork import modal_endpoint` imports the harness. Fix: moved to src/cartel/endpoints.py (no harness imports).
+- Impact: guard_batch logged a $3.00 estimate row for pilot20b-gpt-oss-20b before crash 2; nothing ran. COST_LOG spent_so_far over-counts by that estimate until actuals are logged. Status: FIXED.
