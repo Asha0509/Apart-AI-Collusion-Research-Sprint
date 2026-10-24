@@ -21,7 +21,7 @@
 ## Then
 - [ ] /eval-plan, fill PREREG (MDE, models, hashes), commit alone
 - [x] run_batch.py built (bases + branches, branch-rule filter, registry, guard, max-parallel, --dry-run verified offline); NEXT: /eval-plan, then launch bases
-- [ ] analyse.py, make_figures.py, Table 1; report checklist CLAUDE.md §7 (humans write prose)
+- [x] analyse.py + make_figures.py (Fig 2-4) built, synthetic tests PASS; Fig 1 schematic + Table 1 rendering still to do
 
 ## Housekeeping
 - [ ] Commit after each step; push later (no remote yet)

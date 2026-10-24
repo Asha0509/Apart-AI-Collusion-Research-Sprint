@@ -66,3 +66,20 @@ def test_incomplete_bases_not_used(world):
     br = A.branch_rows(runs, reg)
     br = br[~((br.base == "base0") & (br.condition == "clean_slate"))]
     assert A.primary(A.per_base(br))["n_bases"] == 5
+
+
+def test_figures_from_synthetic(world, tmp_path, monkeypatch):
+    import importlib.util as u
+
+    runs, reg = world
+    br = A.branch_rows(runs, reg)
+    s = u.spec_from_file_location("mf", Path(__file__).resolve().parents[1] / "scripts/make_figures.py")
+    MF = u.module_from_spec(s)
+    s.loader.exec_module(MF)
+    monkeypatch.setattr(MF, "RAW", runs[0].parent)
+    monkeypatch.chdir(tmp_path)
+    (tmp_path / "figures").mkdir()
+    MF.fig2(br, 150)
+    tab = A.per_base(br)
+    MF.fig3(tab)
+    assert (tmp_path / "figures/fig2_trajectory.png").exists() and (tmp_path / "figures/fig3_inheritance_effect.png").exists()
