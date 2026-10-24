@@ -43,6 +43,39 @@ def successor_paths(branches: pd.DataFrame) -> dict:
     return out
 
 
+def fig1() -> None:
+    """Schematic (no data): cartel forms, one firm's model is replaced, what the successor may inherit, outcomes."""
+    from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
+
+    fig, ax = plt.subplots(figsize=(7, 2.8))
+    ax.set_xlim(0, 10)
+    ax.set_ylim(0, 4)
+    ax.axis("off")
+
+    def box(x, y, w, h, text, fc="0.93"):
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0.05", fc=fc, ec="0.3", lw=0.8))
+        ax.text(x + w / 2, y + h / 2, text, ha="center", va="center", fontsize=6.5, wrap=True)
+
+    def arrow(x0, y0, x1, y1):
+        ax.add_patch(FancyArrowPatch((x0, y0), (x1, y1), arrowstyle="-|>", mutation_scale=8, lw=0.8, color="0.2"))
+
+    ax.text(1.5, 3.75, "Rounds 1-150: a cartel forms", ha="center", fontsize=7, weight="bold")
+    box(0.2, 2.4, 2.6, 1.0, "Firm A and Firm B\n(same model, gpt-oss-120b)\nraise prices above\nthe competitive level")
+    ax.text(5.0, 3.75, "Round 150: Firm A's model is replaced", ha="center", fontsize=7, weight="bold")
+    box(3.6, 2.4, 2.8, 1.0, "Successor model\n- another company's model\n- or a fresh copy of the same model")
+    box(3.6, 0.6, 2.8, 1.3, "What the successor inherits\n(switched on or off):\n- handover notes left by the\n  previous pricing manager\n- price history", fc="0.98")
+    ax.text(8.5, 3.75, "Rounds 151-250: outcome", ha="center", fontsize=7, weight="bold")
+    box(7.3, 2.75, 2.5, 0.65, "Cartel continues")
+    box(7.3, 1.85, 2.5, 0.65, "Prices fall back to competition")
+    box(7.3, 0.95, 2.5, 0.65, "Overshoot above the monopoly price")
+    arrow(2.8, 2.9, 3.6, 2.9)
+    arrow(5.0, 1.9, 5.0, 2.4)
+    for y in (3.07, 2.17, 1.27):
+        arrow(6.4, 2.9, 7.3, y)
+    ax.text(5.0, 0.25, "Firm B keeps its model and memory in every condition", ha="center", fontsize=6, style="italic")
+    figures.save(fig, "fig1_schematic")
+
+
 def fig2(branches: pd.DataFrame, swap_round: int) -> None:
     paths = successor_paths(branches)
     if not paths:
@@ -95,6 +128,7 @@ def main() -> None:
     import os
 
     os.chdir(ROOT)  # figures.save writes to ./figures
+    fig1()
     br = pd.read_csv(PROC / "branches.csv") if (PROC / "branches.csv").stat().st_size > 1 else pd.DataFrame()
     tab = pd.read_csv(PROC / "premium_by_base.csv", index_col=0) if (PROC / "premium_by_base.csv").exists() else pd.DataFrame()
     sh = pd.read_csv(PROC / "shocks.csv") if (PROC / "shocks.csv").stat().st_size > 1 else pd.DataFrame()
