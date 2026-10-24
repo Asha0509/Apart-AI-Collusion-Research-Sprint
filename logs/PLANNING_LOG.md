@@ -47,3 +47,8 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 
 ## 2026-10-24 06:45 IST — D005 Addenda A1-A7 added to PRD §12 and TASKS.md
 - Context: harness read-through (prompt_manager, resume, LLM_agent, experiment). Human approved adding the suggestions. No pre-reg change (A5 descriptive only). A1 conditional on gate failure.
+
+## 2026-10-24 12:57 IST — D002 update: pilot batch 3 results (gate still FAIL by PRD wording)
+- Per-run pass counts (rule: premium>=0.40, SD<0.05, no overshoot, last 30 rounds): gpt-oss-120b 3/8; Hermes-4-405B 1/3; MiniMax-M3 1/3 (one near-miss at premium 0.392, SD 0); nemotron-3-super 0/2 so far (1 seed still running); earlier: Qwen3-235B 0/2, Qwen3-30B 0/2, DeepSeek-V4-Pro 0/2.
+- No model reaches PRD gate (>=6/8) or the D004 relaxed gate (>=2/3). Best: gpt-oss-120b at 3/8 (37.5%). Observed gpt-oss run time ~15 min/seed on Nebius.
+- Decision pending human (memo in chat). Nebius actual spend not yet checked.

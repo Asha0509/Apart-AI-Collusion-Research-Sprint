@@ -1,7 +1,7 @@
 # TASKS — living checklist (check against PRD.md §12 and logs/PLANNING_LOG.md; update as we go)
 
 ## Now (gate)
-- [ ] Pilots running: gpt-oss-120b seeds 3-8 (3 procs), Hermes-4-405B, nemotron-3-super, MiniMax-M3 (s0-2). Batch pilot3 approved, est $5.40.
+- [x] Pilots batch 3 done except nemotron s2 (see PLANNING_LOG D002 update 12:57): best gpt-oss-120b 3/8 pass; Hermes 1/3; MiniMax 1/3.
 - [ ] On finish: `uv run python scripts/gate.py` -> PLANNING_LOG D002 -> decision memo (base model + different-company successor).
 - [ ] Check Nebius dashboard spend vs estimate; `log_cost` actual.
 - [ ] Fallback deadline: no passing base by ~09:00 IST Sat -> option 3 (focal-price reframe), decide BEFORE PREREG commit.
