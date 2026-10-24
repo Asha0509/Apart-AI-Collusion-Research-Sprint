@@ -31,9 +31,10 @@ Deadline Mon 26 Oct 17:29 IST; internal submit target Mon 15:00 IST.
 7. **Secrets.** Never read, print, grep or edit `compute.env` or `.env`; a hook blocks it. The harness loads keys itself.
 
 ## 1. Environment facts
-- Harness: `starter/algorithmic-pricing-llms/`. Run from inside it with `uv run python experiments_synthetic/duopoly.py --model <openrouter-id> …`.
-- **Always pass `--model`.** The default Mistral id returns a 400 on OpenRouter.
-- `compute.env` must have only `OPENROUTER_API_KEY` set. `LLM_MODEL` or `MODEL_NAME` force one model on every firm and silently kill the swap.
+- Harness: `starter/algorithmic-pricing-llms/`. Run from inside it with `uv run python experiments_synthetic/duopoly.py --model <nebius-id> …`.
+- **Inference = Nebius only** (corrected 2026-10-24, see PLANNING_LOG D003). The harness uses ONE endpoint per process (`starter/util/poseidon_compute/llm_config.py`: `LLM_BASE_URL` → Nebius if `NEBIUS_API_KEY` set → OpenRouter). There is NO per-model fallback; ids Nebius doesn't serve return 404. Incumbent AND successor must both be Nebius models (different companies) unless `common.py` is patched to build one client per firm.
+- **Always pass `--model`** (a Nebius id, HF casing, e.g. `openai/gpt-oss-120b`). The default Mistral id fails.
+- Do not set `LLM_MODEL` or `MODEL_NAME`: they force one model on every firm and silently kill the swap. Keep `LLM_BASE_URL` unset.
 - Economics: Nash price 1.4729, joint-monopoly price 1.9250, best response to 1.925 = 1.662. Constants live in `src/cartel/metrics.py`.
 - Run outputs are written to `experiments_synthetic/experiments_runs/2_agents/<ts>_<name>/`. Files: `environment_history.parquet` (round, agent, price, quantity, profit), `results.json`, `metadata.json`, `log.txt`.
 - Notes are the PLANS/INSIGHTS fields in `Experiment.history[name][round]` (`src/experiment/experiment.py` ~374-381). They are copied forward in `src/prompts/prompt_manager.py` ~107.

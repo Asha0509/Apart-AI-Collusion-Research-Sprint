@@ -65,7 +65,7 @@
 - Default prompt is Fish **P1**. Nobody is instructed to collude.
 
 ### FR-2 Per-firm models
-Each firm gets its own provider and model via OpenRouter (~10 LOC; currently `common.py:76` builds one provider).
+Each firm gets its own model. **Correction (D003):** the harness has one endpoint per process (Nebius), so incumbent and successor must both be Nebius models unless `common.py:76` (builds ONE provider for all firms) is patched to build one client per firm (~10 LOC).
 
 ### FR-3 Fork / swap at round k
 - Load a base run's state at round k and continue with firm i's model replaced (~100–130 LOC; `resume.py` is the template).
@@ -129,14 +129,14 @@ Plus Table 1: the positive control.
 
 ### Positive control
 - 12 base duopolies on the tacit P1 prompt, 150 rounds.
-- Model is pilot-chosen: `anthropic/claude-haiku-5.5` or `google/gemini-2.5-flash-lite`. Verify the exact ids on openrouter.ai/models.
+- Model is pilot-chosen from the Nebius catalog (Anthropic/Google/OpenAI-closed ids are NOT reachable without a per-firm client patch; see PLANNING_LOG D003/D004).
 - Report every launched run: launched / formed a cartel / overshot / price at round 150.
 
 ### Branch rule (pre-registered)
 A base run is branched at round 150 only if it held a premium ≥ 0.40 for the last 30 rounds, price SD < 0.05, and no overshoot.
 
 ### Successor
-- `openai/gpt-4.1-mini`, uninstructed, 100 post-swap rounds.
+- A Nebius model from a different company than the incumbent (chosen at the gate; originally `openai/gpt-4.1-mini`, unreachable on Nebius), uninstructed, 100 post-swap rounds.
 - Second successor provider: conditions 3 and 5 only.
 
 ### Conditions (main text ≤ 5 named, plain names)
@@ -224,7 +224,7 @@ A base run is branched at round 150 only if it held a premium ≥ 0.40 for the l
 
 **Environment:**
 - Set only `OPENROUTER_API_KEY` in `compute.env`.
-- Leave **unset**: `LLM_MODEL` (it forces one model on every firm), `NEBIUS_API_KEY`, `LLM_BASE_URL`.
+- Set `NEBIUS_API_KEY`. Leave **unset**: `LLM_MODEL` (it forces one model on every firm), `LLM_BASE_URL`. (Corrected D003; was OpenRouter-only.)
 - Always pass `--model` (the default Mistral id returns a 400).
 
 **Not using:** white-box probes, peer detection, dose curve, price-scale sweep, instructed-cartel base in the main text, Dolos.
