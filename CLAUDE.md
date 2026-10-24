@@ -27,7 +27,7 @@ Deadline Mon 26 Oct 17:29 IST; internal submit target Mon 15:00 IST.
    - Batches over $5 need the human's OK. Hard cap is $65 total.
    - Paid runs go in background Bash with `nohup … &` and a log file.
    - Never spawn many paid subagents.
-6. **Humans write the report prose.** Claude may outline, critique, check numbers and citations, and make figures and tables. Record every AI assist in `logs/LLM_USAGE.md`.
+6. **Report prose (changed 24 Oct by the human, D014):** Claude drafts the report prose; the human proofreads and edits every section. Plain, simple language, no em dashes. Every number comes from `results/processed/`, every citation from the verified list in `report/CITATIONS.md`. Record every AI assist in `logs/LLM_USAGE.md` and disclose it in the LLM Usage Statement.
 7. **Secrets.** Never read, print, grep or edit `compute.env` or `.env`; a hook blocks it. The harness loads keys itself.
 
 ## 1. Environment facts
