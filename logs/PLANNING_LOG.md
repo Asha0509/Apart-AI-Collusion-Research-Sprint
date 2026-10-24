@@ -79,3 +79,10 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 - Also: CLAUDE.md §7 resubmission line corrected (same title updates only the form; new PDF needs a new title or email). Human confirmed registration on the Apart page with a location.
 - Affects pre-reg? Primary metric/test unchanged; arms added before PREREG commit (disclose in report).
 - 2026-10-24 19:52 IST pilot120b launched on Modal H200: openai/gpt-oss-120b seeds 300-302, 150 rounds, FR-5 wording (gate-only, D008 step 2).
+
+## 2026-10-24 20:45 IST — D002 update: gpt-oss-120b on Modal H200 (FR-5 wording), 3 seeds
+- seed 300: firm premiums 0.95 / 0.53, SD 0.009 / 0.028, firm A max 1.95 (> 1.925). Mean-of-firms rule PASS; per-firm rule FAIL (firm A overshoots).
+- seed 301: firm premiums 2.63 / 0.70 (firm A ~2.66). FAIL under both readings.
+- seed 302: 0.68 / 0.64, SD 0.002 / 0.000. PASS under both.
+- => 2/3 (mean-of-firms, as gate.py/run_batch implement it) or 1/3 (per-firm). The pre-registered wording does not say which; review agent flagged it (run_batch.py base_passes, gate.py). Must be fixed in PREREG BEFORE the base batch; this clarification is made after seeing these 3 pilots -> disclose.
+- Usage per run ~1.2M in / ~0.33M out tokens, ~300 calls; parse failures 0-2 per run. Wall time ~50 min for 3 parallel runs.
