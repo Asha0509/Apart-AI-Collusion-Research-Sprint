@@ -54,3 +54,9 @@ Log every error immediately. Never delete; update Status.
 - Cause: scripts/modal_serve.py read MODAL_SERVE_MODEL from the local shell at deploy; Modal re-imports the module inside the container without that env, so MODEL fell back to the default (20b). App name and GPU come from deploy-time evaluation, the served model from container-time. The earlier 20b deployment was correct only because 20b is the default.
 - Fix: bake MODAL_SERVE_MODEL into the image env; container logs print the served model. App stopped (~5 min of H100 with the wrong model).
 - Data impact: none (pilot20b really used gpt-oss-20b: default == requested). Status: FIXED pending redeploy smoke.
+
+## 2026-10-24 19:50 IST — gpt-oss-120b on Modal H100: vLLM engine failed (KV cache memory -2.22 GiB)
+- Symptom: /v1/models 500, `RuntimeError: Engine core initialization failed`; container crash-looped ~20 min (13:47-14:17 UTC) before I stopped the app.
+- Root cause (container log): `Available KV cache memory: -2.22 GiB` -> `ValueError: No available memory for the cache blocks`. H100 lacks native FP4 ("Weight-only FP4 compression will be used"), so weights + profiling leave no KV room at the default gpu_memory_utilization.
+- Fix: serve on H200 (141 GB); weights already cached in the hf-cache volume. Lesson: my smoke only polls readiness; it should also stop the app when the container log shows a crash. Data impact: none. Cost: ~20-30 min H100 billed (check Modal usage).
+- Also: my `pkill -f modal_smoke120.py` matched its own shell command and killed it (exit 144); app was already stopped. Status: FIXED pending H200 smoke.
