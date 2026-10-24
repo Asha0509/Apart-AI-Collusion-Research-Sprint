@@ -96,3 +96,9 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 ## 2026-10-24 21:04 IST — D011 PREREG frozen (human: "approved")
 - Freeze commit 715561f, tag prereg-frozen, PREREG.md sha256 f9a1a77eb3a6259baa21b62bebb69313b9adf025ed854673c241124eaa1956af.
 - Deviation (process): the approved text had already been committed inside 3a3f546 (15:29 UTC) by a bundled `git add -A`, not alone as KICKOFF prompt 5 says. Text unchanged since; no branch data existed at either time. Disclose in report. From now on PREREG.md is never edited; corrections go to this log.
+
+## 2026-10-24 22:15 IST — D012 Base batch result (18 gpt-oss-120b bases, seeds 400-417): primary test infeasible under PREREG
+- Per-firm branch rule (PREREG): 1/18 pass (seed 400). Mean-of-firms rule would give 3/18. All 18/18 have BOTH firms above Nash over rounds 121-150.
+- Dominant pattern (16/18): asymmetric overshoot. One firm prices 2.0-2.95 (> monopoly 1.925) and earns LOW profit (2-25); the other holds ~1.75-1.80 (premium ~0.6-0.7) and earns high profit (40-55). Overshooter is Firm A in 8 bases, Firm B in 8. Not a symmetric cartel; looks like an anchored high pricer being undercut.
+- Per PREREG §Power: with n <= 4 complete bases we make NO inheritance claim and report per-base differences. Decision on any exploratory (non-pre-registered) branching is pending the human; any such analysis will be labelled exploratory and disclosed as a deviation.
+- Registry reconciled (all 18 marked done). Parse failures 47 across 18 runs (~0.9% of calls), all recovered.
