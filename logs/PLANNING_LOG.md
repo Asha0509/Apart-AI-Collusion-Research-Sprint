@@ -44,3 +44,6 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 2026-10-24 06:17 pilots launched: NousResearch/Hermes-4-405B nvidia/nemotron-3-super-120b-a12b google/gemma-3-27b-it MiniMaxAI/MiniMax-M3 seeds 0 1 2, 150 rounds
 2026-10-24 06:10 IST gpt-oss-120b seeds 3-8 launched (3 procs, human-approved batch pilot3, est $5.40)
 - 06:20 gemma-3-27b dropped (400, ERROR_LOG). Running: gpt-oss s3-8 (3 procs), Hermes-4-405B, nemotron-3-super, MiniMax-M3 (s0-2).
+
+## 2026-10-24 06:45 IST — D005 Addenda A1-A7 added to PRD §12 and TASKS.md
+- Context: harness read-through (prompt_manager, resume, LLM_agent, experiment). Human approved adding the suggestions. No pre-reg change (A5 descriptive only). A1 conditional on gate failure.

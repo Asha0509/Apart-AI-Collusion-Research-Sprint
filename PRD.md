@@ -292,3 +292,12 @@ A base run is branched at round 150 only if it held a premium ≥ 0.40 for the l
 - [ ] Repo public; README with reproduction steps
 - [ ] Cold read by a non-team person done
 - [ ] Submitted by Mon 15:00 IST
+
+## 12. Addenda (added 2026-10-24, human-approved; see PLANNING_LOG D005, tracked in TASKS.md)
+- **A1 Message-format fix (conditional):** `LLMAgent.build_messages` sends two consecutive system messages; likely cause of gemma-3 / Qwen3.5 400s. Merge into one system message ONLY if the current candidates fail the gate. Needs `/freeze`; pilots run before the change are not comparable after it.
+- **A2 Fork design:** `src/cartel/fork.py` deep-copies `history`, truncates to round k, swaps one firm's provider, uses seed `1000+k`; shocks apply to the copy only. `resume.py` is not a template (single model, no seed, default prompt).
+- **A3 Successor smoke-check before choosing the base:** a candidate incumbent also needs a different-company Nebius model that completes a 5-round smoke run.
+- **A4 Token/cost tracking:** record provider usage per run in metadata (~5 lines, SPRINT-PATCH); the harness currently drops it, so spend is blind.
+- **A5 Descriptive "locked price" flag:** report separately when both firms hold one price (SD ≈ 0) at any level (focal-price coordination). Descriptive only; the pre-registered branch rule is unchanged.
+- **A6 FR-5 covers two strings:** `PP_P0` ("previous copy of yourself") and `GENERAL_PROMPT` ("which you wrote last time") must both change.
+- **A7 Seeds:** both firms currently share one `seed`; decide and document whether firms get distinct seeds.
