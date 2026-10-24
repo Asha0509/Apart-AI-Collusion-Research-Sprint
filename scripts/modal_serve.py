@@ -19,6 +19,7 @@ MODEL = os.environ.get("MODAL_SERVE_MODEL", "openai/gpt-oss-20b")
 GPU = os.environ.get("MODAL_SERVE_GPU", "A100-40GB")
 VLLM = os.environ.get("MODAL_SERVE_VLLM", "0.11.0")
 MAX_PARALLEL = int(os.environ.get("MODAL_SERVE_PARALLEL", "32"))  # concurrent requests per container
+MAX_CONTAINERS = int(os.environ.get("MODAL_SERVE_MAX_CONTAINERS", "2"))  # GPUs per model, at most
 EXTRA = os.environ.get("MODAL_SERVE_ARGS", "")  # extra vLLM flags, e.g. Mistral: --tokenizer-mode mistral ...
 PORT = 8000
 NAME = "cartel-serve-" + MODEL.split("/")[-1].lower().replace(".", "-")[:40]
@@ -29,7 +30,8 @@ image = (
     modal.Image.debian_slim(python_version="3.12")
     .pip_install(f"vllm=={VLLM}", "transformers>=4.55.2,<5", "huggingface_hub[hf_transfer]")  # transformers 5 breaks vllm 0.11 (ERROR_LOG)
     # MODEL must be baked in: the container re-imports this file WITHOUT the deploy-time shell env (ERROR_LOG)
-    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/cache", "MODAL_SERVE_MODEL": MODEL, "MODAL_SERVE_ARGS": EXTRA})
+    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/cache", "MODAL_SERVE_MODEL": MODEL, "MODAL_SERVE_ARGS": EXTRA,
+          "MODAL_SERVE_PARALLEL": str(MAX_PARALLEL), "MODAL_SERVE_MAX_CONTAINERS": str(MAX_CONTAINERS)})
 )
 
 
@@ -38,6 +40,7 @@ image = (
     gpu=GPU,
     timeout=24 * 3600,
     scaledown_window=300,
+    max_containers=MAX_CONTAINERS,  # cost cap: queue requests rather than add GPUs
     secrets=[modal.Secret.from_name("modal-serve")],  # no key -> deploy fails: never expose an open endpoint
     volumes={"/cache": cache},
 )
