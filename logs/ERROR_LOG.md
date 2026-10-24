@@ -43,3 +43,8 @@ Log every error immediately. Never delete; update Status.
 - 1) `UnboundLocalError: n` (batch name used n in the same tuple assignment). Cause: my bug, untested path (dry-run covers `branches` only). Fixed.
 - 2) `ModuleNotFoundError: pydantic`. Cause: parent runs in the root env; `from cartel.fork import modal_endpoint` imports the harness. Fix: moved to src/cartel/endpoints.py (no harness imports).
 - Impact: guard_batch logged a $3.00 estimate row for pilot20b-gpt-oss-20b before crash 2; nothing ran. COST_LOG spent_so_far over-counts by that estimate until actuals are logged. Status: FIXED.
+
+## 2026-10-24 17:52 IST — gpt-oss-20b occasional malformed JSON (pilot20b)
+- Symptom: PARSE_FAIL on attempt 1 (unterminated string, invalid \escape, missing required fields); 4 in the first ~10 rounds across 3 seeds.
+- Cause: model output quality (no truncation: no max_tokens set; failures are on attempt 1 and the retry succeeds). Not a harness bug.
+- Fix: none needed; NFR-4 capped retries recover and every failure is logged. Track parse-failure rate per run as a data-quality metric (report in appendix). Status: MONITORING.
