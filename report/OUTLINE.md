@@ -63,3 +63,11 @@ Target ≤ 5 pages main text (hard limit 8, excl. references/appendices). Offici
 
 ## Submit checklist pointers
 - CLAUDE.md §7; numbers grep-match results/processed; citations only from CITATIONS.md "verified"; repo public; Figure 1 as project image; tracks: Q1.2 primary (all tracks scored on one rubric).
+
+## Citation wording fixes (from report/CITATIONS.md; 22/22 references exist and match; 5 claims need rewording)
+- Tran & Yu 2610.28787: say they "introduce an enforcement audit"; never "first". Arslan et al. 2609.35402 (earlier) already uses a forced-deviation probe (spot-checked on arXiv by Claude: both abstracts confirm).
+- Goyal & Ray 2609.05339: "notes are model-coupled" (accuracy +9.91 or −13.28 by successor), not "transfer poorly"; their setting = factual-recall memory, two <10B open models.
+- Rose et al. 2604.01151: they treat coordination WITHOUT communication as not collusion ("just coordinating"). Definitions box must frame it that way.
+- Riemer 2608.18078: certification in general; applying it to post-swap successors is OUR extension. Check the year on the arXiv page (published-date oddity).
+- Harrington 2018 (JCLE): do not quote the reward-punishment definition until someone reads the PDF (paywalled).
+- Eschenbaum: cite ONE version (workshop 2-author OR arXiv 2201.00345 3-author). RealPage: a PROPOSED final judgment. Cornish-Adebiyi: verify date and holding in the opinion. Werner 2026: no findings attributed without reading it.
