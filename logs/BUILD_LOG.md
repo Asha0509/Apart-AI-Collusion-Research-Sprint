@@ -30,3 +30,11 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - **Runs / spend:** no runs launched. guard_batch refused a batch (est $5.40 > $5, assumptions unverified); awaiting human OK. Spend so far: $0 recorded via guard; Nebius actual spend unknown (harness has no usage tracking). No OpenRouter spend.
 - **Also this session:** CLAUDE.md §1 and PRD corrected to Nebius-only (PLANNING_LOG D003); gate outcome FAIL logged (D002). Open: decide staged ($1.60) vs full ($5.40) batch.
 - **Built by:** Claude Code
+
+## 2026-10-24 14:20 IST — common.py SPRINT-PATCH: per-firm models (FR-2)
+- **Type:** SPRINT-PATCH to pre-existing. **File:** starter/algorithmic-pricing-llms/experiments_synthetic/common.py (run_setting ~72-85,96,104; CLI `--firm-models` ~196; _run_all ~263). /freeze used, /unfreeze done.
+- **Purpose:** PRD FR-2 / D003. One provider per firm; default (no flag) unchanged. Successor on another endpoint needs no harness change: OpenAICompatibleProvider already honours explicit base_url/api_key for non-openrouter presets.
+- **Tests:** tests/test_per_firm.py — 3 PASS in the harness venv (distinct models per firm, default unchanged, wrong count raises). Skips in root env (no pydantic); cmd in file docstring. Root suite: 10 passed, 1 skipped.
+- **Smoke run / prompt check / regression:** not yet run (needs a paid 5-round smoke; do with successor check A3). /review pending.
+- **Spend:** $0. **Open:** run /review; smoke with --firm-models on two Nebius models.
+- **Built by:** Claude Code

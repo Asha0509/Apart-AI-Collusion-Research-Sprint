@@ -9,7 +9,7 @@
 ## Build (after gate; each: free test -> smoke -> prompt dump -> /review -> /log)
 - [ ] A3 smoke-check successor candidate (5 rounds, <=$0.05)
 - [ ] FR-5 wording in BOTH PP_P0 and GENERAL_PROMPT (A6) [/freeze]
-- [ ] FR-2 per-firm provider in common.py (only if mixed endpoints needed; else same Nebius client, different model ids)
+- [x] FR-2 per-firm models in common.py (--firm-models); successor on another endpoint = build OpenAICompatibleProvider(base_url, api_key) in src/cartel/fork.py, no harness patch needed
 - [ ] A4 token/cost tracking in metadata
 - [ ] FR-4 inheritance switches + FR-3 fork (src/cartel/fork.py, inherit.py) (A2), seed 1000+k (A7)
 - [ ] NFR-4 retry cap 3-5, regex JSON, log parse failures

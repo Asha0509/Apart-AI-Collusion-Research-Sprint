@@ -69,11 +69,20 @@ async def run_setting(
     temperature: float = 0.7,
     provider_kind: Optional[str] = None,
     model: Optional[str] = None,
+    firm_models: Optional[list[str]] = None,  # SPRINT-PATCH: one model id per firm
     experiment_name: Optional[str] = None,
     runs_dir: Path = RUNS_DIR,
     plot_every: int = 10,
 ) -> Experiment:
     provider = make_provider(provider_kind, model=model)
+    # SPRINT-PATCH: per-firm models (swap design); default keeps one shared provider
+    if firm_models is not None and len(firm_models) != n_firms:
+        raise ValueError(f"--firm-models needs {n_firms} ids, got {len(firm_models)}")
+    providers = (
+        [make_provider(provider_kind, model=m) for m in firm_models]
+        if firm_models
+        else [provider] * n_firms
+    )
     response_model = create_pricing_response_model(
         include_wtp=True, wtp_value=4.51 * alpha, include_notes=notes
     )
@@ -84,7 +93,7 @@ async def run_setting(
         LLMAgent(
             name,
             prefix=PROMPTS[prompt],
-            provider=provider,
+            provider=providers[i],  # SPRINT-PATCH: was provider=provider
             response_model=response_model,
             memory_length=memory_length,
             temperature=temperature,
@@ -92,7 +101,7 @@ async def run_setting(
             prompt_template=template,
             env_params=env_params,
         )
-        for name in FIRM_NAMES[:n_firms]
+        for i, name in enumerate(FIRM_NAMES[:n_firms])  # SPRINT-PATCH: enumerate for per-firm provider
     ]
 
     label = {1: "monopoly", 2: "duopoly"}.get(n_firms, f"oligopoly_{n_firms}_firms")
@@ -184,6 +193,13 @@ def make_parser(n_firms_default: int, description: str) -> argparse.ArgumentPars
         help="model id (default: env MODEL_NAME, else the thesis model mistralai/Mistral-Large-Instruct-2411)",
     )
 
+    m.add_argument(
+        "--firm-models",
+        nargs="+",
+        default=None,
+        help="SPRINT-PATCH: one model id per firm (overrides --model)",
+    )
+
     o = ap.add_argument_group("output")
     o.add_argument(
         "--plot-every",
@@ -244,6 +260,7 @@ def _run_all(args: argparse.Namespace) -> None:
                         temperature=args.temperature,
                         provider_kind=args.provider,
                         model=args.model,
+                        firm_models=args.firm_models,
                         plot_every=args.plot_every,
                     )
                 )
