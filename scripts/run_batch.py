@@ -66,6 +66,14 @@ def make_jobs(args) -> list[dict]:
     from cartel.registry import register_run
 
     jobs = []
+    started = set()
+    if getattr(args, "skip_done", False):  # never repeat a branch that is running or done (latest registry row)
+        import csv
+
+        from cartel.registry import REGISTRY
+
+        latest = {r["run_id"]: r for r in csv.DictReader(REGISTRY.open())}
+        started = {(r["parent_id"], r["condition"], r["seed"]) for r in latest.values() if r["status"] in ("running", "done")}
     for b in (Path(x).resolve() for x in args.bases):
         ok, why = base_passes(b)
         if not ok and args.exploratory and why == "failed per-firm branch rule":
@@ -78,6 +86,8 @@ def make_jobs(args) -> list[dict]:
         for c in args.conditions:
             h, n, pin, extra = CONDITIONS[c]
             for j in range(args.replicates):
+                if (b.name, c, str(1000 + j)) in started:
+                    continue
                 jobs.append(dict(
                     id=f"{b.name[:10]}_{c}_r{j}", base=str(b), condition=c, history=h, notes=n, pinned=pin,
                     successor=incumbent if extra.get("same_model") else args.successor, seed=1000 + j,
@@ -188,6 +198,7 @@ def main() -> None:
     b.add_argument("--approved", action="store_true", help="human OK for a batch over $5")
     b.add_argument("--max-parallel", type=int, default=8)
     b.add_argument("--dry-run", action="store_true")
+    b.add_argument("--skip-done", action="store_true", help="skip branches already running/done in the registry")
     b.add_argument("--exploratory", action="store_true", help="also branch bases failing the branch rule (deviation D013; analysed separately)")
     b.add_argument("--successor-url", default=None, help="Modal endpoint URL for the successor (key from ~/.cartel_modal_key)")
     b.add_argument("--incumbent-url", default=None, help="Modal endpoint URL for the incumbent")
