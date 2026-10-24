@@ -27,7 +27,8 @@ cache = modal.Volume.from_name("hf-cache", create_if_missing=True)  # weights do
 image = (
     modal.Image.debian_slim(python_version="3.12")
     .pip_install(f"vllm=={VLLM}", "transformers>=4.55.2,<5", "huggingface_hub[hf_transfer]")  # transformers 5 breaks vllm 0.11 (ERROR_LOG)
-    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/cache"})
+    # MODEL must be baked in: the container re-imports this file WITHOUT the deploy-time shell env (ERROR_LOG)
+    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/cache", "MODAL_SERVE_MODEL": MODEL})
 )
 
 
@@ -43,6 +44,7 @@ image = (
 @modal.web_server(port=PORT, startup_timeout=2400)  # 120B first start downloads ~65 GB
 def serve():
     key = os.environ["MODAL_SERVE_API_KEY"]
+    print(f"serving {MODEL}", flush=True)  # visible in `modal app logs`
     subprocess.Popen(
         [
             "python", "-m", "vllm.entrypoints.openai.api_server",

@@ -48,3 +48,9 @@ Log every error immediately. Never delete; update Status.
 - Symptom: PARSE_FAIL on attempt 1 (unterminated string, invalid \escape, missing required fields); 4 in the first ~10 rounds across 3 seeds.
 - Cause: model output quality (no truncation: no max_tokens set; failures are on attempt 1 and the retry succeeds). Not a harness bug.
 - Fix: none needed; NFR-4 capped retries recover and every failure is logged. Track parse-failure rate per run as a data-quality metric (report in appendix). Status: MONITORING.
+
+## 2026-10-24 19:20 IST — "120b" Modal endpoint served gpt-oss-20b
+- Symptom: smoke on cartel-serve-gpt-oss-120b listed models ['openai/gpt-oss-20b'] and 404'd on openai/gpt-oss-120b.
+- Cause: scripts/modal_serve.py read MODAL_SERVE_MODEL from the local shell at deploy; Modal re-imports the module inside the container without that env, so MODEL fell back to the default (20b). App name and GPU come from deploy-time evaluation, the served model from container-time. The earlier 20b deployment was correct only because 20b is the default.
+- Fix: bake MODAL_SERVE_MODEL into the image env; container logs print the served model. App stopped (~5 min of H100 with the wrong model).
+- Data impact: none (pilot20b really used gpt-oss-20b: default == requested). Status: FIXED pending redeploy smoke.
