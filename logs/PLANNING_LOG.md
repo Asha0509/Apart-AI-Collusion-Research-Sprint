@@ -56,3 +56,9 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 ## 2026-10-24 13:36 IST — D006 Nebius budget is the real cap (balance $7.97), not $65
 - Dashboard (human screenshot): subtotal $12.01, balance $7.97, last updated 06:20 UTC (stale vs batch 3). DeepSeek-V4-Pro $7.93 of it. DeepSeek tokens imply ~1.15M in / 0.18M out per 150-round run (my $5.40 estimate assumed 0.75M/0.12M: ~50% low on tokens). The $65 OpenRouter cap in registry.py does not apply; Nebius balance does.
 - No further launch until batch 3 spend is visible and per-model prices for gpt-oss/Hermes/MiniMax are read from the Prices page.
+
+## 2026-10-24 19:30 IST — D007 Move base/successor inference to Modal (human OK: "we can leverage Modal")
+- Context: Nebius balance ~$7.97 (dashboard 13:35 IST, before batch 3 spend shown); Modal credit ~$80 (human-reported). This machine has 3 GB RAM and no GPU, so a local Ollama is not viable (human asked; answer: do not install).
+- Decision: serve open models on Modal with our own scripts/modal_serve.py (the starter scaffold pins vllm 0.6.6, which predates gpt-oss, and has no cache, no concurrency and an open endpoint). Candidate base: openai/gpt-oss-20b (ungated: HF config returns a redirect, not 401/403). Needs a fresh 3-seed cartel gate: 20B behaviour is untested (120B qualified in 3/8 pilot seeds). Nebius stays for models Modal does not host.
+- Affects pre-reg? Base model not yet frozen.
+- Pending: human creates the modal-serve secret (key never enters chat or logs), then deploy + smoke.
