@@ -71,3 +71,10 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - **Tests (0 API):** test_usage_tracking 1, test_fork_inherit 10 (bot holds price, forced cut at the right round in a copy only, identical before shock, branch sha unchanged), test_sanitiser 3, test_metrics +1. Run cmd in file docstrings (harness venv + --with pandas).
 - **PREREG.md (uncommitted):** frozen prompt hashes filled. Human must approve before the PREREG commit.
 - **Smoke / codex adversarial review:** pending. Spend $0.
+
+## 2026-10-24 18:10 IST — Smoke run (A3 + per-firm + FR-5 + NFR-4 + A4 + fork), ~$0.05 est.
+- **Base:** `duopoly.py --firm-models openai/gpt-oss-120b openai/gpt-oss-120b --rounds 8 --seeds 50` -> run 1792839635_..._seed50_pid44253. 0 PARSE_FAIL, new FR-5 wording in metadata, usage_tokens recorded (16 calls, 16.1k in, 18.8k out).
+- **Fork:** k=6, Firm A -> Qwen/Qwen3-30B-A3B-Instruct-2507 (different company), history=wipe notes=keep pinned, seed 1006, 2 rounds. metadata agents_models differs for Firm A only; usage per model recorded; 0 parse failures; registry rows written (running, done). Run dir 1792839702_fork_..._pid44401 (smoke: exclude from analysis).
+- **Bug found + fixed:** fork wrote to `experiments_runs/` in the harness root instead of `experiments_synthetic/experiments_runs/` (moved the smoke dir; default now fixed in fork.py).
+- **Cost note:** gpt-oss emits ~1.2k output tokens/call (reasoning), so output tokens dominate; per 150-round run expect roughly 0.3M out + >1M in. Re-estimate once the Nebius price table is read.
+- **Prompt check:** logs/prompts/*.txt dumped from the mocked run; real rendered prompt matches (FR-5 phrase present).

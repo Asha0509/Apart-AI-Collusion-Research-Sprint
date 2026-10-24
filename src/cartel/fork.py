@@ -142,7 +142,7 @@ async def fork_run_async(
         if cls is ForcedPriceAgent:
             agents[-1].forced = dict(forced_prices)
     name = f"fork_{meta['name']}_k{swap_round}_r{resume}_{condition or 'x'}_seed{seed}"
-    kw = {"experiment_dir": runs_dir} if runs_dir else {}
+    kw = {"experiment_dir": runs_dir or HARNESS / "experiments_synthetic/experiments_runs"}  # same place as base runs
     exp = Experiment(
         name=name, agents=agents, num_rounds=n_total,
         environment=CalvanoDemandEnvironment(name="Calvano Market", description="duopoly branch"),
