@@ -1,3 +1,4 @@
+import os
 import json
 import time
 import logging
@@ -22,7 +23,8 @@ class StorageManager:
 
     def create_experiment_dir(self, experiment_name: str):
         unix_time = int(time.time())
-        folder_name = f"{unix_time}_{experiment_name}"
+        # SPRINT-PATCH: append pid so parallel runs started in the same second never share a dir
+        folder_name = f"{unix_time}_{experiment_name}_pid{os.getpid()}"
         self.experiment_path = self.base_dir / f"{self.n_agents}_agents" / folder_name
         self.experiment_path.mkdir(parents=True, exist_ok=True)
         self.logger.info(f"Experiment directory created: {self.experiment_path}")
