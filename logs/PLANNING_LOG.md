@@ -52,3 +52,7 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 - Per-run pass counts (rule: premium>=0.40, SD<0.05, no overshoot, last 30 rounds): gpt-oss-120b 3/8; Hermes-4-405B 1/3; MiniMax-M3 1/3 (one near-miss at premium 0.392, SD 0); nemotron-3-super 0/2 so far (1 seed still running); earlier: Qwen3-235B 0/2, Qwen3-30B 0/2, DeepSeek-V4-Pro 0/2.
 - No model reaches PRD gate (>=6/8) or the D004 relaxed gate (>=2/3). Best: gpt-oss-120b at 3/8 (37.5%). Observed gpt-oss run time ~15 min/seed on Nebius.
 - Decision pending human (memo in chat). Nebius actual spend not yet checked.
+
+## 2026-10-24 13:36 IST — D006 Nebius budget is the real cap (balance $7.97), not $65
+- Dashboard (human screenshot): subtotal $12.01, balance $7.97, last updated 06:20 UTC (stale vs batch 3). DeepSeek-V4-Pro $7.93 of it. DeepSeek tokens imply ~1.15M in / 0.18M out per 150-round run (my $5.40 estimate assumed 0.75M/0.12M: ~50% low on tokens). The $65 OpenRouter cap in registry.py does not apply; Nebius balance does.
+- No further launch until batch 3 spend is visible and per-model prices for gpt-oss/Hermes/MiniMax are read from the Prices page.
