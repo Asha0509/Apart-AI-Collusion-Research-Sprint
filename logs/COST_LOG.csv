@@ -3,3 +3,4 @@ time_ist,batch,est_usd,actual_usd,cumulative_usd,notes
 2026-10-24 11:46 IST,pilot3-gptoss-s3-8+4models,5.4000,,5.4000,Human OK 2026-10-24 (Nebius $30 credit). Estimate unverified; actual from Nebius dashboard
 2026-10-24 13:35,nebius-dashboard-snapshot,,12.01,12.01,"Nebius usage 24.09-24.10 subtotal $12.01 (+VAT $2.16 = $14.17); balance $7.97; dashboard last updated 06:20 UTC = before pilot batch 3 finished, so batch 3 spend NOT yet included. DeepSeek-V4-Pro alone $7.93 (3.44M in, 0.55M out tokens over ~3 seeds)"
 2026-10-24 13:45,modal-credit-snapshot,,,,"Modal workspace Starter, credits $51.00 (human screenshot); modal setup not yet done; PRD NFR-2 Modal cap $15 -> raise only with human OK"
+2026-10-24 13:55,modal-credit-update,,,,"Human reports Modal credits now ~$80 after coupon (not yet verified by screenshot). PRD NFR-2 Modal cap still $15 until human raises it"
