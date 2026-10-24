@@ -109,3 +109,4 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 - Successor Mistral-Small-3.2-24B (Modal H100); incumbent gpt-oss-120b (Modal H200); paired seed 1000.
 - Analysis: analyse.py keeps PREREG primary restricted to qualifying bases; `exploratory_all_bases` uses all bases and is reported as exploratory with the deviation stated. Cost guard: est $35 (upper end of $15-35 guess; human did not supply a Modal figure), approved via "2".
 - 2026-10-24 22:35 IST D013 ops: 16 workers used ~3.6 GB RAM (+1 GB swap) on this 3.9 GB machine; stopped the pool parent (workers continue), remaining 74 branches auto-launch with --max-parallel 10 --skip-done when the first wave ends. Same approved batch: continuation logged with est $0 to avoid double counting the $35.
+- 2026-10-24 23:00 IST D013 ops: switched the remaining 74 branches to in-process concurrency (2 processes, all concurrent, per-fork loggers) to cut GPU wall time; auto-starts when wave 1 (16) ends.
