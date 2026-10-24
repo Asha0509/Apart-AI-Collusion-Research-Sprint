@@ -6,3 +6,4 @@ time_ist,batch,est_usd,actual_usd,cumulative_usd,notes
 2026-10-24 13:55,modal-credit-update,,,,"Human reports Modal credits now ~$80 after coupon (not yet verified by screenshot). PRD NFR-2 Modal cap still $15 until human raises it"
 2026-10-24 16:30 IST,smoke-fork-A3,0.0500,,22.8100,pre-launch estimate
 2026-10-24 16:32 IST,smoke-fork-A3,0.0500,,22.8600,actual $ unknown (no Nebius price table yet). Tokens: base gpt-oss 16 calls 16.1k in/18.8k out; fork 2+2 calls ~5.4k in/3.6k out. gpt-oss output is ~1.2k tokens/call (reasoning).
+2026-10-24 17:06 IST,modal-deploy-smoke-gpt-oss-20b,1.0000,,22.9100,pre-launch estimate

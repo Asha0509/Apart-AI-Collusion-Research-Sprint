@@ -77,6 +77,12 @@ def load_base(base_run_dir: str | Path, swap_round: int, resume_round: int | Non
     return meta, hist
 
 
+def modal_endpoint(url: str, key_file: str = "~/.cartel_modal_key") -> dict:
+    """Endpoint dict for a scripts/modal_serve.py deployment; the key is read from a file, never printed."""
+    return {"base_url": url.rstrip("/") + ("" if url.rstrip("/").endswith("/v1") else "/v1"),
+            "api_key": Path(key_file).expanduser().read_text().strip()}
+
+
 def default_provider(model: str, endpoint: dict | None = None) -> Provider:
     if endpoint:  # e.g. Modal / NVIDIA / Ollama: {"base_url": ..., "api_key": ...}
         return OpenAICompatibleProvider(preset="openai-compatible", model=model, **endpoint)
@@ -96,6 +102,7 @@ async def fork_run_async(
     *,
     condition: str = "",
     successor_endpoint: dict | None = None,
+    incumbent_endpoint: dict | None = None,
     notes_override: tuple[str, str] | None = None,
     provider_factory: Callable[[str, dict | None], Provider] = default_provider,
     runs_dir: str | Path | None = None,
@@ -130,7 +137,7 @@ async def fork_run_async(
             cls(
                 n,
                 prefix=meta["agents_prefixes"][n],
-                provider=provider_factory(model, successor_endpoint if n == firm else None),
+                provider=provider_factory(model, successor_endpoint if n == firm else incumbent_endpoint),
                 response_model=response_model,
                 memory_length=meta["agents_memory_length"][n],
                 temperature=meta["agents_temperature"][n],
