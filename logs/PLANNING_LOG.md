@@ -86,3 +86,4 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 - seed 302: 0.68 / 0.64, SD 0.002 / 0.000. PASS under both.
 - => 2/3 (mean-of-firms, as gate.py/run_batch implement it) or 1/3 (per-firm). The pre-registered wording does not say which; review agent flagged it (run_batch.py base_passes, gate.py). Must be fixed in PREREG BEFORE the base batch; this clarification is made after seeing these 3 pilots -> disclose.
 - Usage per run ~1.2M in / ~0.33M out tokens, ~300 calls; parse failures 0-2 per run. Wall time ~50 min for 3 parallel runs.
+- 2026-10-24 21:00 IST D010 human: 'Do it all' -> per-firm branch rule, successor Mistral-Small-3.2-24B on Modal, launch 18 gpt-oss-120b bases (seeds 400-417, approved, est $1.5/run), fix review findings, fill PREREG for final look before its commit.
