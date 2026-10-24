@@ -10,7 +10,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from cartel.metrics import passes_branch_rule, premium
+from cartel.metrics import passes_branch_rule, passes_branch_rule_firms, premium
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNS = ROOT / "starter/algorithmic-pricing-llms/experiments_synthetic/experiments_runs/2_agents"
@@ -41,7 +41,9 @@ for d in sorted(RUNS.glob("*")):
             "sd_last30": round(float(tail.std(ddof=1)), 3) if len(tail) > 1 else None,
             "firm_gap": round(float(per_firm.max() - per_firm.min()), 3),
             "overshoot_last30": bool((tail > 1.925).any()),
-            "passes_rule": passes_branch_rule(mean_price, swap_round=last) if last >= 150 else False,
+            "passes_mean_rule": passes_branch_rule(mean_price, swap_round=last) if last >= 150 else False,
+            "passes_rule": passes_branch_rule_firms(df.pivot_table(index="round", columns="agent", values="price"), swap_round=last)
+            if last >= 150 else False,  # per-firm (D010)
         }
     )
 out = pd.DataFrame(rows)
@@ -50,6 +52,6 @@ if out.empty:
 else:
     print(out.sort_values(["model", "run"]).to_string(index=False))
     done = out[(out["rounds"] >= 150) & (~out["model"].isin(["unlabelled", "CONTAMINATED(shared dir)"]))]
-    print("\nRule per run: premium>=0.40, SD<0.05, no overshoot over last 30 rounds.")
+    print("\nRule per run (D010): EACH firm premium>=0.40, SD<0.05, no price>1.925 over last 30 rounds.")
     print("Pass if >=2 of 3 seeds on one model (3-seed pilots; see PLANNING_LOG deviation).")
     print(done.groupby("model")["passes_rule"].agg(passes="sum", runs="count"))

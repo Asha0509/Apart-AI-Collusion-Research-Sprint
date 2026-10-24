@@ -73,3 +73,11 @@ def locked_price(prices_a: Any, prices_b: Any, tail: int = 30, max_sd: float = 0
     level. Separates focal-price coordination from price-based collusion; not part of the branch rule."""
     a, b = (np.asarray(x, dtype=float)[-tail:] for x in (prices_a, prices_b))
     return bool(np.std(a, ddof=1) <= max_sd and np.std(b, ddof=1) <= max_sd and abs(a.mean() - b.mean()) <= 0.02)
+
+
+def passes_branch_rule_firms(prices_by_firm: pd.DataFrame, swap_round: int = 150, **kw) -> bool:
+    """Pre-registered branch rule applied to EACH firm (D010): every firm's own price series over the last
+    `window` rounds must satisfy passes_branch_rule (premium >= 0.40, SD < 0.05, no price > 1.925).
+    `prices_by_firm`: round-indexed DataFrame, one column per firm. Stricter than averaging the firms, which
+    can hide one firm overshooting (pilot seed 300)."""
+    return all(passes_branch_rule(prices_by_firm[c], swap_round=swap_round, **kw) for c in prices_by_firm.columns)

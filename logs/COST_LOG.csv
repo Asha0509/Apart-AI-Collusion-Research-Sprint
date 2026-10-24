@@ -13,3 +13,4 @@ time_ist,batch,est_usd,actual_usd,cumulative_usd,notes
 2026-10-24 19:14 IST,modal-120b-smoke+3seed-check,6.0000,,33.3200,pre-launch estimate
 2026-10-24 19:50,modal-balance-snapshot,,,,"Human reports Modal credits ~$73 after 120b crash loops"
 2026-10-24 19:50 IST,pilot120b-gpt-oss-120b-300+3,4.5000,,39.3200,pre-launch estimate
+2026-10-24 20:50 IST,base-gpt-oss-120b-400+18,27.0000,,35.3700,pre-launch estimate; provider=modal

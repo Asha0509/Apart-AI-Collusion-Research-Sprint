@@ -19,6 +19,7 @@ MODEL = os.environ.get("MODAL_SERVE_MODEL", "openai/gpt-oss-20b")
 GPU = os.environ.get("MODAL_SERVE_GPU", "A100-40GB")
 VLLM = os.environ.get("MODAL_SERVE_VLLM", "0.11.0")
 MAX_PARALLEL = int(os.environ.get("MODAL_SERVE_PARALLEL", "32"))  # concurrent requests per container
+EXTRA = os.environ.get("MODAL_SERVE_ARGS", "")  # extra vLLM flags, e.g. Mistral: --tokenizer-mode mistral ...
 PORT = 8000
 NAME = "cartel-serve-" + MODEL.split("/")[-1].lower().replace(".", "-")[:40]
 
@@ -28,7 +29,7 @@ image = (
     modal.Image.debian_slim(python_version="3.12")
     .pip_install(f"vllm=={VLLM}", "transformers>=4.55.2,<5", "huggingface_hub[hf_transfer]")  # transformers 5 breaks vllm 0.11 (ERROR_LOG)
     # MODEL must be baked in: the container re-imports this file WITHOUT the deploy-time shell env (ERROR_LOG)
-    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/cache", "MODAL_SERVE_MODEL": MODEL})
+    .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/cache", "MODAL_SERVE_MODEL": MODEL, "MODAL_SERVE_ARGS": EXTRA})
 )
 
 
@@ -51,5 +52,6 @@ def serve():
             "--model", MODEL, "--served-model-name", MODEL,
             "--host", "0.0.0.0", "--port", str(PORT),
             "--api-key", key, "--max-model-len", "16384",
+            *EXTRA.split(),
         ]
     )

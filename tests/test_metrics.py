@@ -64,3 +64,14 @@ def test_guard_per_provider(tmp_path, monkeypatch):
         R.guard_batch("b2", 10.0, provider="modal")  # > $5 without approval
     with pytest.raises(RuntimeError):
         R.guard_batch("b3", 71.0, approved=True, provider="modal")  # over cap
+
+
+def test_branch_rule_per_firm_catches_hidden_overshoot():
+    from cartel.metrics import passes_branch_rule, passes_branch_rule_firms
+
+    r = range(1, 151)
+    df = pd.DataFrame({"A": [1.95] * 150, "B": [1.75] * 150}, index=r)  # A overshoots; the mean (1.85) does not
+    assert passes_branch_rule(df.mean(axis=1), 150)
+    assert not passes_branch_rule_firms(df, 150)
+    ok = pd.DataFrame({"A": [1.80] * 150, "B": [1.78] * 150}, index=r)
+    assert passes_branch_rule_firms(ok, 150)

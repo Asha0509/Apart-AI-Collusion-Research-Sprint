@@ -51,16 +51,15 @@ def FIELDS_HEADER():
 def base_passes(run_dir: Path, swap_round: int = 150) -> tuple[bool, str]:
     import pandas as pd
 
-    from cartel.metrics import passes_branch_rule
+    from cartel.metrics import passes_branch_rule_firms
 
     f = run_dir / "environment_history.parquet"
     if not f.exists():
         return False, "no parquet"
-    df = pd.read_parquet(f)
-    mean_price = df.groupby("round")["price"].mean()
-    if mean_price.index.max() < swap_round:
-        return False, f"only {mean_price.index.max()} rounds"
-    return (True, "") if passes_branch_rule(mean_price, swap_round=swap_round) else (False, "failed branch rule")
+    p = pd.read_parquet(f).pivot_table(index="round", columns="agent", values="price")
+    if p.index.max() < swap_round:
+        return False, f"only {p.index.max()} rounds"
+    return (True, "") if passes_branch_rule_firms(p, swap_round=swap_round) else (False, "failed per-firm branch rule")
 
 
 def make_jobs(args) -> list[dict]:
