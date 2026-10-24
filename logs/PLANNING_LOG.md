@@ -63,3 +63,9 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 - Affects pre-reg? Base model not yet frozen.
 - Pending: human creates the modal-serve secret (key never enters chat or logs), then deploy + smoke.
 - 2026-10-24 18:25 IST pilot20b launched on Modal: openai/gpt-oss-20b seeds 200-202, 150 rounds, A100-40GB, FR-5 wording + NFR-4 caps (gate-only). ~30 s/round.
+
+## 2026-10-24 19:15 IST — D002 update: gpt-oss-20b (Modal) gate FAIL, 1/3
+- Runs (FR-5 wording, NFR-4 caps; gate-only): seed 200 premium_last30 0.121 SD 0.026; seed 201 0.435 SD 0.031 PASS; seed 202 0.104 SD 0.012. No overshoot, none locked. Two of three settle near Nash (final prices 1.51-1.55).
+- Usage per 150-round run: ~1.3M in / ~0.47M out tokens, ~326 calls; parse failures 21-32 per run (all recovered).
+- Pass rates so far (branch rule): gpt-oss-120b 3/8 (old wording), gpt-oss-20b 1/3, Hermes-4-405B 1/3, MiniMax-M3 1/3, others 0.
+- Decision pending human (memo in chat). Modal app scales to zero when idle.
