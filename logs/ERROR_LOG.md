@@ -31,3 +31,10 @@ Log every error immediately. Never delete; update Status.
 ## 2026-10-24 06:20 IST — google/gemma-3-27b-it pilot failed at round 1
 - Error: Nebius 400 "Conversation roles must alternate user/assistant/user/assistant/..."
 - Cause: model's chat template rejects the harness message order (same class as Qwen3.5). Fix: none; model dropped (would need a harness patch). Data impact: none; its share of the batch is unspent.
+
+## 2026-10-24 17:40 IST — Modal vLLM server crash at startup (gpt-oss-20b)
+- Where: scripts/modal_serve.py, app cartel-serve-gpt-oss-20b.
+- Symptom: smoke client got HTTP 303 loops; container logs: `AttributeError: TokenizersBackend has no attribute all_special_tokens_extended` in vllm/transformers_utils/tokenizer.py.
+- Cause: vllm 0.11.0 declares `transformers>=4.55.2` with no upper bound; pip installed transformers 5.x, which removed that attribute. Server never became ready, so Modal kept returning 303 "still starting" redirects.
+- Fix: pin `transformers>=4.55.2,<5`; app stopped (11:36-12:06 UTC, ~30 min GPU billed while crash-looping; check Modal usage). Smoke now polls /v1/models instead of following redirects.
+- Data impact: none. Status: FIXED pending redeploy smoke.

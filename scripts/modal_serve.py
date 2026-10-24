@@ -26,7 +26,7 @@ app = modal.App(NAME)
 cache = modal.Volume.from_name("hf-cache", create_if_missing=True)  # weights downloaded once, reused
 image = (
     modal.Image.debian_slim(python_version="3.12")
-    .pip_install(f"vllm=={VLLM}", "huggingface_hub[hf_transfer]")
+    .pip_install(f"vllm=={VLLM}", "transformers>=4.55.2,<5", "huggingface_hub[hf_transfer]")  # transformers 5 breaks vllm 0.11 (ERROR_LOG)
     .env({"HF_HUB_ENABLE_HF_TRANSFER": "1", "HF_HOME": "/cache"})
 )
 
