@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import csv
+import os
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-REGISTRY = ROOT / "logs" / "RUN_REGISTRY.csv"
+REGISTRY = Path(os.environ.get("CARTEL_REGISTRY") or ROOT / "logs" / "RUN_REGISTRY.csv")  # env override: dry runs
 COSTLOG = ROOT / "logs" / "COST_LOG.csv"
 FIELDS = [
     "run_id",

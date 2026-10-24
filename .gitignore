@@ -13,3 +13,4 @@ __pycache__/
 # large harness outputs (copy what you analyse into results/raw)
 starter/**/experiments_runs/**/*.svg
 logs/pilot/*.log
+logs/runs/

@@ -20,7 +20,7 @@
 
 ## Then
 - [ ] /eval-plan, fill PREREG (MDE, models, hashes), commit alone
-- [ ] run_batch.py, base runs, branches, controls, shocks (guard_batch every batch; >$5 needs OK)
+- [x] run_batch.py built (bases + branches, branch-rule filter, registry, guard, max-parallel, --dry-run verified offline); NEXT: /eval-plan, then launch bases
 - [ ] analyse.py, make_figures.py, Table 1; report checklist CLAUDE.md §7 (humans write prose)
 
 ## Housekeeping

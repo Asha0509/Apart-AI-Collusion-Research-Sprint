@@ -78,3 +78,10 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - **Bug found + fixed:** fork wrote to `experiments_runs/` in the harness root instead of `experiments_synthetic/experiments_runs/` (moved the smoke dir; default now fixed in fork.py).
 - **Cost note:** gpt-oss emits ~1.2k output tokens/call (reasoning), so output tokens dominate; per 150-round run expect roughly 0.3M out + >1M in. Re-estimate once the Nebius price table is read.
 - **Prompt check:** logs/prompts/*.txt dumped from the mocked run; real rendered prompt matches (FR-5 phrase present).
+
+## 2026-10-24 18:50 IST — scripts/run_batch.py (KICKOFF prompt 6)
+- **New:** `bases` (one background process per seed via duopoly.py --firm-models M M) and `branches` (applies passes_branch_rule, registers exclusions with reasons, builds paired jobs for the 9 conditions in PRD §4 plus bot/sanitised, seed 1000+replicate, max-parallel workers). `--est-per-run` is required (no invented default); guard_batch is called before any paid launch; >$5 needs `--approved` from the human.
+- **registry.py:** `CARTEL_REGISTRY` env override so dry runs never touch logs/RUN_REGISTRY.csv.
+- **Test:** dry-run on a real passing pilot base (gpt-oss seed 8), 3 conditions, fake provider: 3 forks written under logs/runs/dryrun, real registry unchanged. Not a pytest; no API cost.
+- **Bug found by the dry-run:** relative base paths broke when workers ran from the harness dir -> resolved to absolute.
+- **Open:** dry-run only covers `branches`; `bases` unrun (paid). Sanitised arm needs `--sanitiser-model`. A `rm -rf logs/runs` was denied by the permission hook; I did not retry (run /careful first if deleting).
