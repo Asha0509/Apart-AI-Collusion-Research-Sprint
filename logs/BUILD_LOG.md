@@ -99,3 +99,9 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 ## 2026-10-26 12:00 IST — Final analysis + report text
 - analyse.py (D015 >=90-round rule, lazy shocks import), scripts/report_numbers.py (every number quoted in the report, from results/processed + results/raw), make_figures.py (Fig 1-3; Fig 4 skipped: no shock runs), figures.py label spacing.
 - report/DRAFT.md: title, abstract (244 words), Results 4.1-4.5, Discussion, runbook, Appendix D items 7-8. All numbers cross-checked against report_numbers.json (script check, all match). No em dashes.
+
+## 2026-10-26 13:30 IST — scripts/extra_analysis.py (follow-up, exploratory, after submission v1)
+- **New:** scripts/extra_analysis.py -> results/processed/extra.json, extra_branch_rows.csv, figures/fig4_per_market.png. First post-swap price per arm, copy-of-last-price share, clipped-premium (cap 1.0) sensitivity, recovery with complete runs only, placebo comparisons, regex scan of the 18 inherited notes blocks.
+- **Findings (exploratory):** with notes the successor's round-151 price equals the predecessor's round-150 price in 18/18 markets (both successors); clean-slate first price mean 3.11 (47% >= 3.0; prompt ceiling 4.51 anchoring). Recovery: notes vs clean complete-only -47.6 rounds (n=8, p=0.008); placebo vs clean -27.1 (n=12, p=0.009); notes vs placebo -8.3 (n=13, p=0.002). Clipped level: notes - clean +0.08 (CI -0.05..0.23). Notes: 17/18 mention the rival, 3/18 contain a collusion-like word (to be read by hand before quoting).
+- **Tests:** none (analysis script; numbers reproducible by rerunning). Spend $0.
+- **Open:** report update with these results; Phase B replication blocked by budget (Modal ~$3 left; Nebius balance unknown; NVIDIA free key option). GitHub chunked push still running in background.
