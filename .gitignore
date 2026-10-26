@@ -14,3 +14,7 @@ __pycache__/
 starter/**/experiments_runs/**/*.svg
 logs/pilot/*.log
 logs/runs/
+
+# local copies of the sprint template
+Copy of Apart Research*
+*:Zone.Identifier
