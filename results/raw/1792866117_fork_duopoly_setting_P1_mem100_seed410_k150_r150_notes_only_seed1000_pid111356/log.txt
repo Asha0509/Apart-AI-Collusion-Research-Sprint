@@ -1,0 +1,816 @@
+[18:21:57] [INFO] ✅ Metadata saved
+[18:21:57] [INFO] ✅ Metadata saved
+[18:21:57] [INFO] --- Round 151 ---
+[18:21:57] [INFO] Executing 2 agents with 1.1s rate limit
+[18:21:57] [INFO] Starting rate-limited execution for 2 agents
+[18:21:57] [INFO] Created 2 tasks, collecting results...
+[18:22:13] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:22:14] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:24:57] [INFO] Successfully collected 2 results
+[18:24:57] [INFO] Agent execution completed in 179.69 seconds
+[18:24:57] [INFO] --- Round 152 ---
+[18:24:57] [INFO] Executing 2 agents with 1.1s rate limit
+[18:24:57] [INFO] Starting rate-limited execution for 2 agents
+[18:24:57] [INFO] Created 2 tasks, collecting results...
+[18:24:57] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:24:58] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:27:40] [INFO] Successfully collected 2 results
+[18:27:40] [INFO] Agent execution completed in 163.58 seconds
+[18:27:40] [INFO] --- Round 153 ---
+[18:27:40] [INFO] Executing 2 agents with 1.1s rate limit
+[18:27:40] [INFO] Starting rate-limited execution for 2 agents
+[18:27:40] [INFO] Created 2 tasks, collecting results...
+[18:27:40] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:27:41] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:30:42] [INFO] Successfully collected 2 results
+[18:30:42] [INFO] Agent execution completed in 181.52 seconds
+[18:30:42] [INFO] --- Round 154 ---
+[18:30:42] [INFO] Executing 2 agents with 1.1s rate limit
+[18:30:42] [INFO] Starting rate-limited execution for 2 agents
+[18:30:42] [INFO] Created 2 tasks, collecting results...
+[18:30:42] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:30:43] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:34:36] [INFO] Successfully collected 2 results
+[18:34:36] [INFO] Agent execution completed in 234.64 seconds
+[18:34:36] [INFO] --- Round 155 ---
+[18:34:36] [INFO] Executing 2 agents with 1.1s rate limit
+[18:34:36] [INFO] Starting rate-limited execution for 2 agents
+[18:34:36] [INFO] Created 2 tasks, collecting results...
+[18:34:36] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:34:38] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:38:05] [INFO] Successfully collected 2 results
+[18:38:05] [INFO] Agent execution completed in 208.51 seconds
+[18:38:05] [INFO] --- Round 156 ---
+[18:38:05] [INFO] Executing 2 agents with 1.1s rate limit
+[18:38:05] [INFO] Starting rate-limited execution for 2 agents
+[18:38:05] [INFO] Created 2 tasks, collecting results...
+[18:38:05] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:38:06] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:40:42] [INFO] Successfully collected 2 results
+[18:40:42] [INFO] Agent execution completed in 156.66 seconds
+[18:40:42] [INFO] --- Round 157 ---
+[18:40:42] [INFO] Executing 2 agents with 1.1s rate limit
+[18:40:42] [INFO] Starting rate-limited execution for 2 agents
+[18:40:42] [INFO] Created 2 tasks, collecting results...
+[18:40:42] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:40:43] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:44:44] [INFO] Successfully collected 2 results
+[18:44:44] [INFO] Agent execution completed in 242.07 seconds
+[18:44:44] [INFO] --- Round 158 ---
+[18:44:44] [INFO] Executing 2 agents with 1.1s rate limit
+[18:44:44] [INFO] Starting rate-limited execution for 2 agents
+[18:44:44] [INFO] Created 2 tasks, collecting results...
+[18:44:44] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:44:45] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:48:40] [INFO] Successfully collected 2 results
+[18:48:40] [INFO] Agent execution completed in 236.21 seconds
+[18:48:40] [INFO] --- Round 159 ---
+[18:48:40] [INFO] Executing 2 agents with 1.1s rate limit
+[18:48:40] [INFO] Starting rate-limited execution for 2 agents
+[18:48:40] [INFO] Created 2 tasks, collecting results...
+[18:48:40] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:48:41] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:51:29] [INFO] Successfully collected 2 results
+[18:51:29] [INFO] Agent execution completed in 168.96 seconds
+[18:51:29] [INFO] --- Round 160 ---
+[18:51:29] [INFO] Executing 2 agents with 1.1s rate limit
+[18:51:29] [INFO] Starting rate-limited execution for 2 agents
+[18:51:29] [INFO] Created 2 tasks, collecting results...
+[18:51:29] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:51:30] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:54:42] [INFO] Successfully collected 2 results
+[18:54:42] [INFO] Agent execution completed in 192.43 seconds
+[18:54:42] [INFO] --- Round 161 ---
+[18:54:42] [INFO] Executing 2 agents with 1.1s rate limit
+[18:54:42] [INFO] Starting rate-limited execution for 2 agents
+[18:54:42] [INFO] Created 2 tasks, collecting results...
+[18:54:42] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:54:43] [INFO] 🔄 Attempt 1 for agent Firm B
+[18:58:32] [INFO] Successfully collected 2 results
+[18:58:32] [INFO] Agent execution completed in 230.25 seconds
+[18:58:32] [INFO] --- Round 162 ---
+[18:58:32] [INFO] Executing 2 agents with 1.1s rate limit
+[18:58:32] [INFO] Starting rate-limited execution for 2 agents
+[18:58:32] [INFO] Created 2 tasks, collecting results...
+[18:58:32] [INFO] 🔄 Attempt 1 for agent Firm A
+[18:58:33] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:02:05] [INFO] Successfully collected 2 results
+[19:02:05] [INFO] Agent execution completed in 213.49 seconds
+[19:02:05] [INFO] --- Round 163 ---
+[19:02:05] [INFO] Executing 2 agents with 1.1s rate limit
+[19:02:05] [INFO] Starting rate-limited execution for 2 agents
+[19:02:05] [INFO] Created 2 tasks, collecting results...
+[19:02:05] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:02:06] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:05:34] [INFO] Successfully collected 2 results
+[19:05:34] [INFO] Agent execution completed in 208.87 seconds
+[19:05:34] [INFO] --- Round 164 ---
+[19:05:34] [INFO] Executing 2 agents with 1.1s rate limit
+[19:05:34] [INFO] Starting rate-limited execution for 2 agents
+[19:05:34] [INFO] Created 2 tasks, collecting results...
+[19:05:34] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:05:35] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:09:02] [INFO] Successfully collected 2 results
+[19:09:02] [INFO] Agent execution completed in 207.44 seconds
+[19:09:02] [INFO] --- Round 165 ---
+[19:09:02] [INFO] Executing 2 agents with 1.1s rate limit
+[19:09:02] [INFO] Starting rate-limited execution for 2 agents
+[19:09:02] [INFO] Created 2 tasks, collecting results...
+[19:09:02] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:09:03] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:12:37] [INFO] Successfully collected 2 results
+[19:12:37] [INFO] Agent execution completed in 215.68 seconds
+[19:12:37] [INFO] --- Round 166 ---
+[19:12:38] [INFO] Executing 2 agents with 1.1s rate limit
+[19:12:38] [INFO] Starting rate-limited execution for 2 agents
+[19:12:38] [INFO] Created 2 tasks, collecting results...
+[19:12:38] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:12:39] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:41:16] [INFO] 🔄 Attempt 2 for agent Firm B
+[19:43:56] [INFO] Successfully collected 2 results
+[19:43:56] [INFO] Agent execution completed in 1878.28 seconds
+[19:43:56] [INFO] --- Round 167 ---
+[19:43:56] [INFO] Executing 2 agents with 1.1s rate limit
+[19:43:56] [INFO] Starting rate-limited execution for 2 agents
+[19:43:56] [INFO] Created 2 tasks, collecting results...
+[19:43:56] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:43:57] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:46:25] [INFO] Successfully collected 2 results
+[19:46:25] [INFO] Agent execution completed in 149.25 seconds
+[19:46:25] [INFO] --- Round 168 ---
+[19:46:25] [INFO] Executing 2 agents with 1.1s rate limit
+[19:46:25] [INFO] Starting rate-limited execution for 2 agents
+[19:46:25] [INFO] Created 2 tasks, collecting results...
+[19:46:25] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:46:26] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:48:48] [INFO] Successfully collected 2 results
+[19:48:48] [INFO] Agent execution completed in 142.54 seconds
+[19:48:48] [INFO] --- Round 169 ---
+[19:48:48] [INFO] Executing 2 agents with 1.1s rate limit
+[19:48:48] [INFO] Starting rate-limited execution for 2 agents
+[19:48:48] [INFO] Created 2 tasks, collecting results...
+[19:48:48] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:48:49] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:50:36] [INFO] Successfully collected 2 results
+[19:50:36] [INFO] Agent execution completed in 107.89 seconds
+[19:50:36] [INFO] --- Round 170 ---
+[19:50:36] [INFO] Executing 2 agents with 1.1s rate limit
+[19:50:36] [INFO] Starting rate-limited execution for 2 agents
+[19:50:36] [INFO] Created 2 tasks, collecting results...
+[19:50:36] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:50:38] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:52:41] [INFO] Successfully collected 2 results
+[19:52:41] [INFO] Agent execution completed in 125.47 seconds
+[19:52:41] [INFO] --- Round 171 ---
+[19:52:41] [INFO] Executing 2 agents with 1.1s rate limit
+[19:52:41] [INFO] Starting rate-limited execution for 2 agents
+[19:52:41] [INFO] Created 2 tasks, collecting results...
+[19:52:41] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:52:42] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:54:56] [INFO] Successfully collected 2 results
+[19:54:56] [INFO] Agent execution completed in 134.97 seconds
+[19:54:56] [INFO] --- Round 172 ---
+[19:54:56] [INFO] Executing 2 agents with 1.1s rate limit
+[19:54:56] [INFO] Starting rate-limited execution for 2 agents
+[19:54:56] [INFO] Created 2 tasks, collecting results...
+[19:54:56] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:54:57] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:57:19] [INFO] Successfully collected 2 results
+[19:57:19] [INFO] Agent execution completed in 142.53 seconds
+[19:57:19] [INFO] --- Round 173 ---
+[19:57:19] [INFO] Executing 2 agents with 1.1s rate limit
+[19:57:19] [INFO] Starting rate-limited execution for 2 agents
+[19:57:19] [INFO] Created 2 tasks, collecting results...
+[19:57:19] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:57:20] [INFO] 🔄 Attempt 1 for agent Firm B
+[19:59:21] [INFO] Successfully collected 2 results
+[19:59:21] [INFO] Agent execution completed in 122.68 seconds
+[19:59:21] [INFO] --- Round 174 ---
+[19:59:21] [INFO] Executing 2 agents with 1.1s rate limit
+[19:59:21] [INFO] Starting rate-limited execution for 2 agents
+[19:59:21] [INFO] Created 2 tasks, collecting results...
+[19:59:21] [INFO] 🔄 Attempt 1 for agent Firm A
+[19:59:23] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:10:36] [INFO] Successfully collected 2 results
+[20:10:36] [INFO] Agent execution completed in 674.12 seconds
+[20:10:36] [INFO] --- Round 175 ---
+[20:10:36] [INFO] Executing 2 agents with 1.1s rate limit
+[20:10:36] [INFO] Starting rate-limited execution for 2 agents
+[20:10:36] [INFO] Created 2 tasks, collecting results...
+[20:10:36] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:10:37] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:12:21] [INFO] Successfully collected 2 results
+[20:12:21] [INFO] Agent execution completed in 105.41 seconds
+[20:12:22] [INFO] --- Round 176 ---
+[20:12:22] [INFO] Executing 2 agents with 1.1s rate limit
+[20:12:22] [INFO] Starting rate-limited execution for 2 agents
+[20:12:22] [INFO] Created 2 tasks, collecting results...
+[20:12:22] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:12:23] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:14:36] [INFO] Successfully collected 2 results
+[20:14:36] [INFO] Agent execution completed in 133.76 seconds
+[20:14:36] [INFO] --- Round 177 ---
+[20:14:36] [INFO] Executing 2 agents with 1.1s rate limit
+[20:14:36] [INFO] Starting rate-limited execution for 2 agents
+[20:14:36] [INFO] Created 2 tasks, collecting results...
+[20:14:36] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:14:37] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:16:01] [INFO] Successfully collected 2 results
+[20:16:01] [INFO] Agent execution completed in 85.03 seconds
+[20:16:01] [INFO] --- Round 178 ---
+[20:16:01] [INFO] Executing 2 agents with 1.1s rate limit
+[20:16:01] [INFO] Starting rate-limited execution for 2 agents
+[20:16:01] [INFO] Created 2 tasks, collecting results...
+[20:16:01] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:16:02] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:17:41] [INFO] Successfully collected 2 results
+[20:17:41] [INFO] Agent execution completed in 99.56 seconds
+[20:17:41] [INFO] --- Round 179 ---
+[20:17:41] [INFO] Executing 2 agents with 1.1s rate limit
+[20:17:41] [INFO] Starting rate-limited execution for 2 agents
+[20:17:41] [INFO] Created 2 tasks, collecting results...
+[20:17:41] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:17:42] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:19:29] [INFO] Successfully collected 2 results
+[20:19:29] [INFO] Agent execution completed in 108.48 seconds
+[20:19:29] [INFO] --- Round 180 ---
+[20:19:29] [INFO] Executing 2 agents with 1.1s rate limit
+[20:19:29] [INFO] Starting rate-limited execution for 2 agents
+[20:19:29] [INFO] Created 2 tasks, collecting results...
+[20:19:29] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:19:30] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:21:07] [INFO] Successfully collected 2 results
+[20:21:07] [INFO] Agent execution completed in 97.61 seconds
+[20:21:07] [INFO] --- Round 181 ---
+[20:21:07] [INFO] Executing 2 agents with 1.1s rate limit
+[20:21:07] [INFO] Starting rate-limited execution for 2 agents
+[20:21:07] [INFO] Created 2 tasks, collecting results...
+[20:21:07] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:21:08] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:22:30] [INFO] Successfully collected 2 results
+[20:22:30] [INFO] Agent execution completed in 82.85 seconds
+[20:22:30] [INFO] --- Round 182 ---
+[20:22:30] [INFO] Executing 2 agents with 1.1s rate limit
+[20:22:30] [INFO] Starting rate-limited execution for 2 agents
+[20:22:30] [INFO] Created 2 tasks, collecting results...
+[20:22:30] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:22:31] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:24:08] [INFO] Successfully collected 2 results
+[20:24:08] [INFO] Agent execution completed in 98.34 seconds
+[20:24:08] [INFO] --- Round 183 ---
+[20:24:08] [INFO] Executing 2 agents with 1.1s rate limit
+[20:24:08] [INFO] Starting rate-limited execution for 2 agents
+[20:24:08] [INFO] Created 2 tasks, collecting results...
+[20:24:08] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:24:11] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:25:42] [INFO] Successfully collected 2 results
+[20:25:42] [INFO] Agent execution completed in 93.83 seconds
+[20:25:42] [INFO] --- Round 184 ---
+[20:25:42] [INFO] Executing 2 agents with 1.1s rate limit
+[20:25:42] [INFO] Starting rate-limited execution for 2 agents
+[20:25:42] [INFO] Created 2 tasks, collecting results...
+[20:25:42] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:25:43] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:27:52] [INFO] Successfully collected 2 results
+[20:27:52] [INFO] Agent execution completed in 129.84 seconds
+[20:27:52] [INFO] --- Round 185 ---
+[20:27:52] [INFO] Executing 2 agents with 1.1s rate limit
+[20:27:52] [INFO] Starting rate-limited execution for 2 agents
+[20:27:52] [INFO] Created 2 tasks, collecting results...
+[20:27:52] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:27:53] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:29:47] [INFO] Successfully collected 2 results
+[20:29:47] [INFO] Agent execution completed in 115.21 seconds
+[20:29:47] [INFO] --- Round 186 ---
+[20:29:47] [INFO] Executing 2 agents with 1.1s rate limit
+[20:29:47] [INFO] Starting rate-limited execution for 2 agents
+[20:29:47] [INFO] Created 2 tasks, collecting results...
+[20:29:47] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:29:48] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:32:19] [INFO] Successfully collected 2 results
+[20:32:19] [INFO] Agent execution completed in 151.56 seconds
+[20:32:19] [INFO] --- Round 187 ---
+[20:32:19] [INFO] Executing 2 agents with 1.1s rate limit
+[20:32:19] [INFO] Starting rate-limited execution for 2 agents
+[20:32:19] [INFO] Created 2 tasks, collecting results...
+[20:32:19] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:32:20] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:33:57] [INFO] Successfully collected 2 results
+[20:33:57] [INFO] Agent execution completed in 97.76 seconds
+[20:33:57] [INFO] --- Round 188 ---
+[20:33:57] [INFO] Executing 2 agents with 1.1s rate limit
+[20:33:57] [INFO] Starting rate-limited execution for 2 agents
+[20:33:57] [INFO] Created 2 tasks, collecting results...
+[20:33:57] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:33:58] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:35:52] [INFO] Successfully collected 2 results
+[20:35:52] [INFO] Agent execution completed in 115.78 seconds
+[20:35:52] [INFO] --- Round 189 ---
+[20:35:52] [INFO] Executing 2 agents with 1.1s rate limit
+[20:35:52] [INFO] Starting rate-limited execution for 2 agents
+[20:35:52] [INFO] Created 2 tasks, collecting results...
+[20:35:52] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:35:54] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:37:50] [INFO] Successfully collected 2 results
+[20:37:50] [INFO] Agent execution completed in 118.02 seconds
+[20:37:51] [INFO] --- Round 190 ---
+[20:37:51] [INFO] Executing 2 agents with 1.1s rate limit
+[20:37:51] [INFO] Starting rate-limited execution for 2 agents
+[20:37:51] [INFO] Created 2 tasks, collecting results...
+[20:37:51] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:37:52] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:39:49] [INFO] Successfully collected 2 results
+[20:39:49] [INFO] Agent execution completed in 118.10 seconds
+[20:39:49] [INFO] --- Round 191 ---
+[20:39:49] [INFO] Executing 2 agents with 1.1s rate limit
+[20:39:49] [INFO] Starting rate-limited execution for 2 agents
+[20:39:49] [INFO] Created 2 tasks, collecting results...
+[20:39:49] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:39:50] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:41:35] [INFO] Successfully collected 2 results
+[20:41:35] [INFO] Agent execution completed in 105.91 seconds
+[20:41:35] [INFO] --- Round 192 ---
+[20:41:35] [INFO] Executing 2 agents with 1.1s rate limit
+[20:41:35] [INFO] Starting rate-limited execution for 2 agents
+[20:41:35] [INFO] Created 2 tasks, collecting results...
+[20:41:35] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:41:36] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:43:37] [INFO] Successfully collected 2 results
+[20:43:37] [INFO] Agent execution completed in 122.04 seconds
+[20:43:37] [INFO] --- Round 193 ---
+[20:43:37] [INFO] Executing 2 agents with 1.1s rate limit
+[20:43:37] [INFO] Starting rate-limited execution for 2 agents
+[20:43:37] [INFO] Created 2 tasks, collecting results...
+[20:43:37] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:43:38] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:46:05] [INFO] Successfully collected 2 results
+[20:46:05] [INFO] Agent execution completed in 147.98 seconds
+[20:46:05] [INFO] --- Round 194 ---
+[20:46:05] [INFO] Executing 2 agents with 1.1s rate limit
+[20:46:05] [INFO] Starting rate-limited execution for 2 agents
+[20:46:05] [INFO] Created 2 tasks, collecting results...
+[20:46:05] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:46:06] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:48:42] [INFO] Successfully collected 2 results
+[20:48:42] [INFO] Agent execution completed in 157.57 seconds
+[20:48:42] [INFO] --- Round 195 ---
+[20:48:42] [INFO] Executing 2 agents with 1.1s rate limit
+[20:48:42] [INFO] Starting rate-limited execution for 2 agents
+[20:48:42] [INFO] Created 2 tasks, collecting results...
+[20:48:42] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:48:43] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:50:48] [INFO] Successfully collected 2 results
+[20:50:48] [INFO] Agent execution completed in 125.95 seconds
+[20:50:48] [INFO] --- Round 196 ---
+[20:50:48] [INFO] Executing 2 agents with 1.1s rate limit
+[20:50:48] [INFO] Starting rate-limited execution for 2 agents
+[20:50:48] [INFO] Created 2 tasks, collecting results...
+[20:50:48] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:50:49] [INFO] 🔄 Attempt 1 for agent Firm B
+[20:52:30] [INFO] Successfully collected 2 results
+[20:52:30] [INFO] Agent execution completed in 101.58 seconds
+[20:52:30] [INFO] --- Round 197 ---
+[20:52:30] [INFO] Executing 2 agents with 1.1s rate limit
+[20:52:30] [INFO] Starting rate-limited execution for 2 agents
+[20:52:30] [INFO] Created 2 tasks, collecting results...
+[20:52:30] [INFO] 🔄 Attempt 1 for agent Firm A
+[20:52:31] [INFO] 🔄 Attempt 1 for agent Firm B
+[07:52:56] [INFO] 🔄 Attempt 2 for agent Firm B
+[07:53:01] [INFO] 🔄 Attempt 2 for agent Firm A
+[07:53:15] [INFO] 🔄 Attempt 3 for agent Firm B
+[07:53:19] [INFO] 🔄 Attempt 3 for agent Firm A
+[08:03:37] [INFO] 🔄 Attempt 4 for agent Firm B
+[08:03:37] [INFO] 🔄 Attempt 4 for agent Firm A
+[08:08:02] [INFO] Successfully collected 2 results
+[08:08:02] [INFO] Agent execution completed in 40531.71 seconds
+[08:08:02] [INFO] --- Round 198 ---
+[08:08:02] [INFO] Executing 2 agents with 1.1s rate limit
+[08:08:02] [INFO] Starting rate-limited execution for 2 agents
+[08:08:02] [INFO] Created 2 tasks, collecting results...
+[08:08:02] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:08:03] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:10:57] [INFO] Successfully collected 2 results
+[08:10:57] [INFO] Agent execution completed in 175.45 seconds
+[08:10:57] [INFO] --- Round 199 ---
+[08:10:57] [INFO] Executing 2 agents with 1.1s rate limit
+[08:10:57] [INFO] Starting rate-limited execution for 2 agents
+[08:10:57] [INFO] Created 2 tasks, collecting results...
+[08:10:57] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:10:59] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:13:23] [INFO] Successfully collected 2 results
+[08:13:23] [INFO] Agent execution completed in 145.98 seconds
+[08:13:23] [INFO] --- Round 200 ---
+[08:13:23] [INFO] Executing 2 agents with 1.1s rate limit
+[08:13:23] [INFO] Starting rate-limited execution for 2 agents
+[08:13:23] [INFO] Created 2 tasks, collecting results...
+[08:13:23] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:13:25] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:15:08] [INFO] Successfully collected 2 results
+[08:15:08] [INFO] Agent execution completed in 105.07 seconds
+[08:15:09] [INFO] --- Round 201 ---
+[08:15:09] [INFO] Executing 2 agents with 1.1s rate limit
+[08:15:09] [INFO] Starting rate-limited execution for 2 agents
+[08:15:09] [INFO] Created 2 tasks, collecting results...
+[08:15:09] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:15:10] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:17:08] [INFO] Successfully collected 2 results
+[08:17:08] [INFO] Agent execution completed in 118.30 seconds
+[08:17:08] [INFO] --- Round 202 ---
+[08:17:08] [INFO] Executing 2 agents with 1.1s rate limit
+[08:17:08] [INFO] Starting rate-limited execution for 2 agents
+[08:17:08] [INFO] Created 2 tasks, collecting results...
+[08:17:08] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:17:09] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:19:12] [INFO] Successfully collected 2 results
+[08:19:12] [INFO] Agent execution completed in 124.78 seconds
+[08:19:12] [INFO] --- Round 203 ---
+[08:19:12] [INFO] Executing 2 agents with 1.1s rate limit
+[08:19:12] [INFO] Starting rate-limited execution for 2 agents
+[08:19:12] [INFO] Created 2 tasks, collecting results...
+[08:19:12] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:19:13] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:21:18] [INFO] Successfully collected 2 results
+[08:21:18] [INFO] Agent execution completed in 125.36 seconds
+[08:21:18] [INFO] --- Round 204 ---
+[08:21:18] [INFO] Executing 2 agents with 1.1s rate limit
+[08:21:18] [INFO] Starting rate-limited execution for 2 agents
+[08:21:18] [INFO] Created 2 tasks, collecting results...
+[08:21:18] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:21:19] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:23:29] [INFO] Successfully collected 2 results
+[08:23:29] [INFO] Agent execution completed in 131.37 seconds
+[08:23:29] [INFO] --- Round 205 ---
+[08:23:29] [INFO] Executing 2 agents with 1.1s rate limit
+[08:23:29] [INFO] Starting rate-limited execution for 2 agents
+[08:23:29] [INFO] Created 2 tasks, collecting results...
+[08:23:29] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:23:30] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:25:59] [INFO] Successfully collected 2 results
+[08:25:59] [INFO] Agent execution completed in 150.29 seconds
+[08:25:59] [INFO] --- Round 206 ---
+[08:25:59] [INFO] Executing 2 agents with 1.1s rate limit
+[08:25:59] [INFO] Starting rate-limited execution for 2 agents
+[08:25:59] [INFO] Created 2 tasks, collecting results...
+[08:25:59] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:26:01] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:28:21] [INFO] Successfully collected 2 results
+[08:28:21] [INFO] Agent execution completed in 141.96 seconds
+[08:28:21] [INFO] --- Round 207 ---
+[08:28:21] [INFO] Executing 2 agents with 1.1s rate limit
+[08:28:21] [INFO] Starting rate-limited execution for 2 agents
+[08:28:21] [INFO] Created 2 tasks, collecting results...
+[08:28:21] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:28:23] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:30:59] [INFO] Successfully collected 2 results
+[08:30:59] [INFO] Agent execution completed in 157.56 seconds
+[08:30:59] [INFO] --- Round 208 ---
+[08:30:59] [INFO] Executing 2 agents with 1.1s rate limit
+[08:30:59] [INFO] Starting rate-limited execution for 2 agents
+[08:30:59] [INFO] Created 2 tasks, collecting results...
+[08:30:59] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:31:00] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:33:27] [INFO] Successfully collected 2 results
+[08:33:27] [INFO] Agent execution completed in 148.35 seconds
+[08:33:27] [INFO] --- Round 209 ---
+[08:33:27] [INFO] Executing 2 agents with 1.1s rate limit
+[08:33:27] [INFO] Starting rate-limited execution for 2 agents
+[08:33:27] [INFO] Created 2 tasks, collecting results...
+[08:33:27] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:33:28] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:35:29] [INFO] Successfully collected 2 results
+[08:35:29] [INFO] Agent execution completed in 121.86 seconds
+[08:35:29] [INFO] --- Round 210 ---
+[08:35:29] [INFO] Executing 2 agents with 1.1s rate limit
+[08:35:29] [INFO] Starting rate-limited execution for 2 agents
+[08:35:29] [INFO] Created 2 tasks, collecting results...
+[08:35:29] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:35:30] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:38:07] [INFO] Successfully collected 2 results
+[08:38:07] [INFO] Agent execution completed in 157.73 seconds
+[08:38:07] [INFO] --- Round 211 ---
+[08:38:07] [INFO] Executing 2 agents with 1.1s rate limit
+[08:38:07] [INFO] Starting rate-limited execution for 2 agents
+[08:38:07] [INFO] Created 2 tasks, collecting results...
+[08:38:07] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:38:08] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:40:20] [INFO] Successfully collected 2 results
+[08:40:20] [INFO] Agent execution completed in 133.17 seconds
+[08:40:20] [INFO] --- Round 212 ---
+[08:40:20] [INFO] Executing 2 agents with 1.1s rate limit
+[08:40:20] [INFO] Starting rate-limited execution for 2 agents
+[08:40:20] [INFO] Created 2 tasks, collecting results...
+[08:40:20] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:40:21] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:42:49] [INFO] Successfully collected 2 results
+[08:42:49] [INFO] Agent execution completed in 149.11 seconds
+[08:42:49] [INFO] --- Round 213 ---
+[08:42:49] [INFO] Executing 2 agents with 1.1s rate limit
+[08:42:49] [INFO] Starting rate-limited execution for 2 agents
+[08:42:49] [INFO] Created 2 tasks, collecting results...
+[08:42:49] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:42:50] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:44:46] [INFO] Successfully collected 2 results
+[08:44:46] [INFO] Agent execution completed in 116.62 seconds
+[08:44:46] [INFO] --- Round 214 ---
+[08:44:46] [INFO] Executing 2 agents with 1.1s rate limit
+[08:44:46] [INFO] Starting rate-limited execution for 2 agents
+[08:44:46] [INFO] Created 2 tasks, collecting results...
+[08:44:46] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:44:47] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:46:21] [INFO] Successfully collected 2 results
+[08:46:21] [INFO] Agent execution completed in 95.25 seconds
+[08:46:21] [INFO] --- Round 215 ---
+[08:46:21] [INFO] Executing 2 agents with 1.1s rate limit
+[08:46:21] [INFO] Starting rate-limited execution for 2 agents
+[08:46:21] [INFO] Created 2 tasks, collecting results...
+[08:46:21] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:46:22] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:48:20] [INFO] Successfully collected 2 results
+[08:48:20] [INFO] Agent execution completed in 118.38 seconds
+[08:48:20] [INFO] --- Round 216 ---
+[08:48:20] [INFO] Executing 2 agents with 1.1s rate limit
+[08:48:20] [INFO] Starting rate-limited execution for 2 agents
+[08:48:20] [INFO] Created 2 tasks, collecting results...
+[08:48:20] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:48:21] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:50:19] [INFO] Successfully collected 2 results
+[08:50:19] [INFO] Agent execution completed in 119.51 seconds
+[08:50:19] [INFO] --- Round 217 ---
+[08:50:19] [INFO] Executing 2 agents with 1.1s rate limit
+[08:50:19] [INFO] Starting rate-limited execution for 2 agents
+[08:50:19] [INFO] Created 2 tasks, collecting results...
+[08:50:19] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:50:20] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:52:17] [INFO] Successfully collected 2 results
+[08:52:17] [INFO] Agent execution completed in 118.07 seconds
+[08:52:17] [INFO] --- Round 218 ---
+[08:52:17] [INFO] Executing 2 agents with 1.1s rate limit
+[08:52:17] [INFO] Starting rate-limited execution for 2 agents
+[08:52:17] [INFO] Created 2 tasks, collecting results...
+[08:52:17] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:52:18] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:54:28] [INFO] Successfully collected 2 results
+[08:54:28] [INFO] Agent execution completed in 130.81 seconds
+[08:54:28] [INFO] --- Round 219 ---
+[08:54:28] [INFO] Executing 2 agents with 1.1s rate limit
+[08:54:28] [INFO] Starting rate-limited execution for 2 agents
+[08:54:28] [INFO] Created 2 tasks, collecting results...
+[08:54:28] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:54:29] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:56:30] [INFO] Successfully collected 2 results
+[08:56:30] [INFO] Agent execution completed in 122.01 seconds
+[08:56:30] [INFO] --- Round 220 ---
+[08:56:30] [INFO] Executing 2 agents with 1.1s rate limit
+[08:56:30] [INFO] Starting rate-limited execution for 2 agents
+[08:56:30] [INFO] Created 2 tasks, collecting results...
+[08:56:30] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:56:31] [INFO] 🔄 Attempt 1 for agent Firm B
+[08:58:40] [INFO] Successfully collected 2 results
+[08:58:40] [INFO] Agent execution completed in 129.54 seconds
+[08:58:40] [INFO] --- Round 221 ---
+[08:58:40] [INFO] Executing 2 agents with 1.1s rate limit
+[08:58:40] [INFO] Starting rate-limited execution for 2 agents
+[08:58:40] [INFO] Created 2 tasks, collecting results...
+[08:58:40] [INFO] 🔄 Attempt 1 for agent Firm A
+[08:58:41] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:00:15] [INFO] Successfully collected 2 results
+[09:00:15] [INFO] Agent execution completed in 94.84 seconds
+[09:00:15] [INFO] --- Round 222 ---
+[09:00:15] [INFO] Executing 2 agents with 1.1s rate limit
+[09:00:15] [INFO] Starting rate-limited execution for 2 agents
+[09:00:15] [INFO] Created 2 tasks, collecting results...
+[09:00:15] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:00:16] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:01:57] [INFO] Successfully collected 2 results
+[09:01:57] [INFO] Agent execution completed in 101.87 seconds
+[09:01:57] [INFO] --- Round 223 ---
+[09:01:57] [INFO] Executing 2 agents with 1.1s rate limit
+[09:01:57] [INFO] Starting rate-limited execution for 2 agents
+[09:01:57] [INFO] Created 2 tasks, collecting results...
+[09:01:57] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:01:58] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:03:41] [INFO] Successfully collected 2 results
+[09:03:41] [INFO] Agent execution completed in 103.94 seconds
+[09:03:41] [INFO] --- Round 224 ---
+[09:03:41] [INFO] Executing 2 agents with 1.1s rate limit
+[09:03:41] [INFO] Starting rate-limited execution for 2 agents
+[09:03:41] [INFO] Created 2 tasks, collecting results...
+[09:03:41] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:03:42] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:05:34] [INFO] Successfully collected 2 results
+[09:05:34] [INFO] Agent execution completed in 113.81 seconds
+[09:05:34] [INFO] --- Round 225 ---
+[09:05:34] [INFO] Executing 2 agents with 1.1s rate limit
+[09:05:34] [INFO] Starting rate-limited execution for 2 agents
+[09:05:34] [INFO] Created 2 tasks, collecting results...
+[09:05:34] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:05:35] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:07:08] [INFO] Successfully collected 2 results
+[09:07:08] [INFO] Agent execution completed in 94.08 seconds
+[09:07:09] [INFO] --- Round 226 ---
+[09:07:09] [INFO] Executing 2 agents with 1.1s rate limit
+[09:07:09] [INFO] Starting rate-limited execution for 2 agents
+[09:07:09] [INFO] Created 2 tasks, collecting results...
+[09:07:09] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:07:10] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:08:59] [INFO] Successfully collected 2 results
+[09:08:59] [INFO] Agent execution completed in 109.97 seconds
+[09:08:59] [INFO] --- Round 227 ---
+[09:08:59] [INFO] Executing 2 agents with 1.1s rate limit
+[09:08:59] [INFO] Starting rate-limited execution for 2 agents
+[09:08:59] [INFO] Created 2 tasks, collecting results...
+[09:08:59] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:09:00] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:11:21] [INFO] Successfully collected 2 results
+[09:11:21] [INFO] Agent execution completed in 141.89 seconds
+[09:11:21] [INFO] --- Round 228 ---
+[09:11:21] [INFO] Executing 2 agents with 1.1s rate limit
+[09:11:21] [INFO] Starting rate-limited execution for 2 agents
+[09:11:21] [INFO] Created 2 tasks, collecting results...
+[09:11:21] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:11:22] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:13:19] [INFO] Successfully collected 2 results
+[09:13:19] [INFO] Agent execution completed in 118.17 seconds
+[09:13:19] [INFO] --- Round 229 ---
+[09:13:19] [INFO] Executing 2 agents with 1.1s rate limit
+[09:13:19] [INFO] Starting rate-limited execution for 2 agents
+[09:13:19] [INFO] Created 2 tasks, collecting results...
+[09:13:19] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:13:20] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:15:14] [INFO] Successfully collected 2 results
+[09:15:14] [INFO] Agent execution completed in 114.59 seconds
+[09:15:14] [INFO] --- Round 230 ---
+[09:15:14] [INFO] Executing 2 agents with 1.1s rate limit
+[09:15:14] [INFO] Starting rate-limited execution for 2 agents
+[09:15:14] [INFO] Created 2 tasks, collecting results...
+[09:15:14] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:15:15] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:16:57] [INFO] Successfully collected 2 results
+[09:16:57] [INFO] Agent execution completed in 103.05 seconds
+[09:16:57] [INFO] --- Round 231 ---
+[09:16:57] [INFO] Executing 2 agents with 1.1s rate limit
+[09:16:57] [INFO] Starting rate-limited execution for 2 agents
+[09:16:57] [INFO] Created 2 tasks, collecting results...
+[09:16:57] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:16:58] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:19:47] [INFO] Successfully collected 2 results
+[09:19:47] [INFO] Agent execution completed in 169.83 seconds
+[09:19:47] [INFO] --- Round 232 ---
+[09:19:47] [INFO] Executing 2 agents with 1.1s rate limit
+[09:19:47] [INFO] Starting rate-limited execution for 2 agents
+[09:19:47] [INFO] Created 2 tasks, collecting results...
+[09:19:47] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:19:48] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:22:28] [INFO] Successfully collected 2 results
+[09:22:28] [INFO] Agent execution completed in 160.82 seconds
+[09:22:28] [INFO] --- Round 233 ---
+[09:22:28] [INFO] Executing 2 agents with 1.1s rate limit
+[09:22:28] [INFO] Starting rate-limited execution for 2 agents
+[09:22:28] [INFO] Created 2 tasks, collecting results...
+[09:22:28] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:22:29] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:24:01] [INFO] Successfully collected 2 results
+[09:24:01] [INFO] Agent execution completed in 93.80 seconds
+[09:24:01] [INFO] --- Round 234 ---
+[09:24:01] [INFO] Executing 2 agents with 1.1s rate limit
+[09:24:01] [INFO] Starting rate-limited execution for 2 agents
+[09:24:01] [INFO] Created 2 tasks, collecting results...
+[09:24:01] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:24:03] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:25:40] [INFO] Successfully collected 2 results
+[09:25:40] [INFO] Agent execution completed in 98.86 seconds
+[09:25:40] [INFO] --- Round 235 ---
+[09:25:40] [INFO] Executing 2 agents with 1.1s rate limit
+[09:25:40] [INFO] Starting rate-limited execution for 2 agents
+[09:25:40] [INFO] Created 2 tasks, collecting results...
+[09:25:40] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:25:41] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:27:13] [INFO] Successfully collected 2 results
+[09:27:13] [INFO] Agent execution completed in 92.33 seconds
+[09:27:13] [INFO] --- Round 236 ---
+[09:27:13] [INFO] Executing 2 agents with 1.1s rate limit
+[09:27:13] [INFO] Starting rate-limited execution for 2 agents
+[09:27:13] [INFO] Created 2 tasks, collecting results...
+[09:27:13] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:27:14] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:29:02] [INFO] Successfully collected 2 results
+[09:29:02] [INFO] Agent execution completed in 108.86 seconds
+[09:29:02] [INFO] --- Round 237 ---
+[09:29:02] [INFO] Executing 2 agents with 1.1s rate limit
+[09:29:02] [INFO] Starting rate-limited execution for 2 agents
+[09:29:02] [INFO] Created 2 tasks, collecting results...
+[09:29:02] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:29:03] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:30:46] [INFO] Successfully collected 2 results
+[09:30:46] [INFO] Agent execution completed in 104.17 seconds
+[09:30:46] [INFO] --- Round 238 ---
+[09:30:46] [INFO] Executing 2 agents with 1.1s rate limit
+[09:30:46] [INFO] Starting rate-limited execution for 2 agents
+[09:30:46] [INFO] Created 2 tasks, collecting results...
+[09:30:46] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:30:47] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:32:34] [INFO] Successfully collected 2 results
+[09:32:34] [INFO] Agent execution completed in 107.97 seconds
+[09:32:34] [INFO] --- Round 239 ---
+[09:32:34] [INFO] Executing 2 agents with 1.1s rate limit
+[09:32:34] [INFO] Starting rate-limited execution for 2 agents
+[09:32:34] [INFO] Created 2 tasks, collecting results...
+[09:32:34] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:32:35] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:33:59] [INFO] Successfully collected 2 results
+[09:33:59] [INFO] Agent execution completed in 85.10 seconds
+[09:33:59] [INFO] --- Round 240 ---
+[09:33:59] [INFO] Executing 2 agents with 1.1s rate limit
+[09:33:59] [INFO] Starting rate-limited execution for 2 agents
+[09:33:59] [INFO] Created 2 tasks, collecting results...
+[09:33:59] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:34:00] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:35:23] [INFO] Successfully collected 2 results
+[09:35:23] [INFO] Agent execution completed in 84.32 seconds
+[09:35:23] [INFO] --- Round 241 ---
+[09:35:23] [INFO] Executing 2 agents with 1.1s rate limit
+[09:35:23] [INFO] Starting rate-limited execution for 2 agents
+[09:35:23] [INFO] Created 2 tasks, collecting results...
+[09:35:23] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:35:24] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:36:44] [INFO] Successfully collected 2 results
+[09:36:44] [INFO] Agent execution completed in 80.82 seconds
+[09:36:44] [INFO] --- Round 242 ---
+[09:36:44] [INFO] Executing 2 agents with 1.1s rate limit
+[09:36:44] [INFO] Starting rate-limited execution for 2 agents
+[09:36:44] [INFO] Created 2 tasks, collecting results...
+[09:36:44] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:36:45] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:38:08] [INFO] Successfully collected 2 results
+[09:38:08] [INFO] Agent execution completed in 83.64 seconds
+[09:38:08] [INFO] --- Round 243 ---
+[09:38:08] [INFO] Executing 2 agents with 1.1s rate limit
+[09:38:08] [INFO] Starting rate-limited execution for 2 agents
+[09:38:08] [INFO] Created 2 tasks, collecting results...
+[09:38:08] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:38:09] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:39:24] [INFO] Successfully collected 2 results
+[09:39:24] [INFO] Agent execution completed in 76.38 seconds
+[09:39:24] [INFO] --- Round 244 ---
+[09:39:24] [INFO] Executing 2 agents with 1.1s rate limit
+[09:39:24] [INFO] Starting rate-limited execution for 2 agents
+[09:39:24] [INFO] Created 2 tasks, collecting results...
+[09:39:24] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:39:25] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:40:51] [INFO] Successfully collected 2 results
+[09:40:51] [INFO] Agent execution completed in 87.14 seconds
+[09:40:51] [INFO] --- Round 245 ---
+[09:40:51] [INFO] Executing 2 agents with 1.1s rate limit
+[09:40:51] [INFO] Starting rate-limited execution for 2 agents
+[09:40:51] [INFO] Created 2 tasks, collecting results...
+[09:40:51] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:40:52] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:42:15] [INFO] Successfully collected 2 results
+[09:42:15] [INFO] Agent execution completed in 83.87 seconds
+[09:42:15] [INFO] --- Round 246 ---
+[09:42:15] [INFO] Executing 2 agents with 1.1s rate limit
+[09:42:15] [INFO] Starting rate-limited execution for 2 agents
+[09:42:15] [INFO] Created 2 tasks, collecting results...
+[09:42:15] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:42:16] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:43:56] [INFO] Successfully collected 2 results
+[09:43:56] [INFO] Agent execution completed in 100.30 seconds
+[09:43:56] [INFO] --- Round 247 ---
+[09:43:56] [INFO] Executing 2 agents with 1.1s rate limit
+[09:43:56] [INFO] Starting rate-limited execution for 2 agents
+[09:43:56] [INFO] Created 2 tasks, collecting results...
+[09:43:56] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:43:57] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:44:56] [INFO] Successfully collected 2 results
+[09:44:56] [INFO] Agent execution completed in 60.72 seconds
+[09:44:56] [INFO] --- Round 248 ---
+[09:44:56] [INFO] Executing 2 agents with 1.1s rate limit
+[09:44:56] [INFO] Starting rate-limited execution for 2 agents
+[09:44:56] [INFO] Created 2 tasks, collecting results...
+[09:44:56] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:44:57] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:46:08] [INFO] Successfully collected 2 results
+[09:46:08] [INFO] Agent execution completed in 71.23 seconds
+[09:46:08] [INFO] --- Round 249 ---
+[09:46:08] [INFO] Executing 2 agents with 1.1s rate limit
+[09:46:08] [INFO] Starting rate-limited execution for 2 agents
+[09:46:08] [INFO] Created 2 tasks, collecting results...
+[09:46:08] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:46:09] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:47:26] [INFO] Successfully collected 2 results
+[09:47:26] [INFO] Agent execution completed in 78.83 seconds
+[09:47:26] [INFO] --- Round 250 ---
+[09:47:26] [INFO] Executing 2 agents with 1.1s rate limit
+[09:47:26] [INFO] Starting rate-limited execution for 2 agents
+[09:47:26] [INFO] Created 2 tasks, collecting results...
+[09:47:26] [INFO] 🔄 Attempt 1 for agent Firm A
+[09:47:28] [INFO] 🔄 Attempt 1 for agent Firm B
+[09:48:16] [INFO] Successfully collected 2 results
+[09:48:16] [INFO] Agent execution completed in 49.29 seconds
+[09:48:16] [INFO] ✅ Metadata saved
+[09:48:16] [INFO] 📊 Mean price, rounds 201-250 (0 = Nash, 1 = monopoly):
+[09:48:16] [INFO]    Firm A   1.800  [Nash 1.473 | monopoly 1.925]  index=0.724  above Nash: yes
+[09:48:16] [INFO]    Firm B   1.850  [Nash 1.473 | monopoly 1.925]  index=0.835  above Nash: yes
+[09:48:16] [INFO]    Positive control (all firms above Nash): PASS
+[09:48:16] [INFO] ✅ Experiment completed.
+

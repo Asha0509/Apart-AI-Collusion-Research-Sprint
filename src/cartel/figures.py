@@ -15,11 +15,17 @@ plt.style.use(["science", "no-latex", "bright"])
 
 def trajectory(ax, series_by_label: dict, swap_round: int | None = 150) -> None:
     """Price paths with Nash/monopoly bands and an 'agent replaced' marker. Labels drawn on lines."""
+    ends = sorted(((s.values[-1], label) for label, s in series_by_label.items()))
+    gap = 0.04 * (max(max(s.values) for s in series_by_label.values()) - min(min(s.values) for s in series_by_label.values()))
+    label_y, last = {}, None
+    for y, label in ends:  # spread end labels so they never overlap
+        y = y if last is None else max(y, last + gap)
+        label_y[label], last = y, y
     for label, s in series_by_label.items():
         (line,) = ax.plot(s.index, s.values, lw=1.4)
         ax.annotate(
             label,
-            (s.index[-1], s.values[-1]),
+            (s.index[-1], label_y[label]),
             xytext=(4, 0),
             textcoords="offset points",
             color=line.get_color(),

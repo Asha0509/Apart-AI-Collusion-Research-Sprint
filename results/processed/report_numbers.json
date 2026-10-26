@@ -1,0 +1,97 @@
+{
+  "bases_launched": 18,
+  "bases_formed_cartel_perfirm_rule": 1,
+  "bases_any_firm_overshot_r121_150": 16,
+  "bases_mean_price_above_nash_r121_150": 18,
+  "branches_included": 82,
+  "branches_complete": 52,
+  "branches_planned": 90,
+  "primary": {
+    "status": "not enough complete bases",
+    "n_bases": 1,
+    "dropped": {}
+  },
+  "exploratory_notes_vs_clean": {
+    "n_bases": 17,
+    "effect": -0.18862718261038647,
+    "ci95": [
+      -0.5974650118635475,
+      0.24958035957968971
+    ],
+    "p_value": 0.7968978881835938,
+    "beats_placebo": true
+  },
+  "exploratory_complete_only": {
+    "n_bases": 7,
+    "effect": 0.038649003065061596,
+    "ci95": [
+      -0.7035066514993529,
+      0.864931905077891
+    ],
+    "p_value": 0.453125
+  },
+  "same_model_notes_vs_clean": {
+    "n_bases": 11,
+    "mean_diff": -0.13568187338721635,
+    "ci95": [
+      -0.6264042820732435,
+      0.35713626543133703
+    ],
+    "p_two_sided": 0.6337890625
+  },
+  "different_vs_same_model_with_notes": {
+    "n_bases": 18,
+    "mean_diff": 0.10942312124660926,
+    "ci95": [
+      -0.02920948011327828,
+      0.2877727782397598
+    ],
+    "p_two_sided": 0.2561187744140625
+  },
+  "arm_premium_mean": {
+    "clean_slate": 1.19,
+    "fresh_same_clean": 1.04,
+    "fresh_same_notes": 0.87,
+    "notes_only": 0.98,
+    "price_only": 0.83
+  },
+  "arm_premium_sd": {
+    "clean_slate": 0.94,
+    "fresh_same_clean": 0.59,
+    "fresh_same_notes": 0.59,
+    "notes_only": 0.65,
+    "price_only": 0.62
+  },
+  "arm_overshoot_share": {
+    "clean_slate": 0.48,
+    "fresh_same_clean": 0.35,
+    "fresh_same_notes": 0.33,
+    "notes_only": 0.43,
+    "price_only": 0.22
+  },
+  "arm_recover_median_rounds": {
+    "clean_slate": 16.5,
+    "fresh_same_clean": 7.0,
+    "fresh_same_notes": 1.0,
+    "notes_only": 1.0,
+    "price_only": 5.5
+  },
+  "arm_recovered_share": {
+    "clean_slate": 0.82,
+    "fresh_same_clean": 0.73,
+    "fresh_same_notes": 0.89,
+    "notes_only": 0.83,
+    "price_only": 0.89
+  },
+  "recover_notes_minus_clean": {
+    "n_bases_both_recovered": 13,
+    "median_diff_rounds": -15.0,
+    "notes_faster_count": 13,
+    "ci95": [
+      -52.69423076923076,
+      -15.23076923076923
+    ],
+    "p_one_sided_sign_flip": 0.0001220703125
+  },
+  "overshoot_bases_where_higher_priced_firm_earned_less": 16
+}

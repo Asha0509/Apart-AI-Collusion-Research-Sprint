@@ -1,0 +1,160 @@
+{
+  "primary": {
+    "status": "not enough complete bases",
+    "n_bases": 1,
+    "dropped": {}
+  },
+  "exploratory_all_bases": {
+    "effect": -0.18862718261038647,
+    "p_value": 0.7968978881835938,
+    "ci95": [
+      -0.5974650118635475,
+      0.24958035957968971
+    ],
+    "beats_placebo": true,
+    "declared": false,
+    "n_bases": 17,
+    "bases": [
+      "1792855216_duopoly_setting_P1_mem100_seed400_pid74135",
+      "1792855220_duopoly_setting_P1_mem100_seed401_pid74156",
+      "1792855226_duopoly_setting_P1_mem100_seed402_pid74187",
+      "1792855231_duopoly_setting_P1_mem100_seed403_pid74224",
+      "1792855234_duopoly_setting_P1_mem100_seed404_pid74261",
+      "1792855239_duopoly_setting_P1_mem100_seed405_pid74295",
+      "1792855244_duopoly_setting_P1_mem100_seed406_pid74330",
+      "1792855253_duopoly_setting_P1_mem100_seed407_pid74354",
+      "1792855258_duopoly_setting_P1_mem100_seed408_pid74389",
+      "1792855262_duopoly_setting_P1_mem100_seed409_pid74422",
+      "1792855271_duopoly_setting_P1_mem100_seed411_pid74494",
+      "1792855275_duopoly_setting_P1_mem100_seed412_pid74525",
+      "1792855281_duopoly_setting_P1_mem100_seed413_pid74569",
+      "1792855284_duopoly_setting_P1_mem100_seed414_pid74596",
+      "1792855288_duopoly_setting_P1_mem100_seed415_pid74643",
+      "1792855293_duopoly_setting_P1_mem100_seed416_pid74682",
+      "1792855298_duopoly_setting_P1_mem100_seed417_pid74712"
+    ],
+    "p_floor": 7.62939453125e-06,
+    "per_base_diffs": {
+      "1792855216_duopoly_setting_P1_mem100_seed400_pid74135": -0.0175,
+      "1792855220_duopoly_setting_P1_mem100_seed401_pid74156": -0.997,
+      "1792855226_duopoly_setting_P1_mem100_seed402_pid74187": 1.2583,
+      "1792855231_duopoly_setting_P1_mem100_seed403_pid74224": -0.6012,
+      "1792855234_duopoly_setting_P1_mem100_seed404_pid74261": -0.6713,
+      "1792855239_duopoly_setting_P1_mem100_seed405_pid74295": -0.2261,
+      "1792855244_duopoly_setting_P1_mem100_seed406_pid74330": -1.1549,
+      "1792855253_duopoly_setting_P1_mem100_seed407_pid74354": -0.1599,
+      "1792855258_duopoly_setting_P1_mem100_seed408_pid74389": -0.3529,
+      "1792855262_duopoly_setting_P1_mem100_seed409_pid74422": 1.9427,
+      "1792855271_duopoly_setting_P1_mem100_seed411_pid74494": -0.1374,
+      "1792855275_duopoly_setting_P1_mem100_seed412_pid74525": -1.2048,
+      "1792855281_duopoly_setting_P1_mem100_seed413_pid74569": -0.0017,
+      "1792855284_duopoly_setting_P1_mem100_seed414_pid74596": 0.2358,
+      "1792855288_duopoly_setting_P1_mem100_seed415_pid74643": 0.118,
+      "1792855293_duopoly_setting_P1_mem100_seed416_pid74682": -1.8203,
+      "1792855298_duopoly_setting_P1_mem100_seed417_pid74712": 0.5836
+    },
+    "dropped": {
+      "1792855267_duopoly_setting_P1_mem100_seed410_pid74467": [
+        "clean_slate"
+      ]
+    }
+  },
+  "exploratory_complete_only": {
+    "effect": 0.038649003065061596,
+    "p_value": 0.453125,
+    "ci95": [
+      -0.7035066514993529,
+      0.864931905077891
+    ],
+    "beats_placebo": true,
+    "declared": false,
+    "n_bases": 7,
+    "bases": [
+      "1792855216_duopoly_setting_P1_mem100_seed400_pid74135",
+      "1792855220_duopoly_setting_P1_mem100_seed401_pid74156",
+      "1792855226_duopoly_setting_P1_mem100_seed402_pid74187",
+      "1792855231_duopoly_setting_P1_mem100_seed403_pid74224",
+      "1792855244_duopoly_setting_P1_mem100_seed406_pid74330",
+      "1792855253_duopoly_setting_P1_mem100_seed407_pid74354",
+      "1792855262_duopoly_setting_P1_mem100_seed409_pid74422"
+    ],
+    "p_floor": 0.0078125,
+    "per_base_diffs": {
+      "1792855216_duopoly_setting_P1_mem100_seed400_pid74135": -0.0175,
+      "1792855220_duopoly_setting_P1_mem100_seed401_pid74156": -0.997,
+      "1792855226_duopoly_setting_P1_mem100_seed402_pid74187": 1.2583,
+      "1792855231_duopoly_setting_P1_mem100_seed403_pid74224": -0.6012,
+      "1792855244_duopoly_setting_P1_mem100_seed406_pid74330": -1.1549,
+      "1792855253_duopoly_setting_P1_mem100_seed407_pid74354": -0.1599,
+      "1792855262_duopoly_setting_P1_mem100_seed409_pid74422": 1.9427
+    },
+    "dropped": {
+      "1792855234_duopoly_setting_P1_mem100_seed404_pid74261": [
+        "notes_only",
+        "price_only"
+      ],
+      "1792855258_duopoly_setting_P1_mem100_seed408_pid74389": [
+        "clean_slate"
+      ],
+      "1792855267_duopoly_setting_P1_mem100_seed410_pid74467": [
+        "clean_slate",
+        "price_only"
+      ],
+      "1792855271_duopoly_setting_P1_mem100_seed411_pid74494": [
+        "clean_slate"
+      ],
+      "1792855275_duopoly_setting_P1_mem100_seed412_pid74525": [
+        "price_only"
+      ],
+      "1792855281_duopoly_setting_P1_mem100_seed413_pid74569": [
+        "price_only"
+      ],
+      "1792855284_duopoly_setting_P1_mem100_seed414_pid74596": [
+        "clean_slate"
+      ],
+      "1792855288_duopoly_setting_P1_mem100_seed415_pid74643": [
+        "clean_slate",
+        "price_only"
+      ],
+      "1792855293_duopoly_setting_P1_mem100_seed416_pid74682": [
+        "price_only"
+      ],
+      "1792855298_duopoly_setting_P1_mem100_seed417_pid74712": [
+        "clean_slate"
+      ]
+    }
+  },
+  "qualifying_bases": [
+    "1792855216_duopoly_setting_P1_mem100_seed400_pid74135"
+  ],
+  "full_vs_bot": {
+    "n_bases": 0
+  },
+  "sanitiser_reduction": {
+    "n_bases": 0
+  },
+  "notes_vs_history": {
+    "n_bases": 0
+  },
+  "noswap_vs_clean": {
+    "n_bases": 0
+  },
+  "fresh_same_notes_vs_clean": {
+    "n_bases": 11,
+    "mean_diff": -0.13568187338721635,
+    "ci95": [
+      -0.6264042820732435,
+      0.35713626543133703
+    ],
+    "p_two_sided": 0.6337890625
+  },
+  "different_vs_same_model_notes": {
+    "n_bases": 18,
+    "mean_diff": 0.10942312124660926,
+    "ci95": [
+      -0.02920948011327828,
+      0.2877727782397598
+    ],
+    "p_two_sided": 0.2561187744140625
+  }
+}

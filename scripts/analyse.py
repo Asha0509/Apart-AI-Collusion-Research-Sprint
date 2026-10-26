@@ -125,13 +125,13 @@ def contrast(tab: pd.DataFrame, a: str, b: str) -> dict:
 
 
 def shocks(runs: list[Path], reg: dict) -> pd.DataFrame:
-    from cartel.shocks import shock_response
-
     rows = []
     for d in runs:
         f = json.loads((d / "metadata.json").read_text()).get("fork") or {}
         if not f.get("forced_prices") or reg.get(d.name, {}).get("status") != "done":
             continue
+        from cartel.shocks import shock_response  # lazy: imports the harness (only needed if shock runs exist)
+
         r = shock_response(str(d))
         p = prices(d)[f["firm"]]
         rows.append(r | {"run": d.name, "condition": f.get("condition"), "base": Path(f["base_run_dir"]).name,
