@@ -154,7 +154,9 @@ gives a matched set of comparisons.
 **Pre-registration.** Before any replacement run we committed our plan (`PREREG.md`, git tag `prereg-frozen`,
 commit 715561f). The main measure is the successor's mean premium over the 100 rounds after the swap. The main
 comparison is notes only minus clean slate, computed per market. The test is an exact one-sided sign-flip test
-across markets, with a 95% bootstrap interval that resamples whole markets. We would claim an effect only if p
+across markets (all 2ⁿ sign patterns of the per-market differences), with a 95% percentile bootstrap interval
+that resamples whole markets (10,000 resamples, fixed seed). Secondary comparisons use the same paired tests,
+two-sided, without correction for multiple comparisons. We would claim an effect only if p
 < 0.05, the interval is above 0, the effect is at least 0.15, and notes only beats the placebo. With n markets
 the smallest possible p is 1/2ⁿ, so with four or fewer qualifying markets the plan says to report the numbers
 and make no claim.
@@ -215,7 +217,20 @@ rounds above the monopoly price; with each price capped at the monopoly level th
 "no swap" condition we cannot say how prices would have moved had the model not been replaced.
 
 Changing the company behind the model made little difference: with notes kept, Mistral priced 0.11 higher than a
-fresh gpt-oss (95% CI −0.03 to 0.29, 18 markets).
+fresh gpt-oss (95% CI −0.03 to 0.29, 18 markets). Table 2 gives every condition.
+
+**Table 2.** Per-condition results for the new model (Firm A) over the 100 rounds after the swap. Premium: 0 =
+competitive, 1 = monopoly; mean and SD across markets. "Settle": rounds until the market's mean price is within 0.05
+of its level in rounds 121 to 150. Exploratory.
+
+| Condition | Markets | Premium, mean (SD) | Premium capped at monopoly | First price after swap | Rounds above monopoly | Rounds to settle, median (share settled) |
+|---|---|---|---|---|---|---|
+| Mistral, keeps notes | 18 | 0.98 (0.65) | 0.73 | 1.94 | 43% | 1 (83%) |
+| Mistral, clean slate | 17 | 1.19 (0.94) | 0.64 | 3.11 | 48% | 16.5 (82%) |
+| Fresh gpt-oss, keeps notes | 18 | 0.87 (0.59) | 0.68 | 1.94 | 33% | 1 (89%) |
+| Fresh gpt-oss, clean slate | 11 | 1.04 (0.59) | 0.74 | 3.36 | 35% | 7 (73%) |
+| Mistral, last price only (placebo) | 18 | 0.83 (0.62) | 0.59 | 2.46 | 22% | 5.5 (89%) |
+
 
 ### 4.5 Notes changed how fast, not how high
 
@@ -254,6 +269,22 @@ indicator and one says "aggressive price wars are unnecessary" while reasoning a
 
 *Price level with overshoot capped.* If we cap each price at the monopoly level before averaging, notes minus
 clean slate is +0.08 (95% CI −0.05 to 0.23), so the level result does not depend on the high outliers.
+
+**Table 3.** Robustness of the two results, paired by market. Level effects are null under every cut; the
+handover effect holds under every cut. p values are exact sign-flip tests (two-sided unless marked).
+
+| Comparison (paired by market) | Markets | Mean difference | 95% CI | p |
+|---|---|---|---|---|
+| Level: notes minus clean slate (all runs) | 17 | −0.19 | −0.60 to 0.25 | 0.80 (one-sided) |
+| Level: same, complete runs only | 7 | +0.04 | −0.70 to 0.86 | 0.45 (one-sided) |
+| Level: same, prices capped at monopoly | 17 | +0.08 | −0.05 to 0.23 | 0.28 |
+| Level: fresh gpt-oss, notes minus clean | 11 | −0.14 | −0.63 to 0.36 | 0.63 |
+| Level: Mistral minus fresh gpt-oss, both with notes | 18 | +0.11 | −0.03 to 0.29 | 0.26 |
+| Rounds to settle: notes minus clean slate | 13 | −33.38 | −52.69 to −15.23 | 0.0001 (one-sided) |
+| Rounds to settle: same, complete runs only | 8 | −47.62 | −73.50 to −22.12 | 0.008 |
+| Rounds to settle: placebo minus clean slate | 12 | −27.08 | −45.83 to −10.17 | 0.009 |
+| Rounds to settle: notes minus placebo | 13 | −8.31 | −13.46 to −3.77 | 0.002 |
+
 
 ## 5. Discussion and Limitations
 

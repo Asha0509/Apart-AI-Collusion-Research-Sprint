@@ -86,6 +86,7 @@
   "recover_notes_minus_clean": {
     "n_bases_both_recovered": 13,
     "median_diff_rounds": -15.0,
+    "mean_diff_rounds": -33.38461538461539,
     "notes_faster_count": 13,
     "ci95": [
       -52.69423076923076,

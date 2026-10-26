@@ -30,7 +30,7 @@ body = body.replace("**Runbook box (page 1):**", "**Practitioner runbook.**")
 
 
 def fig(path, caption):
-    return f'\n\n<div class="fig"><img src="{ROOT / path}" width="460"/><p class="cap">{caption}</p></div>\n\n'
+    return f'\n\n<div class="fig"><img src="{ROOT / path}" width="400"/><p class="cap">{caption}</p></div>\n\n'
 
 
 body = body.replace("## 1. Introduction", fig("figures/fig1_schematic.png",
@@ -86,8 +86,8 @@ fonts = "".join(
                  ("DejaVuSerif-Italic.ttf", "font-style: italic;"), ("DejaVuSerif-BoldItalic.ttf", "font-weight: bold; font-style: italic;")]
 )
 css = fonts + """
-@page { size: a4; margin: 2cm 2.1cm; @frame footer { -pdf-frame-content: footer; bottom: 0.8cm; margin-left: 2cm; height: 1cm; } }
-body { font-family: DejaVu; font-size: 9.5pt; line-height: 1.35; }
+@page { size: a4; margin: 1.8cm 1.9cm; @frame footer { -pdf-frame-content: footer; bottom: 0.8cm; margin-left: 2cm; height: 1cm; } }
+body { font-family: DejaVu; font-size: 9pt; line-height: 1.3; }
 h1 { font-size: 15pt; text-align: center; margin: 6pt 0; }
 .rule1 { border-top: 2.5pt solid #000; margin: 0; } .rule2 { border-top: 0.8pt solid #000; margin: 0 0 8pt 0; }
 .abs { margin: 0 1.2cm; font-style: italic; } .absh { text-align: center; font-size: 12pt; font-weight: bold; margin-top: 8pt; }
@@ -98,7 +98,7 @@ h2 { font-size: 12.5pt; margin-top: 12pt; margin-bottom: 4pt; }
 h3 { font-size: 10.5pt; margin-top: 8pt; margin-bottom: 2pt; }
 p, li { text-align: justify; }
 table { border: 0.5pt solid #555; margin: 6pt 0; }
-td, th { padding: 3pt 5pt; border: 0.5pt solid #999; font-size: 9pt; }
+td, th { padding: 2pt 4pt; border: 0.5pt solid #999; font-size: 8pt; }
 th { background-color: #eeeeee; }
 .box { border: 0.8pt solid #333; background-color: #f4f4f4; padding: 6pt 8pt; margin: 8pt 0; }
 .fig { text-align: center; margin: 6pt 0; }

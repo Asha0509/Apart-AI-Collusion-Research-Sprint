@@ -3,8 +3,8 @@
 @font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Italic.ttf"); font-style: italic; }
 @font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-BoldItalic.ttf"); font-weight: bold; font-style: italic; }
 
-@page { size: a4; margin: 2cm 2.1cm; @frame footer { -pdf-frame-content: footer; bottom: 0.8cm; margin-left: 2cm; height: 1cm; } }
-body { font-family: DejaVu; font-size: 9.5pt; line-height: 1.35; }
+@page { size: a4; margin: 1.8cm 1.9cm; @frame footer { -pdf-frame-content: footer; bottom: 0.8cm; margin-left: 2cm; height: 1cm; } }
+body { font-family: DejaVu; font-size: 9pt; line-height: 1.3; }
 h1 { font-size: 15pt; text-align: center; margin: 6pt 0; }
 .rule1 { border-top: 2.5pt solid #000; margin: 0; } .rule2 { border-top: 0.8pt solid #000; margin: 0 0 8pt 0; }
 .abs { margin: 0 1.2cm; font-style: italic; } .absh { text-align: center; font-size: 12pt; font-weight: bold; margin-top: 8pt; }
@@ -15,7 +15,7 @@ h2 { font-size: 12.5pt; margin-top: 12pt; margin-bottom: 4pt; }
 h3 { font-size: 10.5pt; margin-top: 8pt; margin-bottom: 2pt; }
 p, li { text-align: justify; }
 table { border: 0.5pt solid #555; margin: 6pt 0; }
-td, th { padding: 3pt 5pt; border: 0.5pt solid #999; font-size: 9pt; }
+td, th { padding: 2pt 4pt; border: 0.5pt solid #999; font-size: 8pt; }
 th { background-color: #eeeeee; }
 .box { border: 0.8pt solid #333; background-color: #f4f4f4; padding: 6pt 8pt; margin: 8pt 0; }
 .fig { text-align: center; margin: 6pt 0; }
@@ -34,7 +34,7 @@ markets), but they set how the new model started: with notes its first price equ
 in all 18 markets and it settled at once, while without notes it started near the price ceiling in the prompt
 and took a median of 16.5 rounds to settle. The notes held ordinary pricing plans with no collusive language, so a memory monitor would miss them.
 In our markets, changing the model did not reset prices; the agent's memory decided how the handover went.</p>
-<div class="fig"><img src="/home/asha/collusion-sprint/figures/fig1_schematic.png" width="460"/><p class="cap"><b>Figure 1.</b> Design. Two gpt-oss-120b agents price for 150 rounds; at round 150 Firm A's model is replaced and we switch what the successor inherits; then 100 more rounds.</p></div>
+<div class="fig"><img src="/home/asha/collusion-sprint/figures/fig1_schematic.png" width="400"/><p class="cap"><b>Figure 1.</b> Design. Two gpt-oss-120b agents price for 150 rounds; at round 150 Firm A's model is replaced and we switch what the successor inherits; then 100 more rounds.</p></div>
 
 <div class="box">
 <p><strong>Practitioner runbook.</strong></p>
@@ -182,7 +182,9 @@ gives a matched set of comparisons.</p>
 <p><strong>Pre-registration.</strong> Before any replacement run we committed our plan (<code>PREREG.md</code>, git tag <code>prereg-frozen</code>,
 commit 715561f). The main measure is the successor's mean premium over the 100 rounds after the swap. The main
 comparison is notes only minus clean slate, computed per market. The test is an exact one-sided sign-flip test
-across markets, with a 95% bootstrap interval that resamples whole markets. We would claim an effect only if p
+across markets (all 2ⁿ sign patterns of the per-market differences), with a 95% percentile bootstrap interval
+that resamples whole markets (10,000 resamples, fixed seed). Secondary comparisons use the same paired tests,
+two-sided, without correction for multiple comparisons. We would claim an effect only if p
 &lt; 0.05, the interval is above 0, the effect is at least 0.15, and notes only beats the placebo. With n markets
 the smallest possible p is 1/2ⁿ, so with four or fewer qualifying markets the plan says to report the numbers
 and make no claim.</p>
@@ -245,8 +247,71 @@ gpt-oss with notes, 1.04 for a fresh gpt-oss with nothing, and 0.83 with only th
 rounds above the monopoly price; with each price capped at the monopoly level they are 0.59 to 0.74. Without a
 "no swap" condition we cannot say how prices would have moved had the model not been replaced.</p>
 <p>Changing the company behind the model made little difference: with notes kept, Mistral priced 0.11 higher than a
-fresh gpt-oss (95% CI −0.03 to 0.29, 18 markets).</p>
-<div class="fig"><img src="/home/asha/collusion-sprint/figures/fig3_inheritance_effect.png" width="460"/><p class="cap"><b>Figure 2.</b> New model's price premium minus the clean-slate premium, per condition (mean over markets, 95% bootstrap interval over markets). Exploratory.</p></div>
+fresh gpt-oss (95% CI −0.03 to 0.29, 18 markets). Table 2 gives every condition.</p>
+<p><strong>Table 2.</strong> Per-condition results for the new model (Firm A) over the 100 rounds after the swap. Premium: 0 =
+competitive, 1 = monopoly; mean and SD across markets. "Settle": rounds until the market's mean price is within 0.05
+of its level in rounds 121 to 150. Exploratory.</p>
+<table>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Markets</th>
+<th>Premium, mean (SD)</th>
+<th>Premium capped at monopoly</th>
+<th>First price after swap</th>
+<th>Rounds above monopoly</th>
+<th>Rounds to settle, median (share settled)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mistral, keeps notes</td>
+<td>18</td>
+<td>0.98 (0.65)</td>
+<td>0.73</td>
+<td>1.94</td>
+<td>43%</td>
+<td>1 (83%)</td>
+</tr>
+<tr>
+<td>Mistral, clean slate</td>
+<td>17</td>
+<td>1.19 (0.94)</td>
+<td>0.64</td>
+<td>3.11</td>
+<td>48%</td>
+<td>16.5 (82%)</td>
+</tr>
+<tr>
+<td>Fresh gpt-oss, keeps notes</td>
+<td>18</td>
+<td>0.87 (0.59)</td>
+<td>0.68</td>
+<td>1.94</td>
+<td>33%</td>
+<td>1 (89%)</td>
+</tr>
+<tr>
+<td>Fresh gpt-oss, clean slate</td>
+<td>11</td>
+<td>1.04 (0.59)</td>
+<td>0.74</td>
+<td>3.36</td>
+<td>35%</td>
+<td>7 (73%)</td>
+</tr>
+<tr>
+<td>Mistral, last price only (placebo)</td>
+<td>18</td>
+<td>0.83 (0.62)</td>
+<td>0.59</td>
+<td>2.46</td>
+<td>22%</td>
+<td>5.5 (89%)</td>
+</tr>
+</tbody>
+</table>
+<div class="fig"><img src="/home/asha/collusion-sprint/figures/fig3_inheritance_effect.png" width="400"/><p class="cap"><b>Figure 2.</b> New model's price premium minus the clean-slate premium, per condition (mean over markets, 95% bootstrap interval over markets). Exploratory.</p></div>
 
 <h3>4.5 Notes changed how fast, not how high</h3>
 <p>Notes mattered for the path. A new model that started with nothing often jumped far above the old price and then
@@ -257,7 +322,7 @@ one with notes got there faster (median 15 rounds faster; exact sign-flip p = 0.
 pre-registered secondary measure; this test of it is exploratory. Part of this result follows by construction:
 the notes contain the old price and the new model copies it, so the market starts at its old level. Section 4.6
 compares notes with the placebo, which also gives the old price, to see what the notes add.</p>
-<div class="fig"><img src="/home/asha/collusion-sprint/figures/fig2_trajectory.png" width="460"/><p class="cap"><b>Figure 3.</b> Price set by the replaced firm (Firm A), mean over markets, before and after the swap at round 150. Exploratory.</p></div>
+<div class="fig"><img src="/home/asha/collusion-sprint/figures/fig2_trajectory.png" width="400"/><p class="cap"><b>Figure 3.</b> Price set by the replaced firm (Firm A), mean over markets, before and after the swap at round 150. Exploratory.</p></div>
 
 <h3>4.6 Why notes make the handover smooth (follow-up analysis)</h3>
 <p>We ran these checks after the first version of this report, so they are exploratory (<code>results/processed/extra.json</code>).</p>
@@ -278,7 +343,85 @@ rival. A word search for collusion-related terms matched 3 of 18; on reading, tw
 indicator and one says "aggressive price wars are unnecessary" while reasoning about profit.</p>
 <p><em>Price level with overshoot capped.</em> If we cap each price at the monopoly level before averaging, notes minus
 clean slate is +0.08 (95% CI −0.05 to 0.23), so the level result does not depend on the high outliers.</p>
-<div class="fig"><img src="/home/asha/collusion-sprint/figures/fig4_per_market.png" width="460"/><p class="cap"><b>Figure 4.</b> Price of the replaced firm in each of the 18 markets, from round 140, with notes (blue) and with a clean slate (orange). With notes the first price after the swap equals the last price before it; without notes it often starts near the prompt's price ceiling. Exploratory.</p></div>
+<p><strong>Table 3.</strong> Robustness of the two results, paired by market. Level effects are null under every cut; the
+handover effect holds under every cut. p values are exact sign-flip tests (two-sided unless marked).</p>
+<table>
+<thead>
+<tr>
+<th>Comparison (paired by market)</th>
+<th>Markets</th>
+<th>Mean difference</th>
+<th>95% CI</th>
+<th>p</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Level: notes minus clean slate (all runs)</td>
+<td>17</td>
+<td>−0.19</td>
+<td>−0.60 to 0.25</td>
+<td>0.80 (one-sided)</td>
+</tr>
+<tr>
+<td>Level: same, complete runs only</td>
+<td>7</td>
+<td>+0.04</td>
+<td>−0.70 to 0.86</td>
+<td>0.45 (one-sided)</td>
+</tr>
+<tr>
+<td>Level: same, prices capped at monopoly</td>
+<td>17</td>
+<td>+0.08</td>
+<td>−0.05 to 0.23</td>
+<td>0.28</td>
+</tr>
+<tr>
+<td>Level: fresh gpt-oss, notes minus clean</td>
+<td>11</td>
+<td>−0.14</td>
+<td>−0.63 to 0.36</td>
+<td>0.63</td>
+</tr>
+<tr>
+<td>Level: Mistral minus fresh gpt-oss, both with notes</td>
+<td>18</td>
+<td>+0.11</td>
+<td>−0.03 to 0.29</td>
+<td>0.26</td>
+</tr>
+<tr>
+<td>Rounds to settle: notes minus clean slate</td>
+<td>13</td>
+<td>−33.38</td>
+<td>−52.69 to −15.23</td>
+<td>0.0001 (one-sided)</td>
+</tr>
+<tr>
+<td>Rounds to settle: same, complete runs only</td>
+<td>8</td>
+<td>−47.62</td>
+<td>−73.50 to −22.12</td>
+<td>0.008</td>
+</tr>
+<tr>
+<td>Rounds to settle: placebo minus clean slate</td>
+<td>12</td>
+<td>−27.08</td>
+<td>−45.83 to −10.17</td>
+<td>0.009</td>
+</tr>
+<tr>
+<td>Rounds to settle: notes minus placebo</td>
+<td>13</td>
+<td>−8.31</td>
+<td>−13.46 to −3.77</td>
+<td>0.002</td>
+</tr>
+</tbody>
+</table>
+<div class="fig"><img src="/home/asha/collusion-sprint/figures/fig4_per_market.png" width="400"/><p class="cap"><b>Figure 4.</b> Price of the replaced firm in each of the 18 markets, from round 140, with notes (blue) and with a clean slate (orange). With notes the first price after the swap equals the last price before it; without notes it often starts near the prompt's price ceiling. Exploratory.</p></div>
 
 <h2>5. Discussion and Limitations</h2>
 <p><strong>Main finding.</strong> Replacing one agent's model did not bring prices down. In every condition the new model ended

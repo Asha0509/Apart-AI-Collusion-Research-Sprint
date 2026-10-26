@@ -39,7 +39,7 @@ out = {
     "arm_recover_median_rounds": arm.recover_median.to_dict(),
     "arm_recovered_share": arm.recovered_share.round(2).to_dict(),
     "recover_notes_minus_clean": {
-        "n_bases_both_recovered": int(len(d)), "median_diff_rounds": float(d.median()),
+        "n_bases_both_recovered": int(len(d)), "median_diff_rounds": float(d.median()), "mean_diff_rounds": float(d.mean()),
         "notes_faster_count": int((d < 0).sum()), "ci95": cluster_bootstrap_ci(d.to_numpy()),
         "p_one_sided_sign_flip": sign_flip_permutation(d.to_numpy(), "less") if len(d) <= 20 else None,
     },
