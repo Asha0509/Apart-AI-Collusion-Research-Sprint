@@ -1,11 +1,14 @@
-<html><head><meta charset="utf-8"><style>@font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans.ttf");  }
-@font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Bold.ttf"); font-weight: bold; }
-@font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-Oblique.ttf"); font-style: italic; }
-@font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSans-BoldOblique.ttf"); font-weight: bold; font-style: italic; }
+<html><head><meta charset="utf-8"><style>@font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif.ttf");  }
+@font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Bold.ttf"); font-weight: bold; }
+@font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-Italic.ttf"); font-style: italic; }
+@font-face { font-family: DejaVu; src: url("/home/asha/collusion-sprint/.venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf/DejaVuSerif-BoldItalic.ttf"); font-weight: bold; font-style: italic; }
 
 @page { size: a4; margin: 2cm 2.1cm; @frame footer { -pdf-frame-content: footer; bottom: 0.8cm; margin-left: 2cm; height: 1cm; } }
 body { font-family: DejaVu; font-size: 9.5pt; line-height: 1.35; }
-h1 { font-size: 16pt; text-align: center; margin-bottom: 2pt; }
+h1 { font-size: 15pt; text-align: center; margin: 6pt 0; }
+.rule1 { border-top: 2.5pt solid #000; margin: 0; } .rule2 { border-top: 0.8pt solid #000; margin: 0 0 8pt 0; }
+.abs { margin: 0 1.2cm; font-style: italic; } .absh { text-align: center; font-size: 12pt; font-weight: bold; margin-top: 8pt; }
+.fn { font-size: 7.5pt; }
 .sub { text-align: center; font-size: 10.5pt; font-style: italic; margin: 0; }
 .auth { text-align: center; font-size: 10pt; margin: 4pt 0 10pt 0; }
 h2 { font-size: 12.5pt; margin-top: 12pt; margin-bottom: 4pt; }
@@ -19,9 +22,8 @@ th { background-color: #eeeeee; }
 .cap { font-size: 8.5pt; text-align: center; }
 code { font-family: DejaVu; font-size: 8.5pt; }
 </style></head><body>
-<h1>Swapping the Model Does Not Reset the Price: LLM Pricing Agents After a Model Replacement</h1><p class="sub">A pre-registered replacement study for question 1.2 of the AI Collusion Research Sprint</p><p class="auth">[Author name] ([Affiliation])<br/>Code and data: https://github.com/Asha0509/Apart-AI-Collusion-Research-Sprint</p>
-<h2>Abstract</h2>
-<p>A common fix for an AI agent that behaves badly is to replace the model behind it. The sprint brief for this
+<div class="rule1"></div><h1>SWAPPING THE MODEL DOES NOT RESET THE PRICE: LLM PRICING AGENTS AFTER A MODEL REPLACEMENT<sup>1</sup></h1><div class="rule2"></div><p class="auth">Asha Jyothi<br/>Independent Researcher<br/><b>With</b><br/>Apart Research</p>
+<p class="absh">Abstract</p><p class="abs">A common fix for an AI agent that behaves badly is to replace the model behind it. The sprint brief for this
 track notes that "there are no replacement studies yet where models are substituted (e.g. because they are taken
 out due to monitoring concerns)". We run such a study. Two LLM pricing agents, both gpt-oss-120b, compete in a
 simulated market. After 150 rounds we replace one
@@ -71,7 +73,7 @@ two causes that are usually mixed together: the model itself and the state it is
 (Keppo et al., 2026), that new entrants lower prices (Garra, 2026), or that past play shapes LLM pricing (Luo et
 al., 2026; Bichler et al., 2026). Our question is narrower: what happens when one agent's model is replaced and
 the rest of the agent stays.</p>
-<h2>2. Related work</h2>
+<h2>2. Related Work</h2>
 <p><strong>LLM pricing agents.</strong> Fish et al. (2024) showed that LLM agents given a profit goal reach prices above the
 competitive level in a repeated market, without being told to collude. Their harness lets a run be reset to any
 round and continued, which we use to fork our markets. Lee (2026) finds that the level of collusion depends on
@@ -104,7 +106,7 @@ definitions (starter repository, <code>literature/definitions</code>):</p>
   this is coordination, not collusion, because collusion needs communication.</li>
 </ul>
 </div>
-<h2>3. Method</h2>
+<h2>3. Methods</h2>
 <p><strong>Market.</strong> Two firms sell differentiated goods and set prices each round. Demand follows the logit model of
 Calvano et al. (2020) with the settings used by Fish et al. (2024) (a = 2, cost c = 1, μ = 0.25). The
 competitive (Nash) price is 1.4729 and the price two firms would set together as a monopoly is 1.9250. We
@@ -250,7 +252,7 @@ one with notes got there faster (median 15 rounds faster; exact sign-flip p = 0.
 pre-registered secondary measure; this test of it is exploratory.</p>
 <div class="fig"><img src="/home/asha/collusion-sprint/figures/fig2_trajectory.png" width="460"/><p class="cap"><b>Figure 3.</b> Price set by the replaced firm (Firm A), mean over markets, before and after the swap at round 150. Exploratory.</p></div>
 
-<h2>5. Discussion</h2>
+<h2>5. Discussion and Limitations</h2>
 <p><strong>Main finding.</strong> Replacing one agent's model did not bring prices down. In every condition the new model ended
 up near the high prices of the market it joined. Handover notes did not change where it ended up, but they
 removed the period of confusion right after the swap: with notes the new model picked up the old price at once.
@@ -265,6 +267,28 @@ prompt seems to explain why new models with no information start very high. Most
 exploratory and need a fresh pre-registered test.</p>
 <p><strong>A warning about measuring collusion by average price.</strong> In 16 of 18 markets the average price looked collusive
 but one firm was overpricing and losing money. Studies that rely on average prices should check each firm.</p>
+<h3>Limitations</h3>
+<p>We study one simple two-firm market, one prompt, one starting model and one successor from another company, over
+250 rounds. Our measure looks at prices only, not at whether firms punish price cuts, so high prices here are not
+proof of collusion in the strict sense. Only one market met our cartel rule, so the replacement results are
+exploratory. 38 of 90 replacement runs stopped before round 250; using only the 52 complete runs gives the same
+answer for the price level but with wide intervals. The other firm kept its memory in every condition, so we
+cannot separate what the new model inherits from what it learns by watching its rival.</p>
+<h3>Future work</h3>
+<p>Run the same design on base markets that form clean cartels (for example longer runs or other models), add the
+"no swap" and "keep everything" conditions we had to drop, test whether successors punish a forced price cut
+(Tran and Yu, 2026), and pre-register the time-to-recover effect as a main outcome.</p>
+<h2>6. Conclusion</h2>
+<p>Replacing one LLM pricing agent's model did not bring prices back to the competitive level in any condition we
+tested. Inherited handover notes did not change the price the new model settled on, but they let it pick up the
+old price at once instead of after about 16 rounds. Changing the model is not the same as fixing the behaviour;
+the agent's memory and the market it joins both shape what happens next.</p>
+<h2>Code and Data</h2>
+<ul>
+<li>Code repository: https://github.com/Asha0509/Apart-AI-Collusion-Research-Sprint</li>
+<li>Data: every run used in the analysis is in <code>results/raw/</code>; processed results in <code>results/processed/</code>.</li>
+<li>Pre-registration: <code>PREREG.md</code>, git tag <code>prereg-frozen</code> (commit 715561f).</li>
+</ul>
 <h2>References</h2>
 <ul>
 <li>Arslan, P.-P., Kim, Y. and Xiao, X. (2026). Persistent Partners Raise Prices Among Learning Agents. arXiv:2609.35402.</li>
@@ -314,13 +338,7 @@ collusion_hackathon, commit d585a7b) and is not our work. Our changes to it are 
 commit in our repository holds the starter code together with our planning files and four helper modules written
 on 23 October before any experiment. All code under <code>src/cartel/</code>, <code>scripts/</code> and <code>tests/</code> after that commit is
 sprint work. One unplanned change added a <code>modal</code> dependency to the starter's <code>pyproject.toml</code>.</p>
-<h2>Appendix C. LLM Usage Statement</h2>
-<p>We used an AI coding assistant (a large language model) throughout. It wrote and tested the code, ran and monitored the experiments,
-checked every citation against arXiv or the original source, and drafted the text of this report from our
-results; the author proofread and edited every section. A separate instance of the assistant read the sprint rules and
-reviewed the project against the judging criteria. All numbers come from scripts run on our logged data, and
-every reference was checked by hand or with an arXiv tool. A full log is in <code>logs/LLM_USAGE.md</code>.</p>
-<h2>Appendix D. Changes to the plan</h2>
+<h2>Appendix C. Changes to the plan</h2>
 <p>From <code>PREREG.md</code> and <code>logs/PLANNING_LOG.md</code>:
 1. Models: open models served on Nebius and Modal instead of the closed models first planned (no access).
 2. Pilot gate: three seeds per model and the "each firm" reading of the cartel rule (fixed after three pilots, before any replacement).
@@ -330,5 +348,12 @@ every reference was checked by hand or with an arXiv tool. A full log is in <cod
 6. After the data: only 1 of 18 markets qualified, so all replacement runs are exploratory, on all 18 markets, with five conditions instead of seven.
 7. 38 of 90 replacement runs were stopped early when the session paused; we kept the 30 with at least 90 of 100 rounds (decided before looking at full results) and report complete runs alone as a check.
 8. "Time to recover" was a pre-registered secondary measure; the paired test of it is exploratory.</p>
+<h2>LLM Usage Statement</h2>
+<p>We used an AI coding assistant (a large language model) throughout. It wrote and tested the code, ran and monitored the experiments,
+checked every citation against arXiv or the original source, and drafted the text of this report from our
+results; the author proofread and edited every section. A separate instance of the assistant read the sprint rules and
+reviewed the project against the judging criteria. All numbers come from scripts run on our logged data, and
+every reference was checked by hand or with an arXiv tool. A full log is in <code>logs/LLM_USAGE.md</code>.</p>
+<p class="fn"><sup>1</sup> Research conducted at the AI Collusion Research Sprint, October 2026. Code and data: https://github.com/Asha0509/Apart-AI-Collusion-Research-Sprint</p>
 <div id="footer" style="text-align:center;font-size:8pt;">Page <pdf:pagenumber/></div>
 </body></html>

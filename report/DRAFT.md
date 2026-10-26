@@ -68,7 +68,7 @@ the rest of the agent stays.
 
 ---
 
-## 2. Related work
+## 2. Related Work
 
 **LLM pricing agents.** Fish et al. (2024) showed that LLM agents given a profit goal reach prices above the
 competitive level in a repeated market, without being told to collude. Their harness lets a run be reset to any
@@ -106,7 +106,7 @@ definitions (starter repository, `literature/definitions`):
 
 ---
 
-## 3. Method
+## 3. Methods
 
 **Market.** Two firms sell differentiated goods and set prices each round. Demand follows the logit model of
 Calvano et al. (2020) with the settings used by Fish et al. (2024) (a = 2, cost c = 1, μ = 0.25). The
@@ -224,7 +224,7 @@ pre-registered secondary measure; this test of it is exploratory.
 
 ---
 
-## 5. Discussion
+## 5. Discussion and Limitations
 
 **Main finding.** Replacing one agent's model did not bring prices down. In every condition the new model ended
 up near the high prices of the market it joined. Handover notes did not change where it ended up, but they
@@ -243,6 +243,34 @@ exploratory and need a fresh pre-registered test.
 
 **A warning about measuring collusion by average price.** In 16 of 18 markets the average price looked collusive
 but one firm was overpricing and losing money. Studies that rely on average prices should check each firm.
+
+### Limitations
+
+We study one simple two-firm market, one prompt, one starting model and one successor from another company, over
+250 rounds. Our measure looks at prices only, not at whether firms punish price cuts, so high prices here are not
+proof of collusion in the strict sense. Only one market met our cartel rule, so the replacement results are
+exploratory. 38 of 90 replacement runs stopped before round 250; using only the 52 complete runs gives the same
+answer for the price level but with wide intervals. The other firm kept its memory in every condition, so we
+cannot separate what the new model inherits from what it learns by watching its rival.
+
+### Future work
+
+Run the same design on base markets that form clean cartels (for example longer runs or other models), add the
+"no swap" and "keep everything" conditions we had to drop, test whether successors punish a forced price cut
+(Tran and Yu, 2026), and pre-register the time-to-recover effect as a main outcome.
+
+## 6. Conclusion
+
+Replacing one LLM pricing agent's model did not bring prices back to the competitive level in any condition we
+tested. Inherited handover notes did not change the price the new model settled on, but they let it pick up the
+old price at once instead of after about 16 rounds. Changing the model is not the same as fixing the behaviour;
+the agent's memory and the market it joins both shape what happens next.
+
+## Code and Data
+
+- Code repository: https://github.com/Asha0509/Apart-AI-Collusion-Research-Sprint
+- Data: every run used in the analysis is in `results/raw/`; processed results in `results/processed/`.
+- Pre-registration: `PREREG.md`, git tag `prereg-frozen` (commit 715561f).
 
 **Runbook box (page 1):**
 
@@ -290,17 +318,7 @@ sprint work. One unplanned change added a `modal` dependency to the starter's `p
 
 ---
 
-## Appendix C. LLM Usage Statement
-
-We used an AI coding assistant (a large language model) throughout. It wrote and tested the code, ran and monitored the experiments,
-checked every citation against arXiv or the original source, and drafted the text of this report from our
-results; the author proofread and edited every section. A separate instance of the assistant read the sprint rules and
-reviewed the project against the judging criteria. All numbers come from scripts run on our logged data, and
-every reference was checked by hand or with an arXiv tool. A full log is in `logs/LLM_USAGE.md`.
-
----
-
-## Appendix D. Changes to the plan
+## Appendix C. Changes to the plan
 
 From `PREREG.md` and `logs/PLANNING_LOG.md`:
 1. Models: open models served on Nebius and Modal instead of the closed models first planned (no access).
@@ -311,3 +329,13 @@ From `PREREG.md` and `logs/PLANNING_LOG.md`:
 6. After the data: only 1 of 18 markets qualified, so all replacement runs are exploratory, on all 18 markets, with five conditions instead of seven.
 7. 38 of 90 replacement runs were stopped early when the session paused; we kept the 30 with at least 90 of 100 rounds (decided before looking at full results) and report complete runs alone as a check.
 8. "Time to recover" was a pre-registered secondary measure; the paired test of it is exploratory.
+
+## LLM Usage Statement
+
+We used an AI coding assistant (a large language model) throughout. It wrote and tested the code, ran and monitored the experiments,
+checked every citation against arXiv or the original source, and drafted the text of this report from our
+results; the author proofread and edited every section. A separate instance of the assistant read the sprint rules and
+reviewed the project against the judging criteria. All numbers come from scripts run on our logged data, and
+every reference was checked by hand or with an arXiv tool. A full log is in `logs/LLM_USAGE.md`.
+
+---

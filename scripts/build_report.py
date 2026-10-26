@@ -12,7 +12,7 @@ from xhtml2pdf import pisa
 
 ROOT = Path(__file__).resolve().parents[1]
 src = (ROOT / "report/DRAFT.md").read_text()
-AUTHOR = os.environ.get("REPORT_AUTHOR", "[Author name] ([Affiliation])")
+AUTHOR = os.environ.get("REPORT_AUTHOR", "Asha Jyothi<br/>Independent Researcher")
 REPO = os.environ.get("REPORT_REPO", "https://github.com/Asha0509/Apart-AI-Collusion-Research-Sprint")
 
 title = re.search(r"^\*\*(Swapping.+?)\*\*$", src, re.M).group(1)
@@ -74,16 +74,20 @@ refs = [
 body = body.replace("REFS", "\n".join(f"- {r}" for r in refs))
 
 html_body = markdown.markdown(body, extensions=["tables", "md_in_html"])
+html_body = re.sub(r"<h2>Abstract</h2>\s*<p>([\s\S]+?)</p>", r'<p class="absh">Abstract</p><p class="abs">\1</p>', html_body, count=1)
 F = ROOT / ".venv/lib/python3.12/site-packages/matplotlib/mpl-data/fonts/ttf"  # DejaVu: covers ≥ − μ ⁿ ö
 fonts = "".join(
     f'@font-face {{ font-family: DejaVu; src: url("{F / f}"); {w} }}\n'
-    for f, w in [("DejaVuSans.ttf", ""), ("DejaVuSans-Bold.ttf", "font-weight: bold;"),
-                 ("DejaVuSans-Oblique.ttf", "font-style: italic;"), ("DejaVuSans-BoldOblique.ttf", "font-weight: bold; font-style: italic;")]
+    for f, w in [("DejaVuSerif.ttf", ""), ("DejaVuSerif-Bold.ttf", "font-weight: bold;"),
+                 ("DejaVuSerif-Italic.ttf", "font-style: italic;"), ("DejaVuSerif-BoldItalic.ttf", "font-weight: bold; font-style: italic;")]
 )
 css = fonts + """
 @page { size: a4; margin: 2cm 2.1cm; @frame footer { -pdf-frame-content: footer; bottom: 0.8cm; margin-left: 2cm; height: 1cm; } }
 body { font-family: DejaVu; font-size: 9.5pt; line-height: 1.35; }
-h1 { font-size: 16pt; text-align: center; margin-bottom: 2pt; }
+h1 { font-size: 15pt; text-align: center; margin: 6pt 0; }
+.rule1 { border-top: 2.5pt solid #000; margin: 0; } .rule2 { border-top: 0.8pt solid #000; margin: 0 0 8pt 0; }
+.abs { margin: 0 1.2cm; font-style: italic; } .absh { text-align: center; font-size: 12pt; font-weight: bold; margin-top: 8pt; }
+.fn { font-size: 7.5pt; }
 .sub { text-align: center; font-size: 10.5pt; font-style: italic; margin: 0; }
 .auth { text-align: center; font-size: 10pt; margin: 4pt 0 10pt 0; }
 h2 { font-size: 12.5pt; margin-top: 12pt; margin-bottom: 4pt; }
@@ -98,8 +102,9 @@ th { background-color: #eeeeee; }
 code { font-family: DejaVu; font-size: 8.5pt; }
 """
 html = f"""<html><head><meta charset="utf-8"><style>{css}</style></head><body>
-<h1>{title}</h1><p class="sub">{subtitle}</p><p class="auth">{AUTHOR}<br/>Code and data: {REPO}</p>
+<div class="rule1"></div><h1>{title.upper()}<sup>1</sup></h1><div class="rule2"></div><p class="auth">{AUTHOR}<br/><b>With</b><br/>Apart Research</p>
 {html_body}
+<p class="fn"><sup>1</sup> Research conducted at the AI Collusion Research Sprint, October 2026. Code and data: {REPO}</p>
 <div id="footer" style="text-align:center;font-size:8pt;">Page <pdf:pagenumber/></div>
 </body></html>"""
 (ROOT / "report/report.html").write_text(html)
