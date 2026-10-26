@@ -6,31 +6,30 @@ Citations come only from the verified list in `report/CITATIONS.md`.
 
 ---
 
-## Title (choose with the results, then never change it before the first submit)
+## Title
 
-- If inheritance is found (exploratory or primary): **Swap the Model, Keep the Price: Handover Notes Carry Supracompetitive Pricing Across a Model Replacement**
-- If it is not found: **Replacing a Pricing Agent's Model Resets Its Prices, Even When It Keeps the Old Notes**
-- Either way, the subtitle can be: *A pre-registered replacement study for LLM pricing agents (Q1.2)*
+**Swapping the Model Does Not Reset the Price: LLM Pricing Agents After a Model Replacement**
+
+Subtitle: *A pre-registered replacement study for question 1.2*
 
 ---
 
-## Abstract (150 to 250 words; fill the brackets)
+## Abstract
 
 A common fix for an AI agent that behaves badly is to replace the model behind it. The sprint brief for this
 track notes that "there are no replacement studies yet where models are substituted (e.g. because they are taken
-out due to monitoring concerns)". We run such a study. Two LLM pricing agents compete in a simulated market
-(the Fish et al. setup with Calvano logit demand). Both start as gpt-oss-120b. After 150 rounds we replace one
+out due to monitoring concerns)". We run such a study. Two LLM pricing agents, both gpt-oss-120b, compete in a
+simulated market. After 150 rounds we replace one
 agent's model with Mistral-Small-3.2 (a different company) or with a fresh copy of gpt-oss-120b, and we control
-what the new model inherits: the old agent's handover notes, its price history, or nothing. We pre-registered
-the main test before running any replacement. In 18 runs, every market priced above the competitive level, but
-only [R: table1 → formed_cartel count] met our pre-registered cartel rule, so the pre-registered test could not be
-run. Most runs showed a different pattern: one firm priced above the monopoly price and lost profit while the
-other held a steady high price. In an exploratory analysis over all 18 markets, a successor that kept the notes
-priced [R: summary.json → exploratory_all_bases.effect] above one that started from nothing (95% CI [R: ci95]).
-[One sentence on the same-model vs different-model comparison.] [One sentence on the placebo.] For practitioners:
-changing the model is not enough; the agent's memory must be checked or cleared too.
+whether the new model inherits the old agent's handover notes. We pre-registered the main test. All 18 markets priced above the competitive level, but only 1 met our pre-registered cartel
+rule, so the pre-registered test could not be run. In 16 markets one firm priced above the monopoly level and
+earned less than its rival. In exploratory analysis, replacing the model did not bring prices down in any
+condition: the new model priced at 0.83 to 1.19 of the way from the competitive to the monopoly price. Inherited notes did not raise the price level (difference −0.19, 95% CI −0.60 to 0.25, 17
+markets), but they changed how fast the new model settled: with notes it was back at the old price level in a
+median of 1 round, without notes in 16.5 rounds, and it was faster in all 13 markets where both recovered. Changing the model does not reset prices, and the agent's memory
+shapes what happens next.
 
-(Word count to check after filling: target about 200.)
+(Word count checked: under 250.)
 
 ---
 
@@ -58,7 +57,7 @@ Our contributions are:
 2. A pre-registered analysis plan, committed before any replacement run, with a positive control. We report what
    the plan allowed us to conclude and, separately and clearly labelled, what we learned in exploratory analysis.
 3. A finding about the markets themselves: LLM agents that look collusive by average price often are not. In
-   [R: count] of 18 runs one firm priced above the monopoly level and earned less than its rival.
+   16 of 18 runs one firm priced above the monopoly level and earned less than its rival.
 4. Open code: small, tagged patches to the starter harness, plus scripts that fork a finished market and swap
    one agent's model.
 
@@ -124,7 +123,7 @@ previous copy of yourself", because the original wording would be false after a 
 **Models.** Both firms start as gpt-oss-120b (OpenAI, open weights). The successor is Mistral-Small-3.2-24B
 (Mistral AI) or a fresh copy of gpt-oss-120b. We served each model ourselves with vLLM on cloud GPUs (H200 for
 gpt-oss-120b, H100 for Mistral) at temperature 0.7. If a reply could not be parsed, the agent retried; across the
-18 base runs this happened in [R: about 0.9%] of calls, and every failure was logged.
+18 base runs this happened in 47 calls (under 1%), and every failure was logged.
 
 **Base runs and positive control.** We ran 18 markets for 150 rounds each (seeds 400 to 417). A market counts as
 a cartel under our pre-registered rule only if, over rounds 121 to 150, each firm's own price had a mean premium
@@ -155,41 +154,99 @@ across markets, with a 95% bootstrap interval that resamples whole markets. We w
 the smallest possible p is 1/2ⁿ, so with four or fewer qualifying markets the plan says to report the numbers
 and make no claim.
 
-**What changed after we saw the data.** Only [R: 1] of 18 markets met the cartel rule, so the main test could
+**What changed after we saw the data.** Only 1 of 18 markets met the cartel rule, so the main test could
 not be run. We then ran the five conditions above on all 18 markets as an exploratory analysis. This was not
 planned, and we report it separately. We also ran fewer conditions than planned (no "no swap" and no "keep
-everything" condition) to stay within budget. A full list of changes to the plan is in Appendix D.
+everything" condition) to stay within budget. Of the 90 planned replacement runs, 52 finished all 100 rounds;
+38 were stopped early when our session paused overnight. Before looking at the full results we decided to keep
+the 30 that reached at least 90 rounds (averaging the rounds they have) and to report the complete runs alone as
+a check. A full list of changes to the plan is in Appendix D.
 
 ---
 
-## 4. Results (to write after the analysis; structure)
+## 4. Results
 
-- Table 1: all 18 markets: cartel rule met (yes/no), any firm above monopoly price, mean price at round 150,
-  premium of each firm, profit of each firm. One line on the pilot runs.
-- 4.1 Pre-registered test: "n = [R: 1] qualifying market; the plan does not allow a test." Give its numbers.
-- 4.2 What the markets looked like: the uneven pattern, with counts and profits [R: table1].
-- 4.3 Exploratory: notes only vs clean slate on all 18 markets, interval, p, per-market differences
-  [R: summary.json → exploratory_all_bases]. Figure 2 and Figure 3.
-- 4.4 Exploratory: same model vs other company (the 2×2) [R: fresh_same_notes_vs_clean, different_vs_same_model_notes].
-- 4.5 Exploratory: replacing the high-pricing firm vs the steady firm (Firm A was the high-pricer in 8 markets).
-- 4.6 Placebo and time to recover the old price level [R: arm_summary.csv].
-- One short quote from a handover note and the successor's first plan.
+All numbers below come from `results/processed/` (`report_numbers.json`, `summary.json`, `arm_summary.csv`,
+`table1_positive_control.csv`). Only 4.1 follows the pre-registered plan; 4.3 to 4.5 are exploratory.
+
+**Table 1. Positive control (18 base markets, gpt-oss-120b, rounds 121 to 150).**
+
+| | Count |
+|---|---|
+| Markets launched | 18 |
+| Mean price above the competitive level | 18 |
+| Met the pre-registered cartel rule (each firm: premium ≥ 0.40, SD < 0.05, never above monopoly) | 1 |
+| At least one firm priced above the monopoly level | 16 |
+| ... and in those, the higher-priced firm earned less than its rival | 16 |
+
+(Per-market prices, premiums and the gap between the two firms are in `table1_positive_control.csv`; put the full
+table in the appendix.)
+
+### 4.1 Pre-registered test
+
+Only one market met the cartel rule, so the pre-registered comparison has n = 1 and the plan does not allow a
+test or a claim. In that market the new model's premium was almost the same with and without notes (difference
+−0.02).
+
+### 4.2 What the markets looked like before the swap
+
+Every market priced above the competitive level, so by a price-only definition all 18 would count as collusive.
+But in 16 of them the high average hid an uneven pattern: one firm held a price above the monopoly level and
+lost profit, while the other sat lower and earned more. This is not a shared cartel. It looks like one agent
+stuck on a high price and its rival profiting from it. A measure that only looks at the average price would
+miss this.
+
+### 4.3 Did inherited notes keep prices high?
+
+No. Across the 17 markets with all needed conditions, the new model's premium with notes minus its premium with
+nothing was −0.19 (95% CI −0.60 to 0.25, one-sided p = 0.80). Using only runs that finished all 100 rounds (7
+markets) gives +0.04 (95% CI −0.70 to 0.86). Either way there is no sign that notes raise the price level.
+
+### 4.4 Did prices come down after the swap?
+
+No, in any condition. The new model's mean premium was 0.98 with notes, 1.19 with nothing, 0.87 for a fresh
+gpt-oss with notes, 1.04 for a fresh gpt-oss with nothing, and 0.83 with only the last price (Figure 3). All are
+close to or above the monopoly level. The other firm kept its model and memory, and the new model ended up near
+its rival's high price whatever it inherited.
+
+Changing the company behind the model made little difference: with notes kept, Mistral priced 0.11 higher than a
+fresh gpt-oss (95% CI −0.03 to 0.29, 18 markets).
+
+### 4.5 Notes changed how fast, not how high
+
+Notes mattered for the path. A new model that started with nothing often jumped far above the old price and then
+drifted down (Figure 2): its rounds were above the monopoly price 48% of the time, against 43% with notes and
+22% with only the last price. With notes, the market was back within 0.05 of its old price level in a median of
+1 round; with nothing it took 16.5 rounds. In all 13 markets where both versions got back to the old level, the
+one with notes got there faster (median 15 rounds faster; exact sign-flip p = 0.0001). Time to recover was a
+pre-registered secondary measure; this test of it is exploratory.
 
 ---
 
-## 5. Discussion (to write after the analysis; points to cover)
+## 5. Discussion
 
-- What a regulator or platform should take away (runbook box on page 1).
-- Average prices can hide one firm that overprices and loses money; this is a warning for measures based on
-  average price only.
-- Why the main test failed and what that says about how common clean cartels are with open models.
-- Limits: one market, one prompt, two models, a few hundred rounds; exploratory results need a fresh test.
+**Main finding.** Replacing one agent's model did not bring prices down. In every condition the new model ended
+up near the high prices of the market it joined. Handover notes did not change where it ended up, but they
+removed the period of confusion right after the swap: with notes the new model picked up the old price at once.
+So the agent's memory is part of how a high-price pattern carries on, even though in our setting the rival's
+behaviour pulls the newcomer to the same place in the end.
 
-**Runbook box (page 1), to adjust after results:**
-- When you swap an agent's model, decide what happens to its memory. Clear it, or review it, before the new
-  model reads it.
-- Check the new model's prices against the old agent's for some time after the swap.
-- "We changed the model" is not the same as "we fixed the behaviour".
+**What this means for practitioners.** "We changed the model" is not a fix on its own. If the other agents in a
+market keep their behaviour, a new model can settle on the same high prices within a few rounds, and faster if
+it reads the old notes.
+
+**What this does not show.** Only one market formed a clean cartel, so we cannot say whether a true cartel is
+inherited. Our measure looks at prices only, not at punishment of price cuts. The 4.51 price ceiling in the
+prompt seems to explain why new models with no information start very high. Most of our results are
+exploratory and need a fresh pre-registered test.
+
+**A warning about measuring collusion by average price.** In 16 of 18 markets the average price looked collusive
+but one firm was overpricing and losing money. Studies that rely on average prices should check each firm.
+
+**Runbook box (page 1):**
+- A model swap does not reset prices. Watch the new agent's prices against the old ones for a while after the swap.
+- Decide what happens to the agent's memory. Notes let the new model pick up the old price level at once.
+- Check each firm's price and profit, not only the average price, before calling a market collusive or competitive.
 
 ---
 
@@ -250,3 +307,5 @@ From `PREREG.md` and `logs/PLANNING_LOG.md`:
 4. 18 base runs instead of 12.
 5. Process slip: the approved plan was first committed together with a log file, five minutes before the separate freeze commit; the text did not change.
 6. After the data: only 1 of 18 markets qualified, so all replacement runs are exploratory, on all 18 markets, with five conditions instead of seven.
+7. 38 of 90 replacement runs were stopped early when the session paused; we kept the 30 with at least 90 of 100 rounds (decided before looking at full results) and report complete runs alone as a check.
+8. "Time to recover" was a pre-registered secondary measure; the paired test of it is exploratory.

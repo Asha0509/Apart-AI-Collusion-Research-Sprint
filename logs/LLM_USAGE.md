@@ -7,3 +7,4 @@
 | 2026-10-24 | Claude Code subagents | (1) read the official sprint page and compared scope; (2) read-only rubric/prize-readiness review of the repo | Findings relayed; human approved resulting scope changes (D009, D010) |
 | 2026-10-24 | Claude Code | Report OUTLINE.md (structure only, no prose), Figure 1 schematic in make_figures.py, background citation verification agent | Team writes prose; human to review figure |
 | 2026-10-24 | Claude Code | Drafting all report prose (human proofreads), per D014 | Human proofreads every section |
+| 2026-10-26 | Claude Code | Analysis on real data, report_numbers.json, figures, Results/Discussion/abstract/title written into report/DRAFT.md; numbers cross-checked against results/processed | Human proofreads |

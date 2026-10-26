@@ -95,3 +95,7 @@ Append one entry per function/module built or patched. Newest at bottom. IST tim
 - Deployed `mistralai/Mistral-Small-3.2-24B-Instruct-2506` via scripts/modal_serve.py (MODAL_SERVE_ARGS baked into image: --tokenizer-mode/--config-format/--load-format mistral). Smoke: ready in 321 s; accepts the harness's two-system-message + JSON-mode request.
 - Cross-endpoint fork smoke from pilot120b seed 302 (passes per-firm rule), k=150, notes kept/history wiped, 2 rounds: Firm A = Mistral (successor endpoint), Firm B = gpt-oss-120b (incumbent endpoint), usage per model recorded, 0 PARSE_FAIL. Condition "smoke_xendpoint" (not an analysis arm).
 - Also this hour: per-provider cost guard, per-firm branch rule, analysis fixes, pilot evidence, check.sh harness tests (23/23), README disclosures (see commits). Spend: Modal only.
+
+## 2026-10-26 12:00 IST — Final analysis + report text
+- analyse.py (D015 >=90-round rule, lazy shocks import), scripts/report_numbers.py (every number quoted in the report, from results/processed + results/raw), make_figures.py (Fig 1-3; Fig 4 skipped: no shock runs), figures.py label spacing.
+- report/DRAFT.md: title, abstract (244 words), Results 4.1-4.5, Discussion, runbook, Appendix D items 7-8. All numbers cross-checked against report_numbers.json (script check, all match). No em dashes.
