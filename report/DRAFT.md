@@ -96,6 +96,7 @@ al. (2026) and Xu et al. (2026) use the term "memory laundering" for a different
 
 **Definitions box (page 1).** We use three meanings of collusion, following the sprint's own collection of
 definitions (starter repository, `literature/definitions`):
+
 - *Price-based:* prices above the competitive level, reached without human design (Fish et al., 2024). This is
   what our main measure captures.
 - *Reward and punishment:* high prices held up by strategies that punish a firm that cuts its price (Calvano et
@@ -205,7 +206,7 @@ markets) gives +0.04 (95% CI −0.70 to 0.86). Either way there is no sign that 
 ### 4.4 Did prices come down after the swap?
 
 No, in any condition. The new model's mean premium was 0.98 with notes, 1.19 with nothing, 0.87 for a fresh
-gpt-oss with notes, 1.04 for a fresh gpt-oss with nothing, and 0.83 with only the last price (Figure 3). All are
+gpt-oss with notes, 1.04 for a fresh gpt-oss with nothing, and 0.83 with only the last price (Figure 2). All are
 close to or above the monopoly level. The other firm kept its model and memory, and the new model ended up near
 its rival's high price whatever it inherited.
 
@@ -215,7 +216,7 @@ fresh gpt-oss (95% CI −0.03 to 0.29, 18 markets).
 ### 4.5 Notes changed how fast, not how high
 
 Notes mattered for the path. A new model that started with nothing often jumped far above the old price and then
-drifted down (Figure 2): its rounds were above the monopoly price 48% of the time, against 43% with notes and
+drifted down (Figure 3): its rounds were above the monopoly price 48% of the time, against 43% with notes and
 22% with only the last price. With notes, the market was back within 0.05 of its old price level in a median of
 1 round; with nothing it took 16.5 rounds. In all 13 markets where both versions got back to the old level, the
 one with notes got there faster (median 15 rounds faster; exact sign-flip p = 0.0001). Time to recover was a
@@ -244,6 +245,7 @@ exploratory and need a fresh pre-registered test.
 but one firm was overpricing and losing money. Studies that rely on average prices should check each firm.
 
 **Runbook box (page 1):**
+
 - A model swap does not reset prices. Watch the new agent's prices against the old ones for a while after the swap.
 - Decide what happens to the agent's memory. Notes let the new model pick up the old price level at once.
 - Check each firm's price and profit, not only the average price, before calling a market collusive or competitive.
