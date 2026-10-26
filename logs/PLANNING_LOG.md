@@ -117,3 +117,6 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 
 ## 2026-10-26 11:40 IST — D015 Deadline plan
 - 3.5 h to internal submit (15:00 IST). No reruns. Analyse 52 complete + partial branches (>= 90 post rounds) as exploratory, complete-only as sensitivity; PREREG primary on qualifying bases only. Then figures, Results/Discussion draft, checklist.
+
+## 2026-10-26 18:01 IST — D016 Report v2 review (human asked for a brutal check)
+- Removed unsupported claim that the successor's price level is set by the rival (data: corr(successor late price, rival pre-swap price) = -0.16; checked ad hoc, not reported). Flagged that 1-round recovery with notes is partly by construction (successor copies the price in the notes); placebo comparison added as the informative test. Level wording now uses capped means (0.59-0.74). Corrected D015 wording (rule fixed after a 16-run preview). Qualified generalisations; added the memory-monitor implication and the prompt-ceiling anchoring pitfall as contributions. Title changed subtly for resubmission.
