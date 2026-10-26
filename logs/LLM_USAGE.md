@@ -8,3 +8,4 @@
 | 2026-10-24 | Claude Code | Report OUTLINE.md (structure only, no prose), Figure 1 schematic in make_figures.py, background citation verification agent | Team writes prose; human to review figure |
 | 2026-10-24 | Claude Code | Drafting all report prose (human proofreads), per D014 | Human proofreads every section |
 | 2026-10-26 | Claude Code | Analysis on real data, report_numbers.json, figures, Results/Discussion/abstract/title written into report/DRAFT.md; numbers cross-checked against results/processed | Human proofreads |
+| 2026-10-26 | AI assistant | Report v2: follow-up results (Section 4.6, Figure 4), abstract/discussion/limitations updated; numbers checked against extra.json | Human proofreads |

@@ -23,18 +23,18 @@ th { background-color: #eeeeee; }
 code { font-family: DejaVu; font-size: 8.5pt; }
 </style></head><body>
 <div class="rule1"></div><h1>SWAPPING THE MODEL DOES NOT RESET THE PRICE: LLM PRICING AGENTS AFTER A MODEL REPLACEMENT<sup>1</sup></h1><div class="rule2"></div><p class="auth">Asha Jyothi<br/>Independent Researcher<br/><b>With</b><br/>Apart Research</p>
-<p class="absh">Abstract</p><p class="abs">A common fix for an AI agent that behaves badly is to replace the model behind it. The sprint brief for this
-track notes that "there are no replacement studies yet where models are substituted (e.g. because they are taken
-out due to monitoring concerns)". We run such a study. Two LLM pricing agents, both gpt-oss-120b, compete in a
+<p class="absh">Abstract</p><p class="abs">A common fix for an AI agent that behaves badly is to replace the model behind it, but no study has
+tested what happens after such a swap (sprint question 1.2). We run one. Two LLM pricing agents, both gpt-oss-120b, compete in a
 simulated market. After 150 rounds we replace one
 agent's model with Mistral-Small-3.2 (a different company) or with a fresh copy of gpt-oss-120b, and we control
 whether the new model inherits the old agent's handover notes. We pre-registered the main test. All 18 markets priced above the competitive level, but only 1 met our pre-registered cartel
 rule, so the pre-registered test could not be run. In 16 markets one firm priced above the monopoly level and
 earned less than its rival. In exploratory analysis, replacing the model did not bring prices down in any
 condition: the new model priced at 0.83 to 1.19 of the way from the competitive to the monopoly price. Inherited notes did not raise the price level (difference −0.19, 95% CI −0.60 to 0.25, 17
-markets), but they changed how fast the new model settled: with notes it was back at the old price level in a
-median of 1 round, without notes in 16.5 rounds, and it was faster in all 13 markets where both recovered. Changing the model does not reset prices, and the agent's memory
-shapes what happens next.</p>
+markets), but they set how the new model started: with notes its first price equalled the old agent's last price
+in all 18 markets and it settled at once, while without notes it started near the price ceiling in the prompt
+and took a median of 16.5 rounds to settle. The notes held ordinary pricing plans, not collusive instructions.
+Changing the model does not reset prices; the agent's memory decides how the handover goes.</p>
 <div class="fig"><img src="/home/asha/collusion-sprint/figures/fig1_schematic.png" width="460"/><p class="cap"><b>Figure 1.</b> Design. Two gpt-oss-120b agents price for 150 rounds; at round 150 Firm A's model is replaced and we switch what the successor inherits; then 100 more rounds.</p></div>
 
 <div class="box">
@@ -66,6 +66,7 @@ two causes that are usually mixed together: the model itself and the state it is
    the plan allowed us to conclude and, separately and clearly labelled, what we learned in exploratory analysis.</li>
 <li>A finding about the markets themselves: LLM agents that look collusive by average price often are not. In
    16 of 18 runs one firm priced above the monopoly level and earned less than its rival.</li>
+<li>A mechanism: inherited notes work as a price anchor and a plan to follow, not as a hidden collusion script.</li>
 <li>Open code: small, tagged patches to the starter harness, plus scripts that fork a finished market and swap
    one agent's model.</li>
 </ol>
@@ -252,12 +253,35 @@ one with notes got there faster (median 15 rounds faster; exact sign-flip p = 0.
 pre-registered secondary measure; this test of it is exploratory.</p>
 <div class="fig"><img src="/home/asha/collusion-sprint/figures/fig2_trajectory.png" width="460"/><p class="cap"><b>Figure 3.</b> Price set by the replaced firm (Firm A), mean over markets, before and after the swap at round 150. Exploratory.</p></div>
 
+<h3>4.6 Why notes make the handover smooth (follow-up analysis)</h3>
+<p>We ran these checks after the first version of this report, so they are exploratory (<code>results/processed/extra.json</code>).</p>
+<p><em>What the new model does first.</em> With notes, its first price was exactly the old agent's last price in all 18
+markets, for both Mistral and a fresh gpt-oss-120b. It also copied the old plan almost word for word (for
+example "Continue with the stable price of $1.65"). With nothing, its first price averaged 3.11, and in 47% of
+markets it started at 3.0 or more. These models wrote that they were testing a price "close to the maximum a
+customer would pay": the prompt tells them that no customer pays more than 4.51, and with no history they anchor
+on that number (Figure 4).</p>
+<p><em>More than the last price.</em> The "last price only" placebo also sped up the handover compared with a clean slate
+(27 rounds faster, 12 markets, p = 0.009), but full notes were faster still (8 rounds faster than the placebo, 13
+markets, p = 0.002). Using only runs that finished all 100 rounds, notes beat a clean slate by 48 rounds (8
+markets, p = 0.008).</p>
+<p><em>What the notes say.</em> In 17 of 18 markets the inherited notes mention the rival, mostly as a condition in a
+pricing rule ("if Firm B exceeds $2.20 for three rounds, test $1.70"). None describes coordinating with the
+rival. A word search for collusion-related terms matched 3 of 18; on reading, two use "signal" to mean a market
+indicator and one says "aggressive price wars are unnecessary" while reasoning about profit.</p>
+<p><em>Price level with overshoot capped.</em> If we cap each price at the monopoly level before averaging, notes minus
+clean slate is +0.08 (95% CI −0.05 to 0.23), so the level result does not depend on the high outliers.</p>
+<div class="fig"><img src="/home/asha/collusion-sprint/figures/fig4_per_market.png" width="460"/><p class="cap"><b>Figure 4.</b> Price of the replaced firm in each of the 18 markets, from round 140, with notes (blue) and with a clean slate (orange). With notes the first price after the swap equals the last price before it; without notes it often starts near the prompt's price ceiling. Exploratory.</p></div>
+
 <h2>5. Discussion and Limitations</h2>
 <p><strong>Main finding.</strong> Replacing one agent's model did not bring prices down. In every condition the new model ended
 up near the high prices of the market it joined. Handover notes did not change where it ended up, but they
 removed the period of confusion right after the swap: with notes the new model picked up the old price at once.
-So the agent's memory is part of how a high-price pattern carries on, even though in our setting the rival's
-behaviour pulls the newcomer to the same place in the end.</p>
+The follow-up checks show how: the notes give the newcomer a price to start from and a plan to keep, so it
+continues the old agent's pricing from its first round. Without them it anchors on the price ceiling in its
+prompt and has to learn the market again. The notes themselves read like ordinary pricing plans. So in this
+setting a model swap is not a reset, and what decides the handover is the state the new model is given; the
+level it ends at is set mainly by the rival it faces.</p>
 <p><strong>What this means for practitioners.</strong> "We changed the model" is not a fix on its own. If the other agents in a
 market keep their behaviour, a new model can settle on the same high prices within a few rounds, and faster if
 it reads the old notes.</p>
@@ -273,7 +297,9 @@ but one firm was overpricing and losing money. Studies that rely on average pric
 proof of collusion in the strict sense. Only one market met our cartel rule, so the replacement results are
 exploratory. 38 of 90 replacement runs stopped before round 250; using only the 52 complete runs gives the same
 answer for the price level but with wide intervals. The other firm kept its memory in every condition, so we
-cannot separate what the new model inherits from what it learns by watching its rival.</p>
+cannot separate what the new model inherits from what it learns by watching its rival. The high starting
+prices without notes come partly from the 4.51 price ceiling in the prompt; with a different prompt the
+handover could look different. The mechanism checks in Section 4.6 were run after seeing the data.</p>
 <h3>Future work</h3>
 <p>Run the same design on base markets that form clean cartels (for example longer runs or other models), add the
 "no swap" and "keep everything" conditions we had to drop, test whether successors punish a forced price cut
@@ -347,7 +373,8 @@ sprint work. One unplanned change added a <code>modal</code> dependency to the s
 5. Process slip: the approved plan was first committed together with a log file, five minutes before the separate freeze commit; the text did not change.
 6. After the data: only 1 of 18 markets qualified, so all replacement runs are exploratory, on all 18 markets, with five conditions instead of seven.
 7. 38 of 90 replacement runs were stopped early when the session paused; we kept the 30 with at least 90 of 100 rounds (decided before looking at full results) and report complete runs alone as a check.
-8. "Time to recover" was a pre-registered secondary measure; the paired test of it is exploratory.</p>
+8. "Time to recover" was a pre-registered secondary measure; the paired test of it is exploratory.
+9. After the first submission we added follow-up analyses (Section 4.6, Figure 4): first-round prices, a word search and reading of the inherited notes, capped-price and complete-run checks. All are exploratory.</p>
 <h2>LLM Usage Statement</h2>
 <p>We used an AI coding assistant (a large language model) throughout. It wrote and tested the code, ran and monitored the experiments,
 checked every citation against arXiv or the original source, and drafted the text of this report from our

@@ -39,9 +39,13 @@ body = body.replace("## 1. Introduction", fig("figures/fig1_schematic.png",
 body = body.replace("### 4.5 Notes changed how fast, not how high", fig("figures/fig3_inheritance_effect.png",
     "<b>Figure 2.</b> New model's price premium minus the clean-slate premium, per condition (mean over markets, "
     "95% bootstrap interval over markets). Exploratory.") + "### 4.5 Notes changed how fast, not how high", 1)
-body = body.replace("## 5. Discussion", fig("figures/fig2_trajectory.png",
+body = body.replace("### 4.6 Why notes", fig("figures/fig2_trajectory.png",
     "<b>Figure 3.</b> Price set by the replaced firm (Firm A), mean over markets, before and after the swap at "
-    "round 150. Exploratory.") + "## 5. Discussion", 1)
+    "round 150. Exploratory.") + "### 4.6 Why notes", 1)
+body = body.replace("## 5. Discussion", fig("figures/fig4_per_market.png",
+    "<b>Figure 4.</b> Price of the replaced firm in each of the 18 markets, from round 140, with notes (blue) and "
+    "with a clean slate (orange). With notes the first price after the swap equals the last price before it; "
+    "without notes it often starts near the prompt's price ceiling. Exploratory.") + "## 5. Discussion", 1)
 # boxes
 body = re.sub(r"(\*\*Definitions\.\*\*[\s\S]+?)(\n## 3\. Method)", r'<div class="box" markdown="1">\n\n\1\n\n</div>\n\2', body)
 m = re.search(r"\*\*Practitioner runbook\.\*\*[\s\S]+?(?=\n## Appendix A)", body)
