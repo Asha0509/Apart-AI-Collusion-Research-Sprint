@@ -13,7 +13,7 @@ from xhtml2pdf import pisa
 ROOT = Path(__file__).resolve().parents[1]
 src = (ROOT / "report/DRAFT.md").read_text()
 AUTHOR = os.environ.get("REPORT_AUTHOR", "[Author name] ([Affiliation])")
-REPO = os.environ.get("REPORT_REPO", "https://github.com/[user]/collusion-sprint")
+REPO = os.environ.get("REPORT_REPO", "https://github.com/Asha0509/Apart-AI-Collusion-Research-Sprint")
 
 title = re.search(r"^\*\*(Swapping.+?)\*\*$", src, re.M).group(1)
 subtitle = "A pre-registered replacement study for question 1.2 of the AI Collusion Research Sprint"

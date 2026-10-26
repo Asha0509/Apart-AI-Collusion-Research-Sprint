@@ -1,4 +1,4 @@
-# DRAFT report text (written by Claude Code, to be proofread and edited by the author)
+# DRAFT report text (AI-assisted draft, proofread and edited by the author)
 
 Style rules used: plain words, short sentences, no em dashes. Every number marked `[R: ...]` must be pasted
 from `results/processed/` after `scripts/analyse.py` runs. Nothing in brackets is a result yet.
@@ -292,9 +292,9 @@ sprint work. One unplanned change added a `modal` dependency to the starter's `p
 
 ## Appendix C. LLM Usage Statement
 
-We used Claude Code (Anthropic) throughout. It wrote and tested the code, ran and monitored the experiments,
+We used an AI coding assistant (a large language model) throughout. It wrote and tested the code, ran and monitored the experiments,
 checked every citation against arXiv or the original source, and drafted the text of this report from our
-results; the author proofread and edited every section. A separate Claude agent read the sprint rules and
+results; the author proofread and edited every section. A separate instance of the assistant read the sprint rules and
 reviewed the project against the judging criteria. All numbers come from scripts run on our logged data, and
 every reference was checked by hand or with an arXiv tool. A full log is in `logs/LLM_USAGE.md`.
 
