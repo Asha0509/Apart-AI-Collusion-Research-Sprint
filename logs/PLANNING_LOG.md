@@ -114,3 +114,6 @@ Decisions, scope changes, gate outcomes, pre-registration deviations.
 
 ## 2026-10-24 22:50 IST — D014 Claude drafts the report prose; human proofreads (human: "you write it all, I will proof read")
 - Overrides CLAUDE.md rule 6 (updated). Sprint rules allow AI use if disclosed (LLM Usage Statement). Style: simple language, no em dashes, no AI-ish wording.
+
+## 2026-10-26 11:40 IST — D015 Deadline plan
+- 3.5 h to internal submit (15:00 IST). No reruns. Analyse 52 complete + partial branches (>= 90 post rounds) as exploratory, complete-only as sensitivity; PREREG primary on qualifying bases only. Then figures, Results/Discussion draft, checklist.

@@ -65,3 +65,9 @@ Log every error immediately. Never delete; update Status.
 - Message: `RuntimeError: budget cap: spent $43.82 + est $27.00 > $65.0`. Nothing launched.
 - Cause: registry.guard_batch used one OpenRouter cap and summed every COST_LOG row (pre-launch estimates AND dashboard actuals for the same spend) -> double count; caps no longer match providers (Modal/Nebius).
 - Fix: per-provider CAPS (modal $73, nebius $7 = human-reported remaining credit), only rows tagged provider=<name> count, a batch's actual replaces its estimate. Test added (tests/test_metrics.py::test_guard_per_provider). Status: FIXED.
+
+## 2026-10-26 11:35 IST — 38 of 90 branch runs killed before finishing (session pause)
+- Symptom: at 11:32 IST no workers were running; 52 branches complete, 38 stopped (most at rounds 241-250 of 250; 5 with no logged round). Worker logs end without ok/FAILED lines, so processes were killed, not crashed.
+- Cause: the Claude Code session paused for a usage limit overnight; background worker processes did not survive (killed with the session/machine). No code error.
+- Impact: 38 branches marked "partial" in the registry with the round they stopped. Modal apps stopped (no containers were running).
+- Handling (D015, decided before looking at full results): exploratory analysis keeps branches with >= 90 of 100 post-swap rounds (mean over rounds they have); sensitivity = complete branches only. Status: CLOSED (no time to rerun before deadline).

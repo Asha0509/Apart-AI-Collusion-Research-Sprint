@@ -16,3 +16,4 @@ time_ist,batch,est_usd,actual_usd,cumulative_usd,notes
 2026-10-24 20:50 IST,base-gpt-oss-120b-400+18,27.0000,,35.3700,pre-launch estimate; provider=modal
 2026-10-24 22:26 IST,branches-90,35.1000,,62.3700,pre-launch estimate; provider=modal
 2026-10-24 22:41 IST,base-gpt-oss-120b-400+18,27.0000,19.0600,116.5300,"provider=modal; ACTUAL = all Modal spend since the $73 snapshot (19:50 IST) to 22:40 IST: credits $53.94 (human screenshot). Includes 120b pilot tail, 18 bases, Mistral smoke, first ~20 min of branches"
+2026-10-24 23:51 IST,branches-74,0.0000,,89.5300,pre-launch estimate; provider=modal

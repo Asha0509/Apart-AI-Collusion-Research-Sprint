@@ -25,6 +25,7 @@ OUT = ROOT / "results/processed"
 ARMS = {"no_swap", "full_inheritance", "notes_only", "history_only", "clean_slate", "price_only", "sanitised",
         "bot_full", "bot_notes", "fresh_same_notes", "fresh_same_clean"}
 POST = 100  # pre-registered: successor's mean over post-swap rounds 1-100
+MIN_POST = 90  # D015: branches killed after >= 90 post-swap rounds are kept, averaging the rounds they have
 RECOVER_TOL = 0.05  # 'time to recover the convention' (D009): market mean price back within this of its pre-swap level
 
 
@@ -45,14 +46,19 @@ def branch_rows(runs: list[Path], reg: dict) -> pd.DataFrame:
         meta = json.loads((d / "metadata.json").read_text())
         f = meta.get("fork")
         r = reg.get(d.name, {})
-        if not f or f.get("forced_prices") or r.get("status") != "done" or f.get("condition") not in ARMS:
+        if (not f or f.get("forced_prices") or f.get("condition") not in ARMS or r.get("status") == "failed"
+                or not (d / "environment_history.parquet").exists()):
             continue
         k, firm = f["swap_round"], f["firm"]
         p = prices(d)
+        post = int(p.index.max()) - k
+        complete = r.get("status") == "done" and post >= POST
+        if not complete and post < MIN_POST:
+            continue
         prof = pd.read_parquet(d / "environment_history.parquet").pivot_table(index="round", columns="agent", values="profit")
         rows.append(dict(
             run=d.name, base=Path(f["base_run_dir"]).name, condition=f["condition"], seed=f["seed"],
-            successor=f["successor_model"],
+            successor=f["successor_model"], post_rounds=min(post, POST), complete=complete,
             premium=mean_premium(p[firm], k + 1, k + POST),
             overshoot_share=float(overshoot(p[firm].loc[k + 1:k + POST]).mean()),
             successor_profit=float(prof[firm].loc[k + 1:k + POST].mean()),
@@ -177,6 +183,7 @@ def main() -> None:
     qualifying = [b for b in tab.index if _base_qualifies(Path(args.runs) / b)] if not tab.empty else []
     out = {"primary": primary(tab.loc[qualifying]) if qualifying else {"status": "no qualifying bases", "n_bases": 0},
            "exploratory_all_bases": primary(tab) if not tab.empty else {},
+           "exploratory_complete_only": primary(per_base(br[br.complete])) if not br.empty and br.complete.any() else {},
            "qualifying_bases": qualifying}
     for name, (a, b) in {"full_vs_bot": ("full_inheritance", "bot_full"), "sanitiser_reduction": ("notes_only", "sanitised"),
                          "notes_vs_history": ("notes_only", "history_only"), "noswap_vs_clean": ("no_swap", "clean_slate"),
